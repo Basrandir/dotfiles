@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+icon="$HOME/data/lock.png"
+tmpbg="/tmp/screen.png"
+
+scrot $tmpbg
+i3lock -u -i $tmpbg
+
+convert $tmpbg -scale 10% -scale 1000% $tmpbg
+convert $tmpbg $icon -gravity west -geometry +832 -composite -matte $tmpbg
+
+kill $(pgrep i3lock)
+i3lock -u -i $tmpbg
