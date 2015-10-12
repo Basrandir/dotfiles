@@ -1,9 +1,9 @@
-
+#
 # bspwm hotkeys
 #
 
 super + alt + Escape
-	pkill -x panel; bspc quit
+	bspc quit
 
 super + w
 	bspc window -c
@@ -86,9 +86,12 @@ super + Return
 super + space
 	dmenu_run
 
-super + p
-	lock
-
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
+
+
+# Custom hotkeys
+
+super + shift + s
+	bspc window -t sticky
