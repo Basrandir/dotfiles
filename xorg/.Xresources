@@ -1,45 +1,29 @@
-URxvt.font:		xft:Tewi:size=10
-
 URxvt.scrollBar:	false
-URxvt.loginShell:	true
+URxvt.font:		-*-tewi-medium-*-*-*-*-*-*-*-*-*-*-*
 
-URxvt.perl-ext-common: 	default,matcher
-URxvt.url-launcher:	firefox
-URxvt.matcher.button:	1
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/firefox
+URxvt.matcher.button: 1
 
-! special
-URxvt.foreground:   #c5c8c6
-URxvt.background:   #1d1f21
-URxvt.cursorColor:  #c5c8c6
+!URxvt.depth:		32
+!URxvt.background:	[85]#1d1f21
+URxvt.background:	#000000
+URxvt.foreground:	#c5c8c6
 
-! black
-URxvt.color0:       #282a2e
-URxvt.color8:       #373b41
-
-! red
-URxvt.color1:       #a54242
-URxvt.color9:       #cc6666
-
-! green
-URxvt.color2:       #8c9440
-URxvt.color10:      #b5bd68
-
-! yellow
-URxvt.color3:       #de935f
-URxvt.color11:      #f0c674
-
-! blue
-URxvt.color4:       #5f819d
-URxvt.color12:      #81a2be
-
-! magenta
-URxvt.color5:       #85678f
-URxvt.color13:      #b294bb
-
-! cyan
-URxvt.color6:       #5e8d87
-URxvt.color14:      #8abeb7
-
-! white
-URxvt.color7:       #707880
-URxvt.color15:      #c5c8c6
+*color0: #ff814e
+*color1: #fe5a3f
+*color2: #78012f
+*color3: #cc293e
+!*color3: #40082d
+*color4: #c8394a
+*color5: #e9bca1
+*color6: #faa078
+*color7: #9c0e12
+*color8: #a62951
+*color9: #e4647d
+*color10: #ea585b
+*color11: #de8f68
+*color12: #bc2a2b
+*color13: #894054
+*color14: #98153f
+*color15: #9c6b6f
