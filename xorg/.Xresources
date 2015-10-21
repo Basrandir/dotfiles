@@ -2,13 +2,30 @@ URxvt.scrollBar:	false
 URxvt.font:		-*-tewi-medium-*-*-*-*-*-*-*-*-*-*-*
 
 URxvt.perl-ext-common: default,matcher
-URxvt.url-launcher: /usr/bin/firefox
+URxvt.url-launcher: /usr/bin/qutebrowser
 URxvt.matcher.button: 1
 
 !URxvt.depth:		32
 !URxvt.background:	[85]#1d1f21
 URxvt.background:	#000000
 URxvt.foreground:	#c5c8c6
+
+*color0:    #fd7d4a
+*color1:    #ee443a
+*color2:    #bc2c48
+*color3:    #a55f6e
+*color4:    #a41b3e
+*color5:    #c12238
+*color6:    #7d0031
+*color7:    #fd583d
+*color8:    #9c0e2d
+*color9:    #830133
+*color10:   #b5083d
+*color11:   #d94549
+*color12:   #8c0a37
+*color13:   #d3333b
+*color14:   #c8283e
+*color15:   #fe6c40
 
 rofi.terminal:  urxvt
 rofi.lines:     10
