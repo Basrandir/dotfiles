@@ -36,5 +36,14 @@ xsetroot -cursor_name left_ptr &
 sh ~/.fehbg &
 
 compton &
-sxhkd &
-exec bspwm
+
+case $1 in
+    bspwm)
+        sxhkd -c ~/.config/sxhkd/sxhkdrc.bspwm &
+        exec bspwm
+        ;;
+    *)
+        focus_watcher.sh &
+        exec sxhkd
+        ;;
+esac
