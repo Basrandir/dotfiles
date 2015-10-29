@@ -1,3 +1,5 @@
+#include ".Xresources.d/urxvt"
+
 URxvt.scrollBar:	false
 URxvt.font:		-*-tewi-medium-*-*-*-*-*-*-*-*-*-*-*
 
@@ -9,27 +11,10 @@ URxvt.matcher.button: 1
 !URxvt.background:	[85]#1d1f21
 
 #define COLOR_BG #1a0a1a
-#define COLOR_FG #f7bba1
-
-#define COLOR_0 #fd7d4a
-#define COLOR_1 #ee443a
-#define COLOR_2 #bc2c48
-#define COLOR_3 #a55f6e
-#define COLOR_4 #a41b3e
-#define COLOR_5 #c12238
-#define COLOR_6 #7d0031
-#define COLOR_7 #fd583d
-#define COLOR_8 #9c0e2d
-#define COLOR_9 #830133
-#define COLOR_10 #b5083d
-#define COLOR_11 #d94549
-#define COLOR_12 #8c0a37
-#define COLOR_13 #d3333b
-#define COLOR_14 #c8283e
-#define COLOR_15 #fe6c40
+#define COLOR_FG #fedbc5
 
 URxvt.background:   COLOR_BG
-URxvt.foreground:	COLOR_FG
+URxvt.foreground:   COLOR_FG
 
 *color0:    COLOR_0
 *color1:    COLOR_1
@@ -55,9 +40,9 @@ rofi.width:     40
 rofi.padding:   10
 rofi.opacity:   95
 rofi.bw:        4
-rofi.bc:        COLOR_0
+rofi.bc:        COLOR_15
 rofi.bg:        COLOR_BG
 rofi.fg:        COLOR_FG
-rofi.hlbg:      COLOR_0
-rofi.hlfg:      COLOR_9
+rofi.hlbg:      COLOR_1
+rofi.hlfg:      COLOR_13
 rofi.font:      Tewi 8
