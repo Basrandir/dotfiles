@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# kalq - 2015 (c)
+# kalq
 # returns the window IDs of the windows that the mouse is hovering over
 
 mouse_x=$(wmp | cut -d' ' -f1)
