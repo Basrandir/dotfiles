@@ -1,7 +1,8 @@
 #include ".Xresources.d/urxvt"
 
 URxvt.scrollBar:	false
-URxvt.font:		-*-tewi-medium-*-*-*-*-*-*-*-*-*-*-*
+URxvt.font:             xft:fantasque:size=8
+!URxvt.font:		-*-tewi-medium-*-*-*-*-*-*-*-*-*-*-*
 
 URxvt.perl-ext-common: default,matcher
 URxvt.url-launcher: /usr/bin/qutebrowser
