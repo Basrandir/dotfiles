@@ -14,11 +14,6 @@ ICON_FONT='FontAwesome:size=9'
 [ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
 mkfifo "$PANEL_FIFO"
 
-bspc config top_padding $PANEL_HEIGHT
-
-bspc control --subscribe > "$PANEL_FIFO" &
-xtitle -sf 'T%s' > "$PANEL_FIFO" &
-
 panel_status > "$PANEL_FIFO" &
 
 . panel_colors

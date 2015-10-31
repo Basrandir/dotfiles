@@ -1,3 +1,4 @@
+#!/bin/sh
 . panel_colors
 
 wifi_ssid(){
