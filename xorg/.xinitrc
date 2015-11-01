@@ -34,7 +34,7 @@ fi
 
 xsetroot -cursor_name left_ptr &
 sh ~/.fehbg &
-compton &
+compton --config $HOME/.config/compton/compton.conf -b &
 
 focus_watcher.sh &
 exec sxhkd
