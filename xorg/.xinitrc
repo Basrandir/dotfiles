@@ -36,5 +36,6 @@ xsetroot -cursor_name left_ptr &
 sh ~/.fehbg &
 compton --config $HOME/.config/compton/compton.conf -b &
 
+low_battery &
 focus_watcher.sh &
 exec sxhkd

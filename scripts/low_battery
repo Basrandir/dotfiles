@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# kalq
+# cycles through a list of colours for the border of the active window if the
+# current battery state is below a certain threshold and it's discharging
+
+minimum=10
+FREQ=${FREQ:-0.1}
+COLORS="888888 8064cc 6480cc 64cccc 80cc64 cccc64 cc6464"
+
+while :; do
+    capacity=$(acpi -b | cut -d, -f2 | cut -d' ' -f2 | cut -d% -f1)
+    charging=$(acpi -b | cut -d' ' -f3 | cut -d, -f1)
+
+    while [ $capacity -lt $minimum ] && [ $charging == "Discharging" ]; do
+        mon=$(pfw)
+        for c in $COLORS; do
+            chwb -c $c $mon 
+            sleep $FREQ
+        done
+        capacity=$(acpi -b | cut -d, -f2 | cut -d' ' -f2 | cut -d% -f1)
+        charging=$(acpi -b | cut -d' ' -f3 | cut -d, -f1)
+    done
+
+    sleep 2
+done
