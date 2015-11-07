@@ -24,6 +24,10 @@ call plug#begin()
 " Statusline
 Plug 'itchyny/lightline.vim'
 let g:lightline = {'colorscheme': 'byzantine',}
+
+" Goyo
+Plug 'junegunn/goyo.vim'
+
 call plug#end()
 
 " SEARCH
