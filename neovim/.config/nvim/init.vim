@@ -1,6 +1,10 @@
 " VimPlug: {{{
 call plug#begin()
 
+Plug 'mattn/emmet-vim'
+
+Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
@@ -72,4 +76,10 @@ nnoremap <C-l> <C-w>l
 
 " Folding: {{{
 autocmd FileType vim setlocal foldmethod=marker
+" }}}
+
+" Vimwiki: {{{
+let g:vimwiki_ext2syntax = {'.md': 'markdown'}
+let g:vimwiki_list = [{'path': '$HOME/doc/wiki',
+                     \ 'syntax': 'markdown', 'ext': '.md'}]
 " }}}
