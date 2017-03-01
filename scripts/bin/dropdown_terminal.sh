@@ -3,7 +3,7 @@
 terminal="st"
 
 if [ -z $(xdotool search --classname "dropdown") ]; then
-    bspc rule -a $terminal:dropdown state=floating hidden=on border=off
+    bspc rule -a $terminal:dropdown state=floating hidden=on border=off sticky=on
     
     # Use of xtoolwait is recommended instead of the until-loop.
     # One or the other is needed to wait for the terminal to be
@@ -20,6 +20,9 @@ if [ -z $(xdotool search --classname "dropdown") ]; then
 
     xdotool windowmove $wid 0 0
     xdotool windowsize $wid $(expr $width - 4) $(expr $height / 3)
+
+    compton-trans -w $wid -o 90
+    echo $wid
 
     # Reveal the terminal once all the geometric changes are complete
     bspc node $wid -g hidden=off -f
