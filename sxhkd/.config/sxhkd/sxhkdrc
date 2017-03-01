@@ -60,6 +60,10 @@ super + y
 super + g
 	bspc node -s biggest
 
+# Drop-down terminal
+super + e
+    dropdown_terminal.sh
+
 #
 # state/flags
 #
