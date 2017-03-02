@@ -3,6 +3,7 @@ call plug#begin()
 
 " General
 Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-fugitive'
 
 " HTML
 Plug 'mattn/emmet-vim'
