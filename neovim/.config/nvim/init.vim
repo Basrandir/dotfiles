@@ -1,9 +1,14 @@
 " VimPlug: {{{
 call plug#begin()
 
+" General
+Plug 'jiangmiao/auto-pairs'
+
+" HTML
 Plug 'mattn/emmet-vim'
 
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+Plug 'suan/vim-instant-markdown'
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
