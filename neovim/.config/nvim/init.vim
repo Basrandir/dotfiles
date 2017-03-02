@@ -61,6 +61,7 @@ let mapleader=" "
 
 nnoremap <leader>o :Files<CR>
 nnoremap <leader>w :w<CR>
+nnoremap <leader>wq :wq<CR>
 
 " Split Navigation
 tnoremap <Esc> <C-\><C-n>
