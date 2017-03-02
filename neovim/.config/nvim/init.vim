@@ -20,7 +20,6 @@ Plug 'morhetz/gruvbox'
 
 call plug#end()
 " }}}
-
 " Colors: {{{
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1   " enable 24-bit colour
 let g:gruvbox_italic=1              " enable italics for gruvbox in terminals
@@ -28,13 +27,11 @@ let g:gruvbox_italic=1              " enable italics for gruvbox in terminals
 set background=dark " gruvbox dark mode
 colorscheme gruvbox
 " }}}
-
 " Indentation: {{{
 set softtabstop=4
 set shiftwidth=4
 set expandtab
 " }}}
-
 " UI: {{{
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
@@ -50,7 +47,6 @@ set showmatch   " highlights matching brackets
 set splitbelow
 set splitright
 " }}}
-
 " Search: {{{
 set ignorecase  " ignore case in searches
 set smartcase   " Override 'ignorecase' if the search pattern includes
@@ -58,7 +54,6 @@ set smartcase   " Override 'ignorecase' if the search pattern includes
 
 set inccommand=nosplit  " shows command results as typed
 " }}}
-
 " Mappings: {{{
 let mapleader=" "
 
@@ -78,11 +73,9 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 " }}}
-
 " Folding: {{{
 autocmd FileType vim setlocal foldmethod=marker
 " }}}
-
 " Vimwiki: {{{
 let g:vimwiki_ext2syntax = {'.md': 'markdown'}
 let g:vimwiki_list = [{'path': '$HOME/doc/wiki',
