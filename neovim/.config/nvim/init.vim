@@ -4,6 +4,7 @@ call plug#begin()
 " General
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
+Plug 'romainl/vim-cool' " Disable search hl when complete
 
 " HTML
 Plug 'mattn/emmet-vim'
