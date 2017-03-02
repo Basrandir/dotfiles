@@ -9,7 +9,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'mattn/emmet-vim'
 
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-Plug 'suan/vim-instant-markdown'
+"Plug 'suan/vim-instant-markdown'
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
