@@ -76,6 +76,12 @@ nnoremap <leader>q :q<CR>
 nnoremap <leader>qq :q!<CR>
 nnoremap <leader>so :source %<CR>
 
+" Vim-Fugitive
+nnoremap <leader>ga :Gwrite<CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gd :Gdiff<CR>
+
 " Split Navigation
 tnoremap <Esc> <C-\><C-n>
 
