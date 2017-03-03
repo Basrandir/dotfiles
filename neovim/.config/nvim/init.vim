@@ -70,7 +70,6 @@ let mapleader=" "
 " General
 nnoremap <leader>o :Files<CR>
 nnoremap <leader>w :w<CR>
-nnoremap <leader>ww :w!<CR>
 nnoremap <leader>wq :wq<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>qq :q!<CR>
