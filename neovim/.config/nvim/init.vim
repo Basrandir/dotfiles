@@ -30,6 +30,10 @@ let g:gruvbox_italic=1              " enable italics for gruvbox in terminals
 set background=dark " gruvbox dark mode
 colorscheme gruvbox
 " }}}
+" General: {{{
+" Manage buffers efficiently
+set hidden
+" }}}
 " Indentation: {{{
 set softtabstop=4
 set shiftwidth=4
