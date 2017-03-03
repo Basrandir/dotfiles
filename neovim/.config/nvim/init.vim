@@ -5,19 +5,21 @@ call plug#begin()
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
 
-" HTML
-Plug 'mattn/emmet-vim'
-
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 "Plug 'suan/vim-instant-markdown'
 
+" Fuzzy Finder
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
-Plug 'w0rp/ale' " linting
+" Linting
+Plug 'w0rp/ale'
 
 " Themes
 Plug 'morhetz/gruvbox'
+
+" HTML
+Plug 'mattn/emmet-vim'
 
 call plug#end()
 " }}}
