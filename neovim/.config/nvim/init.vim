@@ -67,9 +67,14 @@ set inccommand=nosplit  " shows command results as typed
 " Mappings: {{{
 let mapleader=" "
 
+" General
 nnoremap <leader>o :Files<CR>
 nnoremap <leader>w :w<CR>
+nnoremap <leader>ww :w!<CR>
 nnoremap <leader>wq :wq<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>qq :q!<CR>
+nnoremap <leader>so :source %<CR>
 
 " Split Navigation
 tnoremap <Esc> <C-\><C-n>
