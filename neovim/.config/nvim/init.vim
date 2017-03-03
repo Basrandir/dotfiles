@@ -1,4 +1,4 @@
-" VimPlug: {{{
+" Plugins: {{{
 call plug#begin()
 
 " General
@@ -34,6 +34,9 @@ colorscheme gruvbox
 set softtabstop=4
 set shiftwidth=4
 set expandtab
+
+" Wraps lines more logically
+set linebreak
 " }}}
 " UI: {{{
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
