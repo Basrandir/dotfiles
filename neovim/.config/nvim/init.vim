@@ -53,6 +53,10 @@ set cursorline  " highlights the current line
 set lazyredraw  " redraw screen only when needed
 set showmatch   " highlights matching brackets
 
+" Marks excess whitespace
+exec "set listchars=tab:\uB8\uB8,trail:\uB7,nbsp:~"
+set list
+
 " Sane Splits
 set splitbelow
 set splitright
