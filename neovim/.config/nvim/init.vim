@@ -84,6 +84,11 @@ nnoremap <leader>q :q<CR>
 nnoremap <leader>qq :q!<CR>
 nnoremap <leader>so :source %<CR>
 
+" fzf
+nnoremap <leader>o :Files<CR>
+nnoremap <leader>go :GFiles<CR>
+nnoremap <leader>b :Buffers<CR>
+
 " Vim-Fugitive
 nnoremap <leader>ga :Gwrite<CR>
 nnoremap <leader>gs :Gstatus<CR>
