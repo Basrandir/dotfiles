@@ -10,6 +10,9 @@ super + Return
 super + space
 	rofi -show run
 
+super + shift + space
+        xdg-open $(find ~/media -name "*" | rofi -dmenu -i -matching fuzzy -p "file:")
+
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
