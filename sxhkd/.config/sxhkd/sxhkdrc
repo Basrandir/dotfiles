@@ -10,8 +10,12 @@ super + Return
 super + space
 	rofi -show run
 
+# media file launcher
 super + shift + space
         xdg-open $(find ~/media -type f -name "*" | rofi -dmenu -i -matching fuzzy -p "file:")
+
+super + shift + {p, o + }{_,i}
+        screenshot.sh {select, fullscreen} {,imgur}
 
 # make sxhkd reload its configuration files:
 super + Escape
