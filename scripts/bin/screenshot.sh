@@ -1,5 +1,4 @@
 #!/bin/bash
-sleep 2
 
 # get window title
 date=$(date +%Y.%m.%d_%H:%M:%S)
