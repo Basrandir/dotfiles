@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# get window title
 date=$(date +%Y.%m.%d_%H:%M:%S)
 location="$HOME/media/images/screenshots/"
 
