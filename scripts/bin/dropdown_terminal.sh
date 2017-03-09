@@ -19,7 +19,7 @@ if [ -z $(xdotool search --classname "dropdown") ]; then
     height=$(bspc query -T -m | grep -oE "[0-9]{0,4}" | sed -n '17 p')
 
     xdotool windowmove $wid 0 0
-    xdotool windowsize $wid $(expr $width - 4) $(expr $height / 3)
+    xdotool windowsize $wid $(expr $width) $(expr $height / 3)
 
     compton-trans -w $wid -o 90
 
