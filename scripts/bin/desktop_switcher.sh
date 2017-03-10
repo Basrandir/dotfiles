@@ -6,7 +6,7 @@ FONT=FontAwesome:size=16
 resultion_x=$(bspc query -T -m | grep -oE "[0-9]{0,4}" | sed -n '16 p')
 resultion_y=$(bspc query -T -m | grep -oE "[0-9]{0,4}" | sed -n '17 p')
 
-width=350
+width=380
 height=100
 
 x=$(($(($resultion_x / 2)) - $(($width / 2))))
