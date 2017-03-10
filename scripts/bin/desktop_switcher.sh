@@ -34,4 +34,4 @@ do
     esac
 done
 
-(echo -e "$output"; sleep $DURATION) | lemonbar -g "$width"x"$height"+$x+$y -f $FONT -B "#a89984" -d
+(echo -e "$output"; sleep $DURATION) | lemonbar -g "$width"x"$height"+$x+$y -f $FONT -B "#95a89984" -d
