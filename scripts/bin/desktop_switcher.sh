@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DURATION=2
+DURATION=1
 FONT=FontAwesome:size=16
 
 resultion_x=$(bspc query -T -m | grep -oE "[0-9]{0,4}" | sed -n '16 p')
