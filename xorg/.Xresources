@@ -1,1 +1,42 @@
-Xft.dpi:	144
+#include ".Xresources.d/colors"
+
+Xft.dpi:        144
+
+st.font:        Fira Mono:pixelsize=18:antialias=true:autohint=true;
+st.cursorshape: 6
+
+!st.background:  #282828
+st.background:  #100503
+st.foreground:  S_BASE7
+
+! black
+st.color0:   S_BASE0
+st.color8:   S_BASE8
+
+! red
+st.color1:   S_BASE1
+st.color9:   S_BASE9
+
+! green
+st.color2:   S_BASE2
+st.color10:  S_BASE10
+
+! yellow
+st.color3:   S_BASE3
+st.color11:  S_BASE11
+
+! blue
+st.color4:   S_BASE4
+st.color12:  S_BASE12
+
+! magenta
+st.color5:   S_BASE5
+st.color13:  S_BASE13
+
+! cyan
+st.color6:   S_BASE6
+st.color14:  S_BASE14
+
+! white
+st.color7:   S_BASE7
+st.color15:  S_BASE15
