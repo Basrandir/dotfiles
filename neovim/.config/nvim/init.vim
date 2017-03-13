@@ -29,11 +29,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1   " enable 24-bit colour
 let g:gruvbox_italic=1              " enable italics for gruvbox in terminals
 
 set background=dark " gruvbox dark mode
-if $TERM == "st-256color"
-    colorscheme gruvbox
-else
-    colorscheme gotham
-endif
+colorscheme gruvbox
 " }}}
 " General: {{{
 " Manage buffers efficiently
