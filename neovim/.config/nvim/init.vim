@@ -17,7 +17,7 @@ Plug 'w0rp/ale'
 
 " Themes
 Plug 'morhetz/gruvbox'
-Plug 'whatyouhide/vim-gotham'
+Plug 'chriskempson/base16-vim'
 
 " HTML
 Plug 'mattn/emmet-vim'
