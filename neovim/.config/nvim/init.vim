@@ -28,8 +28,9 @@ call plug#end()
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1   " enable 24-bit colour
 let g:gruvbox_italic=1              " enable italics for gruvbox in terminals
 
+set termguicolors
 set background=dark " gruvbox dark mode
-colorscheme gruvbox
+colorscheme prodigy
 " }}}
 " General: {{{
 " Manage buffers efficiently
