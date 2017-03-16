@@ -1,6 +1,6 @@
 Xft.dpi:        144
 
-st.font:        Fira Mono:pixelsize=18:antialias=true:autohint=true;
+st.font:        Fira Mono:pixelsize=20:antialias=true:autohint=true;
 st.cursorshape: 6
 
 !st.background:  #282828
