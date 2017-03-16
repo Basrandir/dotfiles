@@ -27,9 +27,8 @@ call plug#end()
 " Colors: {{{
 let g:gruvbox_italic=1              " enable italics for gruvbox in terminals
 
-" Enable True Colors
-set termguicolors
-set background=dark " gruvbox dark mode
+set termguicolors   " Enable 24-bit true colour mode
+set background=dark " Ensure dark background
 colorscheme prodigy
 " }}}
 " General: {{{
