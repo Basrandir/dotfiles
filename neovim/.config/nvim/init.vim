@@ -25,9 +25,9 @@ Plug 'mattn/emmet-vim'
 call plug#end()
 " }}}
 " Colors: {{{
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1   " enable 24-bit colour
 let g:gruvbox_italic=1              " enable italics for gruvbox in terminals
 
+" Enable True Colors
 set termguicolors
 set background=dark " gruvbox dark mode
 colorscheme prodigy
