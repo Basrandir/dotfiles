@@ -12,7 +12,7 @@ super + space
 
 # media file launcher
 super + shift + space
-        xdg-open $(find $HOME/media -type f -name "*" | rofi -dmenu -i -matching fuzzy -p "file:")
+        run_media.sh
 
 super + shift + {p, o + }{_,i}
         screenshot.sh {select, fullscreen} {,imgur}
