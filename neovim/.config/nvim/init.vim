@@ -17,7 +17,8 @@ Plug 'w0rp/ale'
 
 " Themes
 Plug 'morhetz/gruvbox'
-Plug 'chriskempson/base16-vim'
+Plug 'pgdouyon/vim-yin-yang'
+Plug 'fneu/breezy'
 
 " HTML
 Plug 'mattn/emmet-vim'
