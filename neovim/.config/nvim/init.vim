@@ -22,6 +22,9 @@ Plug 'chriskempson/base16-vim'
 " HTML
 Plug 'mattn/emmet-vim'
 
+" Rust
+Plug 'rust-lang/rust.vim'
+
 call plug#end()
 " }}}
 " Colors: {{{
