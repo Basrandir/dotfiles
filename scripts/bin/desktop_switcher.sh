@@ -20,18 +20,18 @@ for i in "${array[@]}"
 do
     case $i in
         O*)
-            output+='%{F#fabd2f}\uf111 '
+            output+='%{F#c17e82}\uf111 '
             ;;
         F*)
-            output+='%{F#fabd2f}\uf10c '
+            output+='%{F#c17e82}\uf10c '
             ;;
         o*)
-            output+='%{F#ebdbb2}\uf111 '
+            output+='%{F#81b5d1}\uf111 '
             ;;
         f*)
-            output+='%{F#ebdbb2}\uf10c '
+            output+='%{F#81b5d1}\uf10c '
             ;;
     esac
 done
 
-(echo -e "$output"; sleep $DURATION) | lemonbar -g "$width"x"$height"+$x+$y -f $FONT -B "#95a89984" -d
+(echo -e "$output"; sleep $DURATION) | lemonbar -g "$width"x"$height"+$x+$y -f $FONT -B "#99262f32" -d
