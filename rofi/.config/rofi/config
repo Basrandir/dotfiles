@@ -1,9 +1,9 @@
 ! Theming
-rofi.color-window:  #100503,    #575347,    #575347
+rofi.color-window:  #262f32,    #575347,    #575347
 
-rofi.color-normal:  #100503,    #cac8b0,    #29241e,    #7b3427,    #e3e5c8
-rofi.color-active:  #2a0804,    #100503,    #2a0804,    #cac8b0,    #100503
-rofi.color-urgent:  #,    #100503,    #,    #c15949,    #100503
+rofi.color-normal:  #262f32,    #cfd5d0,    #0e3b4a,    #c17e82,    #cbccbf
+rofi.color-active:  #2a0804,    #262f32,    #2a0804,    #cfd5d0,    #262f32
+rofi.color-urgent:  #,    #262f32,    #,    #c15949,    #262f32
 
 rofi.line-margin:       10
 rofi.separator-style:   solid
