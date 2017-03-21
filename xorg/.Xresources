@@ -3,38 +3,37 @@ Xft.dpi:        144
 st.font:        Fira Mono:pixelsize=20:antialias=true:autohint=true;
 st.cursorshape: 6
 
-!st.background:  #282828
-st.background:  #120f0f
-st.foreground:  #cac8b0
+st.background:  #262f32
+st.foreground:  #CFD5D0
 
 ! black
-st.color0:   #100503
-st.color8:   #27211b
+st.color0:  #262f32
+st.color8:  #666666
 
 ! red
-st.color1:   #984e41
-st.color9:   #ff6447
+st.color1:  #c17e82
+st.color9:  #c7979a
 
 ! green
-st.color2:   #7f7666
-st.color10:  #708c7c
+st.color2:  #779c74
+st.color10: #92cba3
 
 ! yellow
-st.color3:   #433e34
-st.color11:  #c0bf9b
+st.color3:  #ab9b89
+st.color11: #eacaa5
 
 ! blue
-st.color4:   #b3a590
-st.color12:  #8bb3a0
+st.color4:  #0e3b4a
+st.color12: #81b5d1
 
-! magenta
-st.color5:   #785d78
-st.color13:  #b8a3b8
+! purple
+st.color5:  #9f93af
+st.color13: #c489a7
 
-! cyan
-st.color6:   #a4b4ad
-st.color14:  #b1e2cd
+! aqua
+st.color6:  #a0cdc6
+st.color14: #8ab0ad
 
 ! white
-st.color7:   #cac8b0
-st.color15:  #e3e5c8
+st.color7:  #cbccbf
+st.color15: #cfd5d0
