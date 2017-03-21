@@ -19,7 +19,6 @@ Plug 'w0rp/ale'
 " Themes
 Plug 'morhetz/gruvbox'
 Plug 'pgdouyon/vim-yin-yang'
-Plug 'fneu/breezy'
 
 " HTML
 Plug 'mattn/emmet-vim'
@@ -34,7 +33,7 @@ let g:gruvbox_italic=1              " enable italics for gruvbox in terminals
 
 set termguicolors   " Enable 24-bit true colour mode
 set background=dark " Ensure dark background
-colorscheme breezy
+colorscheme shiny
 " }}}
 " General: {{{
 " Manage buffers efficiently
