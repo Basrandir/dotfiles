@@ -29,7 +29,7 @@ let g:gruvbox_italic=1              " enable italics for gruvbox in terminals
 
 set termguicolors   " Enable 24-bit true colour mode
 set background=dark " Ensure dark background
-colorscheme prodigy
+colorscheme breezy
 " }}}
 " General: {{{
 " Manage buffers efficiently
