@@ -26,6 +26,9 @@ Plug 'mattn/emmet-vim'
 " Rust
 Plug 'rust-lang/rust.vim'
 
+" latex
+Plug 'lervag/vimtex'
+
 call plug#end()
 " }}}
 " Colors: {{{
