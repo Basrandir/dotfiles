@@ -9,8 +9,8 @@ resultion_y=$(bspc query -T -m | grep -oE "[0-9]{0,4}" | sed -n '17 p')
 width=380
 height=100
 
-x=$(( $(( $resultion_x / 2 )) - $(( $width / 2 )) ))
-y=$(( $(( $resultion_y / 2 )) - $(( $height / 2 )) ))
+x=$(( $(( resultion_x / 2 )) - $(( width / 2 )) ))
+y=$(( $(( resultion_y / 2 )) - $(( height / 2 )) ))
 
 output='%{c} '
 
