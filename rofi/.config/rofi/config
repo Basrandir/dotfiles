@@ -17,3 +17,5 @@ rofi.padding:   50
 rofi.display-drun:  %
 
 rofi.dpi:   144
+
+rofi.terminal:  st
