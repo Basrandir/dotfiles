@@ -104,7 +104,6 @@ set inccommand=nosplit  " shows command results as typed
 let mapleader=" "
 
 " General
-nnoremap <leader>o :Files<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>wq :wq<CR>
 nnoremap <leader>q :q<CR>
