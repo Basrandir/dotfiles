@@ -38,7 +38,7 @@ set termguicolors   " Enable 24-bit true colour mode
 set background=dark " Ensure dark background
 colorscheme shiny
 " }}}
-" General: {{{
+" Behaviour: {{{
 " Manage buffers efficiently
 set hidden
 
