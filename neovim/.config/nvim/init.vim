@@ -32,8 +32,6 @@ Plug 'lervag/vimtex'
 call plug#end()
 " }}}
 " Colors: {{{
-let g:gruvbox_italic=1              " enable italics for gruvbox in terminals
-
 set termguicolors   " Enable 24-bit true colour mode
 set background=dark " Ensure dark background
 colorscheme shiny
@@ -64,6 +62,8 @@ set linebreak
 " }}}
 " UI: {{{
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
+let g:gruvbox_italic=1              " enable italics for gruvbox in terminals
 
 set relativenumber number   " show absolute line number on current line and
                             " and relative line numbers for all other lines
