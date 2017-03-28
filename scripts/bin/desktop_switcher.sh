@@ -14,7 +14,7 @@ y=$(( $(( resultion_y / 2 )) - $(( height / 2 )) ))
 
 output='%{c} '
 
-IFS=':' read -r -a array <<< $(bspc wm -g)
+IFS=':' read -r -a array <<< "$(bspc wm -g)"
 
 for i in "${array[@]}"
 do
