@@ -42,6 +42,9 @@ colorscheme shiny
 " Manage buffers efficiently
 set hidden
 
+" Start scrolling 3 lines before edge of viewpoint
+set scrolloff=3
+
 " Show syntax highlighting groups for word under cursor
 nmap <C-S-P> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
