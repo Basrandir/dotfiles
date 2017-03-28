@@ -14,16 +14,16 @@ function lists()
 {
     OLDIFS=${IFS}
     IFS='|'
-    for n in ${names[@]}
+    for n in "${names[@]}"
     do
-        echo ${n}
+        echo "${n}"
     done
     IFS=${OLDIFS}
 
 }
 ID=$(lists | rofi -dmenu -format "i" -i)
 
-if [ -n ${ID} ]
+if [ -n "${ID}" ]
 then
     xdg-open "${files[${ID}]}"
 fi
