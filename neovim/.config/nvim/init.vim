@@ -77,6 +77,18 @@ set showmatch   " highlights matching brackets
 exec "set listchars=tab:\uB8\uB8,trail:\uB7,nbsp:~"
 set list
 
+" Indent wrapped lines to match line start
+" then add 2 extra space
+" and add unicode arrow 'U+2937' before new wrapped line
+if has('linebreak')
+    set breakindent
+    if exists('&breakindentopt')
+        set breakindentopt=shift:2
+    endif
+
+    let &showbreak='⤷'
+endif
+
 " Sane Splits
 set splitbelow
 set splitright
