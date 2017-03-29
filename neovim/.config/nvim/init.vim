@@ -6,6 +6,9 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
 Plug 'lilydjwg/colorizer'
 
+" UI
+Plug 'Yggdroot/indentLine'
+
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 "Plug 'suan/vim-instant-markdown'
 
