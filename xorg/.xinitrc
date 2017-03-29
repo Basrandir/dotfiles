@@ -38,5 +38,5 @@ setroot --restore &
 setxkbmap -option 'caps:ctrl_modifier'
 xcape -e 'Caps_Lock=Escape'
 
-compton --config $HOME/.config/compton/compton.conf &
+compton --config "$HOME/.config/compton/compton.conf" &
 exec bspwm
