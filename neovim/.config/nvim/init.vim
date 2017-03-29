@@ -3,11 +3,15 @@ call plug#begin()
 
 " General
 Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-fugitive'
 Plug 'lilydjwg/colorizer'
+
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 
 " UI
 Plug 'Yggdroot/indentLine'
+Plug 'junegunn/goyo.vim'
 
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 "Plug 'suan/vim-instant-markdown'
