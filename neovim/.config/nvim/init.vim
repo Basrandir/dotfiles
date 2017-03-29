@@ -68,8 +68,9 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 let g:gruvbox_italic=1              " enable italics for gruvbox in terminals
 
-set relativenumber number   " show absolute line number on current line and
-                            " and relative line numbers for all other lines
+" show absolute line number on current line and
+" and relative line numbers for all other lines
+set relativenumber number
 
 set showcmd     " shows the last command entered in bottom bar
 set cursorline  " highlights the current line
