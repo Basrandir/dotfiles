@@ -15,3 +15,4 @@ bspc config click_to_focus      true
 bspc rule -a Firefox desktop='^1'
 bspc rule -a mpv state=floating
 bspc rule -a imv state=floating
+bspc rule -a Emacs state=tiled
