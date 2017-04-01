@@ -4,37 +4,38 @@ st.font:        Fira Mono:pixelsize=20:antialias=true:autohint=true;
 st.bold_font:   1
 st.cursorshape: 6
 
-st.background:  #262f32
-st.foreground:  #CFD5D0
+! Colors
+*background:  #262f32
+*foreground:  #CFD5D0
 
 ! black
-st.color0:  #262f32
-st.color8:  #666666
+*color0:  #262f32
+*color8:  #666666
 
 ! red
-st.color1:  #c17e82
-st.color9:  #c7979a
+*color1:  #c17e82
+*color9:  #c7979a
 
 ! green
-st.color2:  #779c74
-st.color10: #92cba3
+*color2:  #779c74
+*color10: #92cba3
 
 ! yellow
-st.color3:  #ab9b89
-st.color11: #eacaa5
+*color3:  #ab9b89
+*color11: #eacaa5
 
 ! blue
-st.color4:  #0e3b4a
-st.color12: #81b5d1
+*color4:  #0e3b4a
+*color12: #81b5d1
 
 ! purple
-st.color5:  #9f93af
-st.color13: #c489a7
+*color5:  #9f93af
+*color13: #c489a7
 
 ! aqua
-st.color6:  #a0cdc6
-st.color14: #8ab0ad
+*color6:  #a0cdc6
+*color14: #8ab0ad
 
 ! white
-st.color7:  #cbccbf
-st.color15: #cfd5d0
+*color7:  #cbccbf
+*color15: #cfd5d0
