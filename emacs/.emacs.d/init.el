@@ -18,15 +18,25 @@
   :config
   (evil-mode t))
 
+;; line numbers
+(use-package nlinum
+  :ensure t
+  :config
+  (use-package nlinum-relative
+    :ensure t
+    :config
+    (nlinum-relative-setup-evil)
+    (add-hook 'prog-mode-hook 'nlinum-relative-mode)
+    (setq nlinum-relative-redisplay-delay 0))
+  (add-hook 'prog-mode-hook 'nlinum-mode))
+
 (use-package xresources-theme
   :ensure t
   :config
   (load-theme 'xresources t))
 
 ;; USER INTERFACE
-;; line numbers
-(linum-mode)
-
+;; show column number in modeline
 (column-number-mode t)
 
 ;; remove clutter
