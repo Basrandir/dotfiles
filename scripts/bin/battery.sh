@@ -26,13 +26,13 @@ fi
 
 if [ "$battery" -gt 95 ]; then
     output+="%{F$color}$battery% \uf240 "
-elif [ "$battery" -gt 75 ]; then
+elif [ "$battery" -gt 62 ]; then
     output+="%{F$color}$battery% \uf241 "
-elif [ "$battery" -gt 50 ]; then
+elif [ "$battery" -gt 37 ]; then
     output+="%{F$color}$battery% \uf242 "
-elif [ "$battery" -gt 25 ]; then
-    output+="%{F$color}$battery% \uf243 "
 elif [ "$battery" -gt 5 ]; then
+    output+="%{F$color}$battery% \uf243 "
+else
     output+="%{F$color}$battery% \uf244 "
 fi
 
