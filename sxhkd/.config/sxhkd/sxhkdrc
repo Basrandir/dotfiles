@@ -14,6 +14,7 @@ super + space
 super + shift + space
         run_media.sh
 
+# screenshot
 super + shift + {p, o + }{_,i}
         screenshot.sh {select, fullscreen} {,imgur}
 
