@@ -20,6 +20,9 @@ Plug 'junegunn/fzf.vim'
 " Linting
 Plug 'w0rp/ale'
 
+" Org-mode
+Plug 'jceb/vim-orgmode'
+
 " Themes
 Plug 'morhetz/gruvbox'
 Plug 'pgdouyon/vim-yin-yang'
