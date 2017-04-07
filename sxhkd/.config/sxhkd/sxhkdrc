@@ -31,13 +31,16 @@ super + Escape
 #
 
 XF86AudioMute
-        pactl set-sink-mute 0 toggle
+        pactl set-sink-mute 0 toggle; \
+        media_controls.sh toggle
 
 XF86AudioRaiseVolume
-        pactl set-sink-volume 0 +5%
+        pactl set-sink-volume 0 +5%; \
+        media_controls.sh raise
 
 XF86AudioLowerVolume
-        pactl set-sink-volume 0 -5%
+        pactl set-sink-volume 0 -5%; \
+        media_controls.sh lower
 
 XF86AudioPlay
         mpc toggle
