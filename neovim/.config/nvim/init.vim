@@ -13,9 +13,6 @@ Plug 'tpope/vim-repeat'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/goyo.vim'
 
-Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-"Plug 'suan/vim-instant-markdown'
-
 " Fuzzy Finder
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -144,9 +141,4 @@ nnoremap <C-l> <C-w>l
 " }}}
 " Folding: {{{
 autocmd FileType vim setlocal foldmethod=marker
-" }}}
-" Vimwiki: {{{
-let g:vimwiki_ext2syntax = {'.md': 'markdown'}
-let g:vimwiki_list = [{'path': '$HOME/doc/wiki',
-                     \ 'syntax': 'markdown', 'ext': '.md'}]
 " }}}
