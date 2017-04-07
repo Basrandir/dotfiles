@@ -30,10 +30,10 @@
     (setq nlinum-relative-redisplay-delay 0))
   (add-hook 'prog-mode-hook 'nlinum-mode))
 
-(use-package xresources-theme
+(use-package zenburn-theme
   :ensure t
   :config
-  (load-theme 'xresources t))
+  (load-theme 'zenburn t))
 
 ;; USER INTERFACE
 ;; show column number in modeline
