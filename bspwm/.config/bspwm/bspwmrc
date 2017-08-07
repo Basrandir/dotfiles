@@ -2,7 +2,12 @@
 
 sxhkd &
 
-bspc monitor -d I II III IV V VI
+monitors=$(bspc query -M)
+
+for i in $monitors
+do
+    bspc monitor "$i" -d I II III IV V
+done
 
 bspc config border_width        2
 bspc config window_gap          12
@@ -12,7 +17,14 @@ bspc config borderless_monocle  true
 bspc config gapless_monocle     true
 bspc config click_to_focus      true
 
-bspc rule -a Firefox desktop='^1'
+bspc rule -a Firefox desktop=^1
 bspc rule -a mpv state=floating
 bspc rule -a imv state=floating
 bspc rule -a Emacs state=tiled
+
+xrandr --output HDMI2 --above eDP1
+setroot --restore
+
+if [ "$(bspc query -M | wc -l)" -gt 1 ]; then
+    enforce_monitor_position eDP1 '^1' &
+fi
