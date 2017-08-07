@@ -4,7 +4,7 @@ st.font:        Fira Mono:pixelsize=20:antialias=true:autohint=true;
 st.bold_font:   1
 st.cursorshape: 6
 
-! Colors
+! Crazy Bender Colors
 *background:  #262f32
 *foreground:  #CFD5D0
 
@@ -26,7 +26,8 @@ st.cursorshape: 6
 
 ! blue
 *color4:  #0e3b4a
-*color12: #81b5d1
+!*color12: #81b5d1
+*color12: #81c5ac
 
 ! purple
 *color5:  #9f93af
