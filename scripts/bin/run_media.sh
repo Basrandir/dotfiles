@@ -10,8 +10,7 @@ while IFS= read -r -u3 -d $'\0' file; do
 done 3< <(find "${DIR}" -type f -print0)
 
 
-function lists()
-{
+function lists() {
     OLDIFS=${IFS}
     IFS='|'
     for n in "${names[@]}"
@@ -19,11 +18,10 @@ function lists()
         echo "${n}"
     done
     IFS=${OLDIFS}
-
 }
+
 ID=$(lists | rofi -dmenu -format "i" -i)
 
-if [ -n "${ID}" ]
-then
+if [ -n "${ID}" ]; then
     xdg-open "${files[${ID}]}"
 fi
