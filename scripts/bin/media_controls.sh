@@ -15,24 +15,25 @@ y=$(( $(( resultion_y / 2 )) - $(( height / 2 )) ))
 
 output='%{c} '
 
-volume=$(pactl list sinks | grep "Volume:" | awk '{print $5}' | head -n1 | cut -d% -f1)
-muted=$(pactl list sinks | grep "Mute" | awk '{print $2}')
+sink=$(pactl list sinks short | grep analog | awk '{print $1;}')
+volume=$(pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( sink + 1 )) | tail -n 1 | awk '{print $5}')
+muted=$(pactl list sinks | grep "Mute" | head -n $(( sink + 1 )) | tail -n 1 | awk '{print $2}')
 
 color=#92cba3
 
 if [ "$1" == "raise" ]; then
-    output+="%{F$color}$volume% \uf028 "
+    output+="%{F$color}$volume \\uf028 "
 elif [ "$1" == "lower" ]; then
     if [ "$volume" -lt 5 ]; then
-        output+="%{F$color}\uf026 "
+        output+="%{F$color}\\uf026 "
     else
-        output+="%{F$color}$volume% \uf027 "
+        output+="%{F$color}$volume \\uf027 "
     fi
 elif [ "$1" == "toggle" ]; then
     if [ "$muted" == "yes" ]; then
-        output+="%{F$color}\uf026 "
+        output+="%{F$color}\\uf026 "
     else
-        output+="%{F$color}\uf028 "
+        output+="%{F$color}\\uf028 "
     fi
 fi
 
