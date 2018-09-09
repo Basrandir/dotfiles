@@ -1,80 +1,71 @@
+(setq inhibit-startup-message t)
+
+(when (fboundp 'tool-bar-mode)
+  (tool-bar-mode -1))
+(when (fboundp 'scroll-bar-mode)
+  (scroll-bar-mode -1))
+(when (fboundp 'horizontal-scroll-bar-mode)
+  (horizontal-scroll-bar-mode -1))
+
+(fboundp 'horizontal-scroll-bar-mode)
+
+(require 'package)
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives
+	     '("melpa" . "https://melpa.org/packages/"))
+
 (package-initialize)
 
-(setq custom-file "~/.emacs.d/custom.el")
-(load custom-file 'noerror t)
-
-;; PACKAGE MANAGEMENT
-(require 'package)
-(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-			 ("melpa" . "https://melpa.org/packages/")))
-
-;; install use-package if not installed
+;; Bootstrap 'use-package'
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 
-(use-package evil
+(use-package which-key
+  :ensure t
+  :config (which-key-mode))
+
+;; Themes
+(use-package poet-theme
+  :ensure t
+  :init
+  (set-face-attribute 'default nil :family "Iosevka" :height 130)
+  (set-face-attribute 'fixed-pitch nil :family "Iosevka")
+  (set-face-attribute 'variable-pitch nil :family "Libre Baskerville")
+  :config
+  (add-hook 'text-mode-hook
+	    (lambda ()
+	      (variable-pitch-mode 1))))
+
+;; Org-Mode
+(use-package org-bullets
   :ensure t
   :config
-  (evil-mode t))
+  (add-hook 'org-mode-hook
+	    (lambda ()
+	      (org-bullets-mode 1))))
 
-;; line numbers
-(use-package nlinum
-  :ensure t
-  :config
-  (use-package nlinum-relative
-    :ensure t
-    :config
-    (nlinum-relative-setup-evil)
-    (add-hook 'prog-mode-hook 'nlinum-relative-mode)
-    (setq nlinum-relative-redisplay-delay 0))
-  (add-hook 'prog-mode-hook 'nlinum-mode))
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
 
-(use-package zenburn-theme
-  :ensure t
-  :config
-  (load-theme 'zenburn t))
+(setq org-agenda-files (quote ("~/doc/org/jobapplications.org")))
 
-;; ORG MODE
-;; keybindings
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
-(define-key global-map "\C-cc" 'org-capture)
-(define-key global-map "\C-cb" 'org-iswitchb)
+;; User Interface
 
-(setq org-agenda-files (list "~/doc/org/work.org"
-			     "~/doc/org/home.org"))
+;; Enable line numbers for all programming modes
+;;(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
-;; USER INTERFACE
-;; show column number in modeline
-(column-number-mode t)
+;; Automatically Added
 
-;; remove clutter
-(setq inhibit-splash-screen t
-      inhibit-startup-message t
-      inhibit-startup-echo-area-message t)
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-
-(when (boundp 'scroll-bar-mode)
-  (scroll-bar-mode -1))
-
-;; BEHAVIOUR
-;; automatically insert matching parens
-(add-hook 'emacs-list-mode-hook (lambda () (electric-pair-mode -1)))
-(electric-pair-mode 1)
-
-;; highlight matching parens
-(show-paren-mode t)
-
-;; always follow symlinks
-(setq vc-follow-symlinks t)
-
-;; auto revert files on change
-(global-auto-revert-mode t)
-
-;; display current time
-(display-time-mode t)
-
-;; do no create backup files
-(setq make-backup-files nil)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages (quote (poet-theme org-bullets which-key use-package))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
