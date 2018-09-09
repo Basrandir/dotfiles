@@ -1,42 +1,5 @@
-Xft.dpi:        144
+!Xft.dpi:        144
 
-st.font:        Fira Mono:pixelsize=20:antialias=true:autohint=true;
+st.font:        Iosevka:pixelsize=14:antialias=true:autohint=true;
 st.bold_font:   1
 st.cursorshape: 6
-
-! Crazy Bender Colors
-*background:  #262f32
-*foreground:  #CFD5D0
-
-! black
-*color0:  #262f32
-*color8:  #666666
-
-! red
-*color1:  #c17e82
-*color9:  #c7979a
-
-! green
-*color2:  #779c74
-*color10: #92cba3
-
-! yellow
-*color3:  #ab9b89
-*color11: #eacaa5
-
-! blue
-*color4:  #0e3b4a
-!*color12: #81b5d1
-*color12: #81c5ac
-
-! purple
-*color5:  #9f93af
-*color13: #c489a7
-
-! aqua
-*color6:  #a0cdc6
-*color14: #8ab0ad
-
-! white
-*color7:  #cbccbf
-*color15: #cfd5d0

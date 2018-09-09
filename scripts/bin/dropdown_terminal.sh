@@ -1,6 +1,6 @@
 #!/bin/bash
 
-terminal="st"
+terminal="xst"
 
 if [ -z "$(xdotool search --classname 'dropdown')" ]; then
     bspc rule -a $terminal:dropdown state=floating hidden=on border=off sticky=on

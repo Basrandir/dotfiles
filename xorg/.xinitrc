@@ -5,6 +5,13 @@ usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
+theme=nHYOOnY
+theme_path=$HOME/.gvcci/themes/$theme/xresources-colors.txt
+
+if [ -f "$theme_path"  ]; then
+    xrdb -merge "$theme_path"
+fi
+
 # merge in defaults and keymaps
 
 if [ -f $sysresources ]; then
@@ -38,4 +45,15 @@ setxkbmap -option 'caps:ctrl_modifier'
 xcape -e 'Caps_Lock=Escape'
 
 compton --config "$HOME/.config/compton/compton.conf" &
-exec bspwm
+
+session=${1:-bspwm}
+
+case $session in
+    bspwm           ) exec bspwm;;
+    herbstluftwm    ) exec herbstluftwm;;
+    windowchef      )
+        sxhkd -c $HOME/.config/sxhkd/sxhkdrc_windowchef &
+        exec windowchef
+        ;;
+    *           ) exec $1;;
+esac

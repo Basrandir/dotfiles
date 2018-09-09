@@ -4,11 +4,15 @@
 
 # terminal emulator
 super + Return
-	st
+	xst
 
 # program launcher
 super + space
-	rofi -show drun
+	rofi -show-icons -show drun
+
+# emoji picker
+super + shift + e
+    rofi-emoji.sh
 
 # media file launcher
 super + shift + space
@@ -17,6 +21,10 @@ super + shift + space
 # screenshot
 super + shift + {p, o + }{_,i}
         screenshot.sh {select, fullscreen} {,imgur}
+
+# lockscreen
+super + u
+        lock.sh
 
 # battery
 super + r
@@ -31,15 +39,15 @@ super + Escape
 #
 
 XF86AudioMute
-        pactl set-sink-mute 0 toggle; \
+        pactl set-sink-mute alsa_output.pci-0000_00_1b.0.analog-stereo toggle; \
         media_controls.sh toggle
 
 XF86AudioRaiseVolume
-        pactl set-sink-volume 0 +5%; \
+        pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo +5%; \
         media_controls.sh raise
 
 XF86AudioLowerVolume
-        pactl set-sink-volume 0 -5%; \
+        pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo -5%; \
         media_controls.sh lower
 
 XF86AudioPlay
@@ -96,8 +104,21 @@ super + ctrl + {x,y,z}
 #
 
 # focus the node in the given direction
-super + {_,shift + }{h,j,k,l}
-	bspc node -{f,s} {west,south,north,east}
+#super + {_,shift + }{h,j,k,l}
+#	bspc node -{f,s} {west,south,north,east}
+
+super + {h,j,k,l}
+        bspc config pointer_follows_monitor true; \
+        bspc config point_follows_focus true; \
+        dir={west,south,north,east}; \
+            if ! bspc node -f $dir; then \
+        bspc monitor -f $dir; \
+        fi; \
+        bspc config pointer_follows_monitor false; \
+        bspc config pointer_follows_focus false
+
+super + shift + {h,j,k,l}
+        bspc node -s {west,south,north,east}
 
 # focus the node for the given path jump
 super + {p,b,comma,period}
@@ -105,7 +126,7 @@ super + {p,b,comma,period}
 
 # focus the next/previous node
 super + {_,shift + }c
-	bspc node -f {next,prev}
+	bspc node -f {next,prev}.local
 
 # focus the next/previous desktop
 super + bracket{left,right}

@@ -1,13 +1,14 @@
 ! Theming
-rofi.color-window:  #262f32,    #575347,    #575347
-
-rofi.color-normal:  #262f32,    #cfd5d0,    #0e3b4a,    #c17e82,    #cbccbf
-rofi.color-active:  #2a0804,    #262f32,    #2a0804,    #cfd5d0,    #262f32
-rofi.color-urgent:  #,    #262f32,    #,    #c15949,    #262f32
+rofi.color-window:  #141a2c,    #ae8688,    #e4d0cd
+!
+rofi.color-normal:  #141a2c,    #efefef,    #8684a8,    #ae8688,    #141a2c
+rofi.color-active:  #141a2c,    #efefef,    #8684a8,    #ae8688,    #141a2c
+rofi.color-urgent:  #262f32,    #262f32,    #0e3b4a,    #c15949,    #262f32
 
 rofi.line-margin:       10
 rofi.separator-style:   solid
 rofi.hide-scrollbar:    true
+rofi.bw:                5
 
 ! Layout
 rofi.lines:     3
@@ -16,6 +17,6 @@ rofi.padding:   50
 
 rofi.display-drun:  %
 
-rofi.dpi:   144
+!rofi.dpi:   144
 
 rofi.terminal:  st

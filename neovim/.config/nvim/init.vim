@@ -24,14 +24,17 @@ Plug 'w0rp/ale'
 Plug 'jceb/vim-orgmode'
 
 " Themes
-Plug 'morhetz/gruvbox'
 Plug 'pgdouyon/vim-yin-yang'
+Plug 'chriskempson/base16-vim'
 
 " HTML
 Plug 'mattn/emmet-vim'
 
 " Rust
 Plug 'rust-lang/rust.vim'
+
+" Moonscript
+Plug 'leafo/moonscript-vim'
 
 " latex
 Plug 'lervag/vimtex'
@@ -110,6 +113,7 @@ set inccommand=nosplit  " shows command results as typed
 " }}}
 " Mappings: {{{
 let mapleader=" "
+let maplocalleader=" "
 
 " General
 nnoremap <leader>w :w<CR>
@@ -141,6 +145,11 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+" Search and Replace
+nnoremap gs :s/<C-r>"//g<Left><Left>
+xnoremap gs y:%s/<C-r>"//g<Left><Left>
+
 " }}}
 " Folding: {{{
 autocmd FileType vim setlocal foldmethod=marker

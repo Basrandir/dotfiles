@@ -25,15 +25,15 @@ else
 fi
 
 if [ "$battery" -gt 95 ]; then
-    output+="%{F$color}$battery% \uf240 "
+    output+="%{F$color}$battery% \\uf240 "
 elif [ "$battery" -gt 62 ]; then
-    output+="%{F$color}$battery% \uf241 "
+    output+="%{F$color}$battery% \\uf241 "
 elif [ "$battery" -gt 37 ]; then
-    output+="%{F$color}$battery% \uf242 "
+    output+="%{F$color}$battery% \\uf242 "
 elif [ "$battery" -gt 5 ]; then
-    output+="%{F$color}$battery% \uf243 "
+    output+="%{F$color}$battery% \\uf243 "
 else
-    output+="%{F$color}$battery% \uf244 "
+    output+="%{F$color}$battery% \\uf244 "
 fi
 
-(echo -e "$output"; sleep $DURATION) | lemonbar -g "$width"x"$height"+$x+$y -f "$FONT" -f $ICONS -B "#99262f32" -d
+(echo -e "$output"; sleep $DURATION) | lemonbar -g "$width"x"$height"+$x+$y -f "$FONT" -f $ICONS -B "#99141a2c" -d
