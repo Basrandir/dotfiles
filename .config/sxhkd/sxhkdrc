@@ -7,12 +7,12 @@ super + Return
       xst -e fish
 
 # emacs specific
-#ctrl + e; v
-#     emacsclient -c -e '(vterm)'
-#ctrl + e; d
-#     emacsclient -c -e '(dired nil)'
-#ctrl + e; e
-#     emacsclient -c -e '(elfeed)'
+super + e; v
+     emacsclient -c -e '(vterm)'
+super + e; d
+     emacsclient -c -e '(dired nil)'
+super + e; e
+     emacsclient -c -e '(elfeed)'
 
 # program launcher
 super + @space
