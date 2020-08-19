@@ -1,0 +1,7 @@
+* Blogs
+** https://www.bassamsaeed.ca/posts.atom
+** https://www.christine.website/blog.atom
+** https://blog.jethro.dev/index.xml
+** https://michael.stapelberg.ch/feed.xml
+** https://www.nateliason.com/blog/rss.xml
+** https://rakyll.org/index.xml
