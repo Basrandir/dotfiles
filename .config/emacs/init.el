@@ -1,4 +1,4 @@
-;; init.el --- Full configuration -*- lexical-binding: t; -*-
+;;; init.el --- Full configuration -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; Bootstraps configuration
@@ -7,14 +7,6 @@
 
 ;; Bootstrap config
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-
-;; Remove clutter
-(when (fboundp 'horizontal-scroll-bar-mode)
-  (horizontal-scroll-bar-mode -1))
-(when (fboundp 'tool-bar-mode)
-  (tool-bar-mode -1))
-(when (fboundp 'scroll-bar-mode)
-  (scroll-bar-mode -1))
 
 ;; Bootstrap straight.el Package Manager
 (defvar bootstrap-version)
@@ -242,11 +234,6 @@
 
 ;; Change cursor to vertical line
 (setq-default cursor-type 'bar)
-
-;; Fonts
-(set-face-attribute 'default nil :family "Iosevka")
-(set-face-attribute 'fixed-pitch nil :family "Iosevka")
-(set-face-attribute 'variable-pitch nil :family "B612" :width 'condensed)
 
 (use-package org
   :straight nil
