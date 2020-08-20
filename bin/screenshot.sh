@@ -13,7 +13,7 @@
 date=$(date +%Y.%m.%d_%T)
 screenshot_dir="$HOME/media/images/screenshots"
 
-help() {
+usage() {
     sed -n 's/^### \?//p' "$0"
     exit 1
 }
