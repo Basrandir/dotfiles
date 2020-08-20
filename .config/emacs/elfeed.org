@@ -5,3 +5,4 @@
 ** https://michael.stapelberg.ch/feed.xml
 ** https://www.nateliason.com/blog/rss.xml
 ** https://rakyll.org/index.xml
+** https://mgsloan.com/feed.xml
