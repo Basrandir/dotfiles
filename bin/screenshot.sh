@@ -1,10 +1,20 @@
 #!/usr/bin/env bash
 
+### screenshot.sh --- using maim and slop to take screenshots
+###
+### Usage:
+###   screenshot.sh [-ash] [-o output]
+###
+### Options:
+###   -a screenshot active window
+###   -s allows you to select a region to screenshot
+###   -h hide cursor in final screenshot
+
 date=$(date +%Y.%m.%d_%T)
 screenshot_dir="$HOME/media/images/screenshots"
 
-usage() {
-    echo "usage: $0 [-ash] [-o output-file]"
+help() {
+    sed -n 's/^### \?//p' "$0"
     exit 1
 }
 
