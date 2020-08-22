@@ -245,7 +245,7 @@
 (add-hook 'focus-out-hook (lambda () (save-some-buffers t)))
 
 ;; Centralize backup files
-(setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
+(setq backup-directory-alist `(("." . ,(expand-file-name "backup" user-emacs-directory)))
       version-control t
       kept-new-version 10
       kept-old-versions 6)
