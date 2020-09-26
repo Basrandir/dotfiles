@@ -4,7 +4,7 @@ xsetroot -cursor_name left_ptr &
 sxhkd &
 
 setroot --restore
-xrandr --output DisplayPort-0 --auto --mode 1920x1080 --rate 165.00 --right-of HDMI-A-0 --rotate right
+xrandr --output HDMI-A-0 --primary --auto --output DisplayPort-0 --auto --mode 1920x1080 --rate 165.00 --pos 3840x240 --rotate right
 picom -b
 
 bspc monitor HDMI-A-0 -d I II III IV
