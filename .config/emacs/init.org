@@ -1,6 +1,9 @@
 #+TITLE: Emacs Configuration
 #+PROPERTY: header-args:emacs-lisp :tangle ./init.el
 
+Utilizes ~org-babel~ to tangle most of the elisp source blocks to the
+appropriate ~.el~ configuration files.
+
 * Early Init
   Emacs 27 and above loads ~early-init.el~ before initializing certain
   graphical elements and the package manager. Utilizing this, we can
@@ -210,7 +213,6 @@
        (telega-notifications-mode 1)
        :defer t)
    #+end_src
-
 * Programming
 ** Python
 *** Poetry
