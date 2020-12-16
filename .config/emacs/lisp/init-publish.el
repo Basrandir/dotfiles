@@ -1,3 +1,5 @@
+;;; init-publish.el --- Blog publishing setup (bassamsaeed.ca) -*- lexical-binding: t -*-
+
 (use-package ox-publish
   :straight nil
   :config

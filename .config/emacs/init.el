@@ -1,224 +1,26 @@
-;;; init.el --- Full configuration -*- lexical-binding: t; -*-
-
-;;; Commentary:
-;; Bootstraps configuration
-
-;;; Code:
-
-;; Bootstrap config
-(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-
-;; Bootstrap straight.el Package Manager
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
       (bootstrap-version 5))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
+	(url-retrieve-synchronously
+	 "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+	 'silent 'inhibit-cookies)
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-;; Bootstrap use-package Package Configurator
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
 
-;; Load configs
-(require 'init-publish)
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(when (file-exists-p custom-file)
+  (load custom-file))
 
-;; PACKAGES
 (use-package which-key
   :config
   (which-key-mode))
-
-(use-package all-the-icons)
-
-(use-package srcery-theme
-  :config
-  (load-theme 'srcery t))
-
-(use-package htmlize)
-
-(use-package org-superstar
-  :after org
-  :hook (org-mode . org-superstar-mode))
-
-(use-package rainbow-mode)
-
-(use-package pdf-tools
-  :config
-  (pdf-tools-install)
-  (setq-default pdf-view-display-size 'fit-page)
-  (setq pdf-annot-activate-created-annotations t)
-  :bind (:map pdf-view-mode-map
-	      ("i" . pdf-view-midnight-minor-mode)
-	      ("c" . pdf-annot-add-text-annotation)))
-
-(use-package magit
-  :bind (("C-x g" . magit-status)))
-
-(use-package company
-  :config
-  (setq company-idle-delay 0)
-  (setq company-minimum-prefix-life 3)
-  :hook
-  ((prog-mode ledger-mode) . company-mode))
-
-(use-package flycheck
-  :commands flycheck-mode)
-
-(use-package projectile
-  :config
-  (projectile-mode +1)
-  :custom
-  (projectile-completion-system 'ivy)
-  :bind (:map projectile-mode-map
-	      ("C-x p" . projectile-command-map)))
-
-(use-package visual-fill-column)
-
-(use-package telega
-  :init
-  (add-hook 'telega-chat-mode-hook
-	    (lambda ()
-	      (set (make-local-variable 'comapny-backends)
-		   (append '(telega-company-emoji
-			     telega-company-username
-			     telega-company-hashtag)
-			   (when (telega-chat-bot-p telega-chatbuf--chat)
-			     '(telega-company-botcmd))))
-	      (company-mode 1)))
-  :commands (telega)
-  :config
-  (telega-notifications-mode 1)
-  :defer t)
-
-(use-package dired
-  :straight nil
-  :config
-  ;; Human readable file sizes
-  (setq dired-listing-switches "-lha")
-  
-  ;; Colourful columns
-  (use-package diredfl
-    :config
-    (diredfl-global-mode 1)))
-
-(use-package ace-window
-  :bind
-  ("M-o" . ace-window)
-  ([remap other-window] . ace-window))
-
-(use-package webfeeder)
-
-(use-package counsel
-  :init (ivy-mode 1)
-  :config
-  (setq ivy-use-virtual-buffers t)
-  (setq ivy-height 20)
-  (setq ivy-count-format "%d/%d ")
-  (setq counsel-find-file-at-point t)
-  (setq ivy-use-selectable-prompt t))
-
-(use-package elfeed
-  :bind
-  ("C-x w" . elfeed))
-
-(use-package elfeed-org
-  :after elfeed
-  :config
-  (elfeed-org))
-
-(use-package elfeed-goodies
-  :after elfeed
-  :config
-  (elfeed-goodies/setup))
-
-(use-package elfeed-protocol
-  :after elfeed)
-  
-(use-package deft
-  :after org
-  :bind ("C-c n d" . deft)
-  :commands (deft)
-  :config
-  (setq deft-directory "~/doc/notes")
-  (setq deft-recursive t)
-  (setq deft-default-extension "org")
-  (setq deft-use-filename-as-title t)
-  (setq deft-use-filter-string-for-filename t))
-
-(use-package bufler)
-
-(use-package vterm
-  :config
-  (setq vterm-shell "/usr/bin/fish")
-  :hook (vterm-mode . (lambda ()
-                        (setq-local global-hl-line-mode nil))))
-
-(use-package realgud
-  :commands
-  (realgud:pdb))
-
-(use-package org-protocol
-  :straight nil)
-
-(use-package olivetti
-  :hook
-  (olivetti-mode . variable-pitch-mode))
-
-(use-package org-roam
-  :config
-  (setq org-roam-directory "~/doc/notes/")
-  :bind (:map org-roam-mode-map
-	      (("C-c n l" . org-roam)
-	       ("C-c n f" . org-roam-find-file))
-	      :map org-mode-map
-	      (("C-c n i" . org-roam-insert))
-	      (("C-c n I" . org-roam-insert-immediate))))
-
-(use-package emms
-  :config
-  (require 'emms-setup)
-  (require 'emms-player-mpd)
-  (emms-all)
-  :custom
-  (emms-player-list '(emms-player-mpd))
-  (emms-info-functions '(emms-info-mpd))
-  (emms-player-mpd-server-name "localhost")
-  (emms-player-mpd-server-port "6600")
-  :bind
-  ("C-c m e" . emms)
-  ("C-c m b" . emms-smart-browse)
-  ("C-c m r" . emms-player-mpd-update-all-reset-cache))
-
-(use-package lsp-mode
-  :init
-  (setq lsp-keymap-prefix "C-;")
-  :hook
-  ((python-mode . lsp)
-   (lsp-mode . lsp-enable-which-key-integration))
-  :commands lsp)
-
-(use-package lsp-ui
-  :after lsp-mode
-  :commands lsp-ui-mode)
-
-(use-package lsp-ivy
-  :after lsp-mode
-  :commands lsp-ivy-workspace-symbol)
-
-(use-package ledger-mode
-  :config
-  (setq ledger-clear-whole-transactions t
-	ledger-default-date-format ledger-iso-date-format)
-  :mode
-  ("\\.dat\\'"))
-
-;; UI
 
 ;; Hide splash page
 (setq inhibit-startup-message t)
@@ -229,17 +31,28 @@
 ;; Highlight the line the cursor is on
 (global-hl-line-mode t)
 
-;; Sane scrolling
-(setq scroll-conservatively 101)
+;; Show time in modeline
+(display-time-mode t)
 
 ;; Change cursor to vertical line
 (setq-default cursor-type 'bar)
 
-(use-package org
-  :straight nil
+(use-package srcery-theme
   :config
-  (dolist (org-headings org-level-faces)
-    (set-face-attribute org-headings nil :family "B612")))
+  (load-theme 'srcery t))
+
+(use-package all-the-icons)
+
+(use-package emojify
+  :hook (after-init . global-emojify-mode))
+
+(use-package rainbow-mode)
+
+(use-package doom-modeline
+  :init (doom-modeline-mode 1))
+
+;; Sane scrolling
+(setq scroll-conservatively 101)
 
 ;; Auto save all buffers when frame loses focus
 (add-hook 'focus-out-hook (lambda () (save-some-buffers t)))
@@ -262,9 +75,6 @@
       show-paren-when-point-inside-paren t)
 (show-paren-mode t)
 
-;; Show time in modeline
-(display-time-mode t)
-
 ;; Replaces selcted text rather than ignoring it and inserting on cursor
 (delete-selection-mode t)
 
@@ -274,12 +84,6 @@
 ;; Replace yes/no prompts with y/n
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;; Ido-mode
-;(setq ido-enable-flex-matching t)
-;(setq ido-everywhere t)
-;(setq ido-use-filename-at-point 'guess)
-;(ido-mode 1)
-
 ;; Use ibuffer
 (defalias 'list-buffers 'ibuffer)
 
@@ -287,7 +91,68 @@
 (setq-default async-shell-command-display-buffer nil
 	      async-shell-command-buffer 'new-buffer)
 
-;; ORG-MODE
+(use-package ace-window
+  :bind
+  ("M-o" . ace-window)
+  ([remap other-window] . ace-window))
+
+(use-package counsel
+  :init (ivy-mode 1)
+  :config
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-height 20)
+  (setq ivy-count-format "%d/%d ")
+  (setq counsel-find-file-at-point t)
+  (setq ivy-use-selectable-prompt t))
+
+(use-package visual-fill-column)
+
+(use-package telega
+  :after visual-fill-column
+  :init
+  (add-hook 'telega-chat-mode-hook
+	    (lambda ()
+	      (set (make-local-variable 'comapny-backends)
+		   (append '(telega-company-emoji
+			     telega-company-username
+			     telega-company-hashtag)
+			   (when (telega-chat-bot-p telega-chatbuf--chat)
+			     '(telega-company-botcmd))))
+	      (company-mode 1)))
+  :commands (telega)
+  :config
+  (telega-notifications-mode 1)
+  :defer t)
+
+(use-package poetry
+  :config
+  (poetry-tracking-mode t))
+
+(use-package rust-mode
+  :config
+  (setq rust-format-on-save t)
+  :bind (:map rust-mode-map
+	      ("C-c C-c" . 'rust-run)))
+
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :config
+  (lsp-enable-which-key-integration t)
+  :hook
+  (prog-mode . lsp-deferred))
+
+(use-package realgud
+  :commands
+  (realgud:pdb))
+
+(use-package org
+  :straight nil
+  :config
+  ;; All headings (*) use custom font
+  (dolist (org-headings org-level-faces)
+    (set-face-attribute org-headings nil :family "B612")))
 
 ;; Elimate org magic removing empty lines between headings when they're toggled closed
 (setq org-blank-before-new-entry '((heading . nil)
@@ -331,14 +196,24 @@
 			'(("^ *\\([-]\\) "
 			   (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 
-;; Keybindings
+;; Enable auto-fill mode (limit M-q)
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+
 (define-key global-map (kbd "C-c o l") 'org-store-link)
 (define-key global-map (kbd "C-c o a") 'org-agenda-list)
 (define-key global-map (kbd "C-c o c") 'org-capture)
 (define-key global-map (kbd "C-c o b") 'org-iswitchb)
 
+(use-package htmlize)
 ;; HTML5 export
 (setq org-html-html5-fancy t)
+
+(use-package org-superstar
+  :after org
+  :hook (org-mode . org-superstar-mode))
+
+(use-package org-protocol
+  :straight nil)
 
 ;; Differentiate between URL links and other links
 ;;(org-link-set-parameters "http" :face '(:box t))
@@ -355,23 +230,230 @@ Then call ORIG-FUN."
 ;; All external links have icon appended to them
 (advice-add 'org-link-make-string :around #'org-link-make-external-string)
 
-;; Enable auto-fill mode (limit M-q)
-(add-hook 'text-mode-hook 'turn-on-auto-fill)
+(use-package webfeeder)
 
-;; PROGRAMMING
+(use-package ox-publish
+  :straight nil
+  :config
+  (setq bassamsaeed.ca/base-directory "~/src/bassamsaeed.ca/")
+  (setq bassamsaeed.ca/header-file (concat bassamsaeed.ca/base-directory "partials/header.html"))
+  (setq bassamsaeed.ca/footer-file (concat bassamsaeed.ca/base-directory "partials/footer.html"))
 
-;; Python
-(use-package python
-  :bind (:map python-mode-map
-	      ("M-n" . python-nav-forward-block)
-	      ("M-p" . python-nav-backward-block)
-	      ("C-c i r" . python-indent-shift-right)
-	      ("C-c i l" . python-indent-shift-left)))
+  (defun bassamsaeed.ca/header (_plist)
+    "Header"
+    (with-temp-buffer
+      (insert-file-contents bassamsaeed.ca/header-file)
+      (buffer-string)))
 
-(use-package poetry)
+  (defun  bassamsaeed.ca/footer (_plist)
+    "Footer"
+    (with-temp-buffer
+      (insert-file-contents bassamsaeed.ca/footer-file)
+      (buffer-string)))
 
-;; WEBSITE
+  (defun bassamsaeed.ca/filter-index-links (link backend info)
+    "Convert index.html links to just their root directory"
+    (if (org-export-derived-backend-p backend 'html)
+	(replace-regexp-in-string "/index.html" "/" link)))
 
+  (defun bassamsaeed.ca/org-sitemap-format (title list)
+    "Remove subtitle in posts index page"
+    (let ((filtered-list (cl-remove-if (lambda (x)
+					 (and (sequencep x) (null (car x))))
+				       list)))
+      (concat "#+TITLE: " title "\n"
+	      "#+HTML_HEAD: <link rel=\"stylesheet\" type=\"text/css\" href=\"/css/main.css\">\n"
+	      "#+HTML_HEAD: <link rel=\"alternate\" type=\"application/rss+xml\" href=\"/posts.rss\">\n"
+	      "#+HTML_HEAD: <link rel=\"alternate\" type=\"application/atom+xml\" href=\"/posts.atom\">\n"
+	      "#+HTML_HEAD: <style>.subtitle{display: none;}</style>\n"
+       (org-list-to-org filtered-list))))
 
-(provide 'init)
-;;; init.el ends here
+  (defun bassamsaeed.ca/org-sitemap-format-entry (entry style project)
+    ""
+    (format "%s /[[file:%s][%s]]/"
+	    (format-time-string "%b %d, %Y" (org-publish-find-date entry project))
+	    entry
+	    (org-publish-find-title entry project)))
+
+  (defun bassamsaeed.ca/org-html-publish-to-html (plist filename pub-dir)
+    "Wrapper function around org-html-publish-to-html to include Date in Title"
+    (let ((project (cons 'rw plist)))
+      (plist-put plist :subtitle
+		 (format-time-string "%b %d, %Y" (org-publish-find-date filename project)))
+      (org-html-publish-to-html plist filename pub-dir)))
+
+  (defun bassamsaeed.ca/publish ()
+    (interactive)
+    (setq webfeeder-default-author "Bassam Saeed <bassam.saeed@gmail.com>")
+    (webfeeder-build
+     "posts.atom"
+     (concat bassamsaeed.ca/base-directory "public")
+     "https://www.bassamsaeed.ca"
+     (delete "posts/index.html"
+	     (mapcar (lambda (f) (replace-regexp-in-string ".*/public/" "" f))
+		     (directory-files-recursively
+		      (concat bassamsaeed.ca/base-directory "public/posts") "index.html")))
+     :title "Bassam Saeed's Blog"
+     :description "Personal Development Blog")
+    (webfeeder-build
+     "posts.rss"
+     (concat bassamsaeed.ca/base-directory "public")
+     "https://www.bassamsaeed.ca"
+     (delete "posts/index.html"
+	     (mapcar (lambda (f) (replace-regexp-in-string ".*/public/" "" f))
+		     (directory-files-recursively
+		      (concat bassamsaeed.ca/base-directory "public/posts") "index.html")))
+     :title "Bassam Saeed's Blog"
+     :description "Personal Development Blog"
+     :builder 'webfeeder-make-rss))
+
+  (setq org-publish-project-alist
+	`(("posts"
+	   :base-directory ,(concat bassamsaeed.ca/base-directory "posts/")
+	   :publishing-directory ,(concat bassamsaeed.ca/base-directory "public/posts")
+	   :base-extension "org"
+	   :publishing-function bassamsaeed.ca/org-html-publish-to-html
+	   :recursive t
+	   :html-head
+	   ,(concat
+	    "<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/main.css\">\n"
+	    "<link rel=\"alternate\" type=\"application/rss+xml\" href=\"/posts.rss\">\n"
+	    "<link rel=\"alternate\" type=\"application/atom+xml\" href=\"/posts.atom\">\n")
+	   :html-head-include-default-style nil
+	   :html-head-include-scripts nil
+	   :html-preamble bassamsaeed.ca/header
+	   :html-postamble bassamsaeed.ca/footer
+	   :section-numbers nil
+	   :with-toc nil
+	   :auto-sitemap t
+	   :sitemap-filename "index.org"
+	   :sitemap-title "Posts"
+	   :sitemap-style list
+	   :sitemap-format-entry bassamsaeed.ca/org-sitemap-format-entry
+	   :sitemap-function bassamsaeed.ca/org-sitemap-format
+	   :sitemap-sort-files anti-chronologically)
+
+	  ("assets"
+	   :base-directory ,(concat bassamsaeed.ca/base-directory "assets/")
+	   :publishing-directory ,(concat bassamsaeed.ca/base-directory "public/")
+	   :recursive t
+	   :base-extension "css\\|svg\\|woff2"
+	   :publishing-function org-publish-attachment)
+
+	  ("static"
+	   :base-directory ,(concat bassamsaeed.ca/base-directory "static/")
+	   :publishing-directory ,(concat bassamsaeed.ca/base-directory "public/")
+	   :base-extension "org"
+	   :publishing-function org-html-publish-to-html
+	   :recursive t
+	   :html-head
+	   ,(concat
+	    "<link rel=\"stylesheet\" type=\"text/css\" href=\"/css/main.css\">\n"
+	    "<link rel=\"alternate\" type=\"application/rss+xml\" href=\"/posts.rss\">\n"
+	    "<link rel=\"alternate\" type=\"application/atom+xml\" href=\"/posts.atom\">\n")
+	   :html-head-include-default-style nil
+	   :html-head-include-scripts nil
+	   :html-preamble bassamsaeed.ca/header
+	   :html-postamble bassamsaeed.ca/footer
+	   :section-numbers nil
+	   :with-toc nil)
+
+	  ("website" :components ("posts" "assets" "static"))))
+
+  (add-to-list 'org-export-filter-link-functions
+	       'bassamsaeed.ca/filter-index-links))
+
+(use-package magit
+  :bind (("C-x g" . magit-status)))
+
+(use-package company
+  :config
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-life 1)
+  :hook
+  (prog-mode . company-mode))
+
+(use-package flycheck
+  :commands flycheck-mode)
+
+(use-package projectile
+  :config
+  (projectile-mode +1)
+  :custom
+  (projectile-completion-system 'ivy)
+  :bind (:map projectile-mode-map
+	      ("C-x p" . projectile-command-map)))
+
+(use-package yaml-mode
+  :mode
+  ("\\.yml\\'"))
+
+(use-package pdf-tools
+  :config
+  (pdf-tools-install)
+  (setq-default pdf-view-display-size 'fit-page)
+  (setq pdf-annot-activate-created-annotations t)
+  :bind (:map pdf-view-mode-map
+	      ("i" . pdf-view-midnight-minor-mode)
+	      ("c" . pdf-annot-add-text-annotation)))
+
+(use-package elfeed
+  :bind
+  ("C-x w" . elfeed))
+
+(use-package elfeed-org
+  :after elfeed
+  :config
+  (elfeed-org))
+
+(use-package elfeed-goodies
+  :after elfeed
+  :config
+  (elfeed-goodies/setup))
+
+(use-package elfeed-protocol
+  :after elfeed)
+
+(use-package deft
+  :after org
+  :bind ("C-c n d" . deft)
+  :commands (deft)
+  :config
+  (setq deft-directory "~/doc/notes")
+  (setq deft-recursive t)
+  (setq deft-default-extension "org")
+  (setq deft-use-filename-as-title t)
+  (setq deft-use-filter-string-for-filename t))
+
+(use-package dired
+  :straight nil
+  :config
+  ;; Human readable file sizes
+  (setq dired-listing-switches "-lha")
+
+  ;; Colourful columns
+  (use-package diredfl
+    :config
+    (diredfl-global-mode 1)))
+
+(use-package vterm
+  :config
+  (setq vterm-shell "/usr/bin/fish")
+  (set-face-attribute 'vterm-color-black nil :foreground "#1c1b19")
+  (set-face-attribute 'vterm-color-black nil :background "#918175")
+  (set-face-attribute 'vterm-color-red nil :background "#ef2f27")
+  (set-face-attribute 'vterm-color-red nil :foreground "#f75341")
+  (set-face-attribute 'vterm-color-green nil :foreground "#519f50")
+  (set-face-attribute 'vterm-color-green nil :background "#98bc37")
+  (set-face-attribute 'vterm-color-yellow nil :foreground "#fbb829")
+  (set-face-attribute 'vterm-color-yellow nil :background "#fed06e")
+  (set-face-attribute 'vterm-color-blue nil :foreground "#2c78bf")
+  (set-face-attribute 'vterm-color-blue nil :background "#68a8e4")
+  (set-face-attribute 'vterm-color-magenta nil :foreground "#e02c6d")
+  (set-face-attribute 'vterm-color-magenta nil :background "#ff5c8f")
+  (set-face-attribute 'vterm-color-cyan nil :foreground "#0aaeb3")
+  (set-face-attribute 'vterm-color-cyan nil :background "#53fde9")
+  (set-face-attribute 'vterm-color-white nil :foreground "#d0bfa1")
+  (set-face-attribute 'vterm-color-white nil :background "#fce8c3")
+  :hook (vterm-mode . (lambda ()
+			(setq-local global-hl-line-mode nil))))

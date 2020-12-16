@@ -12,7 +12,7 @@
 (scroll-bar-mode -1)
 
 ;; Set default fonts
-(set-face-attribute 'default nil :family "Iosevka")
+(set-face-attribute 'default nil :family "Iosevka" :height 120)
 (set-face-attribute 'fixed-pitch nil :family "Iosevka")
 (set-face-attribute 'variable-pitch nil :family "B612" :width 'condensed)
 
