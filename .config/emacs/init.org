@@ -58,6 +58,11 @@ appropriate ~.el~ configuration files.
      (straight-use-package 'use-package)
      (setq straight-use-package-by-default t)
    #+end_src
+** Updates
+   The easiest way to update all packages at once is by using
+   ~straight-pull-all~. However there is a potential [[https://github.com/raxod502/straight.el/issues/323][  issue]] with
+   this. It's not necessarily one I've ever encountered but good to
+   keep in mind when updating.
 * Custom File
   Store all settings from Customization interface in separate file
   #+begin_src emacs-lisp
@@ -167,6 +172,8 @@ appropriate ~.el~ configuration files.
    you get more than 2.
    #+begin_src emacs-lisp
      (use-package ace-window
+       :custom
+       (aw-scope 'frame)
        :bind
        ("M-o" . ace-window)
        ([remap other-window] . ace-window))

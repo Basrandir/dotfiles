@@ -92,6 +92,8 @@
 	      async-shell-command-buffer 'new-buffer)
 
 (use-package ace-window
+  :custom
+  (aw-scope 'frame)
   :bind
   ("M-o" . ace-window)
   ([remap other-window] . ace-window))
