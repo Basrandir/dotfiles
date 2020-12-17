@@ -83,6 +83,9 @@ appropriate ~.el~ configuration files.
      ;; Hide splash page
      (setq inhibit-startup-message t)
 
+     ;; Put as many prompts in minibuffer as possible
+     (setq use-dialog-box nil)
+
      ;; Show column number in modeline
      (column-number-mode t)
 
@@ -112,12 +115,13 @@ appropriate ~.el~ configuration files.
      (use-package emojify
        :hook (after-init . global-emojify-mode))
    #+end_src
-** Lisp-specific
-*** Rainbow Mode
-    #+begin_src emacs-lisp
-      (use-package rainbow-mode)
-    #+end_src
-
+** Rainbow Mode
+   When enabled, this minor mode sets the background colour of all
+   strings to their colour name. e.g. #ff0000, the background would be
+   displayed as red.
+   #+begin_src emacs-lisp
+     (use-package rainbow-mode)
+   #+end_src
 ** Modeline
    Replace the built-in modeline with [[https://github.com/seagle0128/doom-modeline][  doom-modeline]].
    #+begin_src emacs-lisp

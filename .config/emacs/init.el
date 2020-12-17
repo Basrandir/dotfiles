@@ -25,6 +25,9 @@
 ;; Hide splash page
 (setq inhibit-startup-message t)
 
+;; Put as many prompts in minibuffer as possible
+(setq use-dialog-box nil)
+
 ;; Show column number in modeline
 (column-number-mode t)
 
