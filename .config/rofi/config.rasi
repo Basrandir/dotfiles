@@ -10,6 +10,7 @@
  */
 
 * {
+  font:		 "Iosevka 12";
   spacing:       2;
 
   black:         #1C1B19;
