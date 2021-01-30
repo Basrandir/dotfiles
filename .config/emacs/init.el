@@ -129,10 +129,6 @@
   (telega-notifications-mode 1)
   :defer t)
 
-(use-package poetry
-  :config
-  (poetry-tracking-mode t))
-
 (use-package rust-mode
   :config
   (setq rust-format-on-save t)
@@ -387,7 +383,11 @@ Then call ORIG-FUN."
   :custom
   (projectile-completion-system 'ivy)
   :bind (:map projectile-mode-map
-	      ("C-x p" . projectile-command-map)))
+	      ("C-x p" . projectile-command-map))
+  :init
+  (when (file-directory-p "~/src/projects")
+    (setq projectile-project-search-path '("~/src/projects")))
+  (setq projectile-switch-project-action #'projectile-dired))
 
 (use-package yaml-mode
   :mode
@@ -401,6 +401,8 @@ Then call ORIG-FUN."
   :bind (:map pdf-view-mode-map
 	      ("i" . pdf-view-midnight-minor-mode)
 	      ("c" . pdf-annot-add-text-annotation)))
+
+(use-package nov)
 
 (use-package elfeed
   :bind

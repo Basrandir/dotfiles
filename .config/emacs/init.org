@@ -1,3 +1,4 @@
+
 #+TITLE: Emacs Configuration
 #+PROPERTY: header-args:emacs-lisp :tangle ./init.el
 
@@ -227,7 +228,7 @@ appropriate ~.el~ configuration files.
 * Programming
 ** Python
 *** Poetry
-    #+begin_src emacs-lisp
+    #+begin_src emacs-lisp :tangle no
       (use-package poetry
 	:config
 	(poetry-tracking-mode t))
@@ -542,7 +543,11 @@ appropriate ~.el~ configuration files.
       :custom
       (projectile-completion-system 'ivy)
       :bind (:map projectile-mode-map
-		  ("C-x p" . projectile-command-map)))
+		  ("C-x p" . projectile-command-map))
+      :init
+      (when (file-directory-p "~/src/projects")
+	(setq projectile-project-search-path '("~/src/projects")))
+      (setq projectile-switch-project-action #'projectile-dired))
   #+end_src
 * Additional Modes
 ** YAML
@@ -562,6 +567,10 @@ appropriate ~.el~ configuration files.
        :bind (:map pdf-view-mode-map
 		   ("i" . pdf-view-midnight-minor-mode)
 		   ("c" . pdf-annot-add-text-annotation)))
+   #+end_src
+** EPUB
+   #+begin_src emacs-lisp
+     (use-package nov)
    #+end_src
 ** Feed Reader
    [[https://github.com/skeeto/elfeed][  Elfeed]] is an extensible feed reader for Emacs.
