@@ -67,6 +67,9 @@ else
     maim "$screenshot_path"
 fi
 
-cat "$screenshot_path" | xclip -selection clipboard -t image/png
-
-notify-send "Screenshot" "Taken"
+if [ $? -eq 1 ]; then
+    notify-send "Screenshot" "Cancelled"
+else
+    cat "$screenshot_path" | xclip -selection clipboard -t image/png
+    notify-send "Screenshot" "Taken"
+fi
