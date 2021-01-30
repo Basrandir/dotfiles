@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + Return
-      xst -e fish
+      alacritty -e fish
 
 # emacs specific
 super + e; v
@@ -13,14 +13,20 @@ super + e; d
      emacsclient -c -e '(dired nil)'
 super + e; e
      emacsclient -c -e '(elfeed)'
+alt + n
+     bspc rule -a \* -o state=floating && \
+     emacsclient -c -e '(deft)'
 
 # program launcher
 super + @space
-	rofi -show-icons -show drun -modi emoji
+	rofi -show-icons -show drun -modi emoji,calc
 
 # make sxhkd reload its configuration files:
 super + Escape
-	pkill -USR1 -x sxhkd
+	pkill -USR1 -x sxhkd; notify send 'sxhkd' 'Reloaded config'
+
+super + shift + s
+      screenshot.sh -s
 
 #
 # bspwm hotkeys
@@ -90,7 +96,15 @@ super + {o,i}
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+	bspc {desktop -f,node -d} '^{1-9,10}' --follow
+
+# Move current window to a pre-selected space
+super + shift + m
+      bspc node -n last.!automatic
+
+# Rotate tree
+super + shift + {d,a}
+      bspc node @/ -C {forward,backward}
 
 #
 # preselect
@@ -127,3 +141,14 @@ super + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# move tiled window any direction
+super + r : {h,j,k,l}
+      STEP=20; SELECTION={1,2,3,4}; \
+      bspc node -z $(echo "left -$STEP 0,bottom 0 $STEP,top 0 -$STEP,right $STEP 0" | cut -d',' -f$SELECTION) || \
+      bspc node -z $(echo "right -$STEP 0,top 0 $STEP,bottom 0 -$STEP,left $STEP 0" | cut -d',' -f$SELECTION)
+
+# adjust padding
+super + shift + p : {1,2,3}
+      PADDING={900,500,0}; \
+      adjustGaps.sh -l $PADDING -r $PADDING
