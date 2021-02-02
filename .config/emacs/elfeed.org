@@ -6,3 +6,4 @@
 ** https://www.nateliason.com/blog/rss.xml
 ** https://rakyll.org/index.xml
 ** https://mgsloan.com/feed.xml
+** https://www.murilopereira.com/index.xml
