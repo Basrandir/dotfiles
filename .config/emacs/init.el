@@ -40,6 +40,9 @@
 ;; Change cursor to vertical line
 (setq-default cursor-type 'bar)
 
+;; Set margins on all sides
+(set-frame-parameter nil 'internal-border-width 12)
+
 (use-package srcery-theme
   :config
   (load-theme 'srcery t))
@@ -52,7 +55,8 @@
 (use-package rainbow-mode)
 
 (use-package doom-modeline
-  :init (doom-modeline-mode 1))
+  :init (doom-modeline-mode 1)
+  :config (setq doom-modeline-icon t))
 
 ;; Sane scrolling
 (setq scroll-conservatively 101)
@@ -148,12 +152,18 @@
   :commands
   (realgud:pdb))
 
-(use-package org
-  :straight nil
-  :config
-  ;; All headings (*) use custom font
-  (dolist (org-headings org-level-faces)
-    (set-face-attribute org-headings nil :family "B612")))
+;; Beautify Org Src blocks
+(add-hook 'org-mode-hook (lambda ()
+			   "Beautify Org Src blocks"
+			   (push '("#+begin_src" . "λ") prettify-symbols-alist)
+			   (push '("#+end_src" . "λ") prettify-symbols-alist)
+			   (prettify-symbols-mode)))
+
+;; All headings (*) use custom font
+(add-hook 'org-mode-hook
+	  (lambda ()
+	    (dolist (org-headings org-level-faces)
+	      (set-face-attribute org-headings nil :family "IBM Plex Sans"))))
 
 ;; Elimate org magic removing empty lines between headings when they're toggled closed
 (setq org-blank-before-new-entry '((heading . nil)
@@ -211,7 +221,9 @@
 
 (use-package org-superstar
   :after org
-  :hook (org-mode . org-superstar-mode))
+  :hook (org-mode . org-superstar-mode)
+  :custom
+  (org-hide-leading-stars t))
 
 (use-package org-protocol
   :straight nil)
@@ -374,6 +386,9 @@ Then call ORIG-FUN."
   :hook
   (prog-mode . company-mode))
 
+(use-package company-box
+  :hook (company-mode . company-box-mode))
+
 (use-package flycheck
   :commands flycheck-mode)
 
@@ -401,8 +416,6 @@ Then call ORIG-FUN."
   :bind (:map pdf-view-mode-map
 	      ("i" . pdf-view-midnight-minor-mode)
 	      ("c" . pdf-annot-add-text-annotation)))
-
-(use-package nov)
 
 (use-package elfeed
   :bind
