@@ -41,7 +41,7 @@
 (setq-default cursor-type 'bar)
 
 ;; Set margins on all sides
-(set-frame-parameter nil 'internal-border-width 12)
+(push '(internal-border-width . 16) default-frame-alist)
 
 (use-package srcery-theme
   :config
