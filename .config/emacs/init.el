@@ -133,11 +133,18 @@
   (telega-notifications-mode 1)
   :defer t)
 
-(use-package rust-mode
+(use-package rustic
+  :bind (:map rustic-map-mode
+	      ("M-?" . lsp-find-references)
+	      ("M-." . lsp-find-definition)
+	      ("C-c C-c l" . flycheck-list-errors)
+	      ("C-c C-c a" . lsp-execute-code-action)
+	      ("C-c C-c r" . lsp-rename)
+	      ("C-c C-c q" . lsp-workspace-restart)
+	      ("C-c C-c Q" . lsp-workspace-shutdown)
+	      ("C-c C-c s" . lsp-rust-analyzer-status))
   :config
-  (setq rust-format-on-save t)
-  :bind (:map rust-mode-map
-	      ("C-c C-c" . 'rust-run)))
+  (setq rustic-format-on-save t))
 
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
@@ -147,6 +154,16 @@
   (lsp-enable-which-key-integration t)
   :hook
   (prog-mode . lsp-deferred))
+
+(use-package lsp-ui
+  :commands lsp-ui-mode
+  :custom
+  (lsp-ui-peek-always-show t)
+  (lsp-ui-sideline-show-hover t)
+  (lsp-ui-doc-position 'at-point)
+  (lsp-eldoc-render-all t)
+  :hook
+  (lsp-mode . lsp-ui-mode))
 
 (use-package realgud
   :commands
@@ -380,9 +397,9 @@ Then call ORIG-FUN."
   :bind (("C-x g" . magit-status)))
 
 (use-package company
-  :config
-  (setq company-idle-delay 0)
-  (setq company-minimum-prefix-life 1)
+  :custom
+  (company-idle-delay 0)
+  (company-minimum-prefix-length 1)
   :hook
   (prog-mode . company-mode))
 
