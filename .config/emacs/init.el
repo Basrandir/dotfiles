@@ -114,6 +114,15 @@
   (setq counsel-find-file-at-point t)
   (setq ivy-use-selectable-prompt t))
 
+(use-package amx
+  :after ivy
+  :custom
+  (amx-backed 'auto)
+  (amx-save-file "~/.config/emacs/amx-items")
+  (amx-history-length 50)
+  :config
+  (amx-mode 1))
+
 (use-package visual-fill-column)
 
 (use-package telega
@@ -464,6 +473,10 @@ Then call ORIG-FUN."
 
 (use-package dired
   :straight nil
+  :bind (:map dired-mode-map
+	      ;; by default the binding for mouse-2 is
+	      ;; 'dired-mouse-find-file-other-window
+	      ([mouse-2] . 'dired-mouse-find-file))
   :config
   ;; Human readable file sizes
   (setq dired-listing-switches "-lha")

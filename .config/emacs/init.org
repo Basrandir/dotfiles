@@ -24,7 +24,7 @@ appropriate ~.el~ configuration files.
     (scroll-bar-mode -1)
 
     ;; Set default fonts
-    (set-face-attribute 'default nil :family "Iosevka" :height 120)
+    (set-face-attribute 'default nil :family "Iosevka" :height 130)
     (set-face-attribute 'fixed-pitch nil :family "Iosevka")
     (set-face-attribute 'variable-pitch nil :family "B612" :width 'condensed)
 
@@ -198,6 +198,20 @@ appropriate ~.el~ configuration files.
        (setq ivy-count-format "%d/%d ")
        (setq counsel-find-file-at-point t)
        (setq ivy-use-selectable-prompt t))
+   #+end_src
+** AMX
+   Enhances the minibuffer experience by keeping track of the history
+   of commands and ranking them based on user usage. Supports a number
+   of completion backends (ido, ivy, helm, etc).
+   #+begin_src emacs-lisp
+     (use-package amx
+       :after ivy
+       :custom
+       (amx-backed 'auto)
+       (amx-save-file "~/.config/emacs/amx-items")
+       (amx-history-length 50)
+       :config
+       (amx-mode 1))
    #+end_src
 * Communications
 ** Telega
@@ -640,10 +654,14 @@ appropriate ~.el~ configuration files.
    #+begin_src emacs-lisp
      (use-package dired
        :straight nil
+       :bind (:map dired-mode-map
+		   ;; by default the binding for mouse-2 is
+		   ;; 'dired-mouse-find-file-other-window
+		   ([mouse-2] . 'dired-mouse-find-file))
        :config
        ;; Human readable file sizes
        (setq dired-listing-switches "-lha")
-  
+
        ;; Colourful columns
        (use-package diredfl
 	 :config
