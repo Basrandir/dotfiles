@@ -56,7 +56,9 @@
 
 (use-package doom-modeline
   :init (doom-modeline-mode 1)
-  :config (setq doom-modeline-icon t))
+  :custom
+  (doom-modeline-icon t)
+  (doom-modeline-height 35))
 
 ;; Sane scrolling
 (setq scroll-conservatively 101)
@@ -106,13 +108,21 @@
   ([remap other-window] . ace-window))
 
 (use-package counsel
-  :init (ivy-mode 1)
+  :init
+  (ivy-mode 1)
+  (counsel-mode)
+  :custom
+  (ivy-use-virtual-buffers t)
+  (ivy-height 20)
+  (ivy-count-format "%d/%d ")
+  (counsel-find-file-at-point t)
+  (ivy-use-selectable-prompt t))
+
+(use-package ivy-rich
   :config
-  (setq ivy-use-virtual-buffers t)
-  (setq ivy-height 20)
-  (setq ivy-count-format "%d/%d ")
-  (setq counsel-find-file-at-point t)
-  (setq ivy-use-selectable-prompt t))
+  (setcdr (assq t ivy-format-functions-alist)
+	  #'ivy-format-function-line)
+  (ivy-rich-mode 1))
 
 (use-package amx
   :after ivy
