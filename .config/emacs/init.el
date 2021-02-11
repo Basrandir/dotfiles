@@ -428,18 +428,6 @@ Then call ORIG-FUN."
 (use-package flycheck
   :commands flycheck-mode)
 
-(use-package projectile
-  :config
-  (projectile-mode +1)
-  :custom
-  (projectile-completion-system 'ivy)
-  :bind (:map projectile-mode-map
-	      ("C-x p" . projectile-command-map))
-  :init
-  (when (file-directory-p "~/src/projects")
-    (setq projectile-project-search-path '("~/src/projects")))
-  (setq projectile-switch-project-action #'projectile-dired))
-
 (use-package yaml-mode
   :mode
   ("\\.yml\\'"))
@@ -499,6 +487,8 @@ Then call ORIG-FUN."
 (use-package vterm
   :config
   (setq vterm-shell "/usr/bin/fish")
+
+  ;; Match Xresources colours
   (set-face-attribute 'vterm-color-black nil :foreground "#1c1b19")
   (set-face-attribute 'vterm-color-black nil :background "#918175")
   (set-face-attribute 'vterm-color-red nil :background "#ef2f27")
