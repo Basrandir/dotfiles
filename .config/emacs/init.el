@@ -107,31 +107,18 @@
   ("M-o" . ace-window)
   ([remap other-window] . ace-window))
 
-(use-package counsel
-  :init
-  (ivy-mode 1)
-  (counsel-mode)
-  :custom
-  (ivy-use-virtual-buffers t)
-  (ivy-height 20)
-  (ivy-count-format "%d/%d ")
-  (counsel-find-file-at-point t)
-  (ivy-use-selectable-prompt t))
+(use-package selectrum
+  :config (selectrum-mode))
 
-(use-package ivy-rich
-  :config
-  (setcdr (assq t ivy-format-functions-alist)
-	  #'ivy-format-function-line)
-  (ivy-rich-mode 1))
+(use-package marginalia
+  :bind (:map minibuffer-local-map
+	      ("M-A" . marginalia-cycle))
+  :init (marginalia-mode)
+  :custom (marginalia-annotators
+	   '(marginalia-annotators-heavy marginalia-annotators-light nil)))
 
-(use-package amx
-  :after ivy
-  :custom
-  (amx-backed 'auto)
-  (amx-save-file "~/.config/emacs/amx-items")
-  (amx-history-length 50)
-  :config
-  (amx-mode 1))
+(use-package orderless
+  :custom (completion-styles '(orderless)))
 
 (use-package visual-fill-column)
 
@@ -152,8 +139,10 @@
   (telega-notifications-mode 1)
   :defer t)
 
+(use-package zig-mode)
+
 (use-package rustic
-  :bind (:map rustic-map-mode
+  :bind (:map rustic-mode-map
 	      ("M-?" . lsp-find-references)
 	      ("M-." . lsp-find-definition)
 	      ("C-c C-c l" . flycheck-list-errors)
@@ -172,7 +161,7 @@
   :config
   (lsp-enable-which-key-integration t)
   :hook
-  (prog-mode . lsp-deferred))
+  (python-mode . lsp-deferred))
 
 (use-package lsp-ui
   :commands lsp-ui-mode
@@ -413,6 +402,7 @@ Then call ORIG-FUN."
 	       'bassamsaeed.ca/filter-index-links))
 
 (use-package magit
+  :commands magit-status
   :bind (("C-x g" . magit-status)))
 
 (use-package company
@@ -475,9 +465,11 @@ Then call ORIG-FUN."
 	      ;; by default the binding for mouse-2 is
 	      ;; 'dired-mouse-find-file-other-window
 	      ([mouse-2] . 'dired-mouse-find-file))
-  :config
+  :custom
   ;; Human readable file sizes
-  (setq dired-listing-switches "-lha")
+  (dired-listing-switches "-lha")
+
+
 
   ;; Colourful columns
   (use-package diredfl

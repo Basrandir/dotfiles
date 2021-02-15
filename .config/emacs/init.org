@@ -189,43 +189,31 @@ appropriate ~.el~ configuration files.
        ("M-o" . ace-window)
        ([remap other-window] . ace-window))
    #+end_src
-** Ivy
-   Replace the minibuffer completion mechanism with [[https://github.com/abo-abo/swiper][  Ivy]].
-   #+begin_src emacs-lisp
-     (use-package counsel
-       :init
-       (ivy-mode 1)
-       (counsel-mode)
-       :custom
-       (ivy-use-virtual-buffers t)
-       (ivy-height 20)
-       (ivy-count-format "%d/%d ")
-       (counsel-find-file-at-point t)
-       (ivy-use-selectable-prompt t))
-   #+end_src
-*** Ivy Rich
-    Friendlier IVY user interface
+** Completion Framework
+*** Selectrum
+    The core incremental narrowing interface. Built on top of the
+    existing Emacs ~completing-read~ API.
     #+begin_src emacs-lisp
-      (use-package ivy-rich
-	:config
-	(setcdr (assq t ivy-format-functions-alist)
-		#'ivy-format-function-line)
-	(ivy-rich-mode 1))
+      (use-package selectrum
+	:config (selectrum-mode))
     #+end_src
-** AMX
-   Enhances the minibuffer experience by keeping track of the history
-   of commands and ranking them based on user usage. Supports a number
-   of completion backends (ido, ivy, helm, etc).
-   #+begin_src emacs-lisp
-     (use-package amx
-       :after ivy
-       :custom
-       (amx-backed 'auto)
-       (amx-save-file "~/.config/emacs/amx-items")
-       (amx-history-length 50)
-       :config
-       (amx-mode 1))
-   #+end_src
+*** Marginalia
+    Provides nice little annotations to completion candidates.
+    #+begin_src emacs-lisp
+      (use-package marginalia
+	:bind (:map minibuffer-local-map
+		    ("M-A" . marginalia-cycle))
+	:init (marginalia-mode)
+	:custom (marginalia-annotators
+		 '(marginalia-annotators-heavy marginalia-annotators-light nil)))
+    #+end_src
+*** Orderless
+    A ~completion style~ that splits based off of spaces and matches
+    candidates in any order.
+    #+begin_src emacs-lisp
+      (use-package orderless
+	:custom (completion-styles '(orderless)))
+    #+end_src
 * Communications
 ** Telega
    An unofficial Telegram client for Emacs.
@@ -258,16 +246,21 @@ appropriate ~.el~ configuration files.
    #+end_src
 * Programming
 ** Python
+   
 *** Poetry
     #+begin_src emacs-lisp :tangle no
       (use-package poetry
 	:config
 	(poetry-tracking-mode t))
     #+end_src
+** Zig
+   #+begin_src emacs-lisp
+     (use-package zig-mode)
+   #+end_src
 ** Rust
    #+begin_src emacs-lisp
      (use-package rustic
-       :bind (:map rustic-map-mode
+       :bind (:map rustic-mode-map
 		   ("M-?" . lsp-find-references)
 		   ("M-." . lsp-find-definition)
 		   ("C-c C-c l" . flycheck-list-errors)
@@ -289,7 +282,7 @@ appropriate ~.el~ configuration files.
        :config
        (lsp-enable-which-key-integration t)
        :hook
-       (prog-mode . lsp-deferred))
+       (python-mode . lsp-deferred))
 
      (use-package lsp-ui
        :commands lsp-ui-mode
@@ -575,6 +568,7 @@ appropriate ~.el~ configuration files.
 * Magit
   #+begin_src emacs-lisp
     (use-package magit
+      :commands magit-status
       :bind (("C-x g" . magit-status)))
   #+end_src
 * Company
@@ -657,9 +651,11 @@ appropriate ~.el~ configuration files.
 		   ;; by default the binding for mouse-2 is
 		   ;; 'dired-mouse-find-file-other-window
 		   ([mouse-2] . 'dired-mouse-find-file))
-       :config
+       :custom
        ;; Human readable file sizes
-       (setq dired-listing-switches "-lha")
+       (dired-listing-switches "-lha")
+  
+
 
        ;; Colourful columns
        (use-package diredfl
