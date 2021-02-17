@@ -7,3 +7,6 @@
 ** https://rakyll.org/index.xml
 ** https://mgsloan.com/feed.xml
 ** https://www.murilopereira.com/index.xml
+** https://www.manueluberti.eu/feed.xml
+** https://blog.lambda.cx/index.xml
+** https://raphlinus.github.io/feed.xml
