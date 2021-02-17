@@ -1,6 +1,10 @@
-#! /bin/sh
+#! /usr/bin/env bash
 
 xsetroot -cursor_name left_ptr &
+
+setxkbmap -option 'caps:ctrl_modifier'
+xcape -e 'Caps_Lock=Escape'
+
 sxhkd &
 picom -b
 
