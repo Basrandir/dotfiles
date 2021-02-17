@@ -124,7 +124,9 @@
 
 (use-package telega
   :after visual-fill-column
-  :init
+  :commands (telega)
+  :config
+  (telega-notifications-mode 1)
   (add-hook 'telega-chat-mode-hook
 	    (lambda ()
 	      (set (make-local-variable 'comapny-backends)
@@ -133,13 +135,7 @@
 			     telega-company-hashtag)
 			   (when (telega-chat-bot-p telega-chatbuf--chat)
 			     '(telega-company-botcmd))))
-	      (company-mode 1)))
-  :commands (telega)
-  :config
-  (telega-notifications-mode 1)
-  :defer t)
-
-(use-package zig-mode)
+	      (company-mode 1))))
 
 (use-package rustic
   :bind (:map rustic-mode-map
@@ -156,14 +152,14 @@
 
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
-  :init
-  (setq lsp-keymap-prefix "C-c l")
   :config
+  (setq lsp-keymap-prefix "C-c l")
   (lsp-enable-which-key-integration t)
   :hook
   (python-mode . lsp-deferred))
 
 (use-package lsp-ui
+  :after lsp-mode
   :commands lsp-ui-mode
   :custom
   (lsp-ui-peek-always-show t)
@@ -413,6 +409,7 @@ Then call ORIG-FUN."
   (prog-mode . company-mode))
 
 (use-package company-box
+  :after company
   :hook (company-mode . company-box-mode))
 
 (use-package flycheck
@@ -421,15 +418,6 @@ Then call ORIG-FUN."
 (use-package yaml-mode
   :mode
   ("\\.yml\\'"))
-
-(use-package pdf-tools
-  :config
-  (pdf-tools-install)
-  (setq-default pdf-view-display-size 'fit-page)
-  (setq pdf-annot-activate-created-annotations t)
-  :bind (:map pdf-view-mode-map
-	      ("i" . pdf-view-midnight-minor-mode)
-	      ("c" . pdf-annot-add-text-annotation)))
 
 (use-package elfeed
   :bind

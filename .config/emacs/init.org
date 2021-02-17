@@ -229,7 +229,9 @@ appropriate ~.el~ configuration files.
    #+begin_src emacs-lisp
      (use-package telega
        :after visual-fill-column
-       :init
+       :commands (telega)
+       :config
+       (telega-notifications-mode 1)
        (add-hook 'telega-chat-mode-hook
 		 (lambda ()
 		   (set (make-local-variable 'comapny-backends)
@@ -238,11 +240,7 @@ appropriate ~.el~ configuration files.
 				  telega-company-hashtag)
 				(when (telega-chat-bot-p telega-chatbuf--chat)
 				  '(telega-company-botcmd))))
-		   (company-mode 1)))
-       :commands (telega)
-       :config
-       (telega-notifications-mode 1)
-       :defer t)
+		   (company-mode 1))))
    #+end_src
 * Programming
 ** Python
@@ -253,10 +251,6 @@ appropriate ~.el~ configuration files.
 	:config
 	(poetry-tracking-mode t))
     #+end_src
-** Zig
-   #+begin_src emacs-lisp
-     (use-package zig-mode)
-   #+end_src
 ** Rust
    #+begin_src emacs-lisp
      (use-package rustic
@@ -277,14 +271,14 @@ appropriate ~.el~ configuration files.
    #+begin_src emacs-lisp
      (use-package lsp-mode
        :commands (lsp lsp-deferred)
-       :init
-       (setq lsp-keymap-prefix "C-c l")
        :config
+       (setq lsp-keymap-prefix "C-c l")
        (lsp-enable-which-key-integration t)
        :hook
        (python-mode . lsp-deferred))
 
      (use-package lsp-ui
+       :after lsp-mode
        :commands lsp-ui-mode
        :custom
        (lsp-ui-peek-always-show t)
@@ -581,6 +575,7 @@ appropriate ~.el~ configuration files.
       (prog-mode . company-mode))
 
     (use-package company-box
+      :after company
       :hook (company-mode . company-box-mode))
   #+end_src
 * Flycheck
@@ -594,18 +589,6 @@ appropriate ~.el~ configuration files.
      (use-package yaml-mode
        :mode
        ("\\.yml\\'"))
-   #+end_src
-** PDF
-   As a replacement for the built-in document mode
-   #+begin_src emacs-lisp
-     (use-package pdf-tools
-       :config
-       (pdf-tools-install)
-       (setq-default pdf-view-display-size 'fit-page)
-       (setq pdf-annot-activate-created-annotations t)
-       :bind (:map pdf-view-mode-map
-		   ("i" . pdf-view-midnight-minor-mode)
-		   ("c" . pdf-annot-add-text-annotation)))
    #+end_src
 ** Feed Reader
    [[https://github.com/skeeto/elfeed][  Elfeed]] is an extensible feed reader for Emacs.
