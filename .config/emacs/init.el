@@ -60,6 +60,14 @@
   (doom-modeline-icon t)
   (doom-modeline-height 35))
 
+(use-package dashboard
+  :config
+  (dashboard-setup-startup-hook)
+  :custom
+  (initial-buffer-choice
+   (lambda ()
+     (get-buffer "*dashboard*"))))
+
 ;; Sane scrolling
 (setq scroll-conservatively 101)
 

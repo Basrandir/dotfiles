@@ -135,6 +135,16 @@ appropriate ~.el~ configuration files.
        (doom-modeline-icon t)
        (doom-modeline-height 35))
    #+end_src
+** Default Dashboard
+   #+begin_src emacs-lisp
+     (use-package dashboard
+       :config
+       (dashboard-setup-startup-hook)
+       :custom
+       (initial-buffer-choice
+	(lambda ()
+	  (get-buffer "*dashboard*"))))
+   #+end_src
 * Behaviour
 ** Basics
    #+begin_src emacs-lisp
