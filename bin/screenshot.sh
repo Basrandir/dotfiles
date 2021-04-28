@@ -44,7 +44,7 @@ done
 shift "$((OPTIND -1))"
 
 if [ $active_window ]; then
-    maim_flags="$maim_flags -i $(xdotool getactivewindow)"
+    maim_flags="$maim_flags --window=$(xdotool getactivewindow)"
     window_title
 elif [ $select_region ]; then
     maim_flags="$maim_flags -s"
@@ -61,10 +61,10 @@ fi
 screenshot_path="$screenshot_dir/$date.png"
 maim_flags="$(echo $maim_flags | xargs)"
 
-if [ $maim_flags ]; then
-    maim "$maim_flags" "$screenshot_path"
-else
+if [ -z "$maim_flags" ]; then
     maim "$screenshot_path"
+else
+    maim "$maim_flags" "$screenshot_path"
 fi
 
 if [ $? -eq 1 ]; then
