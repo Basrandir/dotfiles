@@ -10,3 +10,4 @@
 ** https://www.manueluberti.eu/feed.xml
 ** https://blog.lambda.cx/index.xml
 ** https://raphlinus.github.io/feed.xml
+** https://blog.tecosaur.com/tmio/rss.xml

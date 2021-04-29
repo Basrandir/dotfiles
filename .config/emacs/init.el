@@ -108,6 +108,11 @@
 (setq-default async-shell-command-display-buffer nil
 	      async-shell-command-buffer 'new-buffer)
 
+(defun open-config ()
+  (interactive)
+  (find-file (concat user-emacs-directory "init.org")))
+(define-key global-map (kbd "C-c d") 'open-config)
+
 (use-package ace-window
   :custom
   (aw-scope 'frame)
@@ -157,6 +162,10 @@
 	      ("C-c C-c s" . lsp-rust-analyzer-status))
   :config
   (setq rustic-format-on-save t))
+
+(use-package elixir-mode)
+
+(use-package lua-mode)
 
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
@@ -224,6 +233,9 @@
 
 ;; Closing items
 (setq org-log-done 'note)
+
+;; Enable org-habit
+(add-to-list 'org-modules 'org-habit t)
 
 ;; Remove / and * emphasis for italics and bold respectively
 (setq org-hide-emphasis-markers t)
@@ -409,6 +421,8 @@ Then call ORIG-FUN."
   :commands magit-status
   :bind (("C-x g" . magit-status)))
 
+
+
 (use-package company
   :custom
   (company-idle-delay 0)
@@ -423,9 +437,29 @@ Then call ORIG-FUN."
 (use-package flycheck
   :commands flycheck-mode)
 
+(use-package fish-mode)
+
+(use-package treemacs
+  :config
+  (treemacs-follow-mode t)
+  (treemacs-filewatch-mode t)
+
+  :bind
+  (:map global-map
+	("C-x t t" . treemacs)))
+
 (use-package yaml-mode
   :mode
   ("\\.yml\\'"))
+
+(use-package pdf-tools
+  :config
+  (pdf-tools-install)
+  (setq-default pdf-view-display-size 'fit-page)
+  (setq pdf-annot-activate-crated-annotations t)
+  :bind (:map pdf-view-mode-map
+	      ("i" . pdf-view-midnight-minor-mode)
+	      ("c" . pdf-annot-add-text-annotation)))
 
 (use-package elfeed
   :bind
@@ -465,8 +499,6 @@ Then call ORIG-FUN."
   ;; Human readable file sizes
   (dired-listing-switches "-lha")
 
-
-
   ;; Colourful columns
   (use-package diredfl
     :config
@@ -475,23 +507,5 @@ Then call ORIG-FUN."
 (use-package vterm
   :config
   (setq vterm-shell "/usr/bin/fish")
-
-  ;; Match Xresources colours
-  (set-face-attribute 'vterm-color-black nil :foreground "#1c1b19")
-  (set-face-attribute 'vterm-color-black nil :background "#918175")
-  (set-face-attribute 'vterm-color-red nil :background "#ef2f27")
-  (set-face-attribute 'vterm-color-red nil :foreground "#f75341")
-  (set-face-attribute 'vterm-color-green nil :foreground "#519f50")
-  (set-face-attribute 'vterm-color-green nil :background "#98bc37")
-  (set-face-attribute 'vterm-color-yellow nil :foreground "#fbb829")
-  (set-face-attribute 'vterm-color-yellow nil :background "#fed06e")
-  (set-face-attribute 'vterm-color-blue nil :foreground "#2c78bf")
-  (set-face-attribute 'vterm-color-blue nil :background "#68a8e4")
-  (set-face-attribute 'vterm-color-magenta nil :foreground "#e02c6d")
-  (set-face-attribute 'vterm-color-magenta nil :background "#ff5c8f")
-  (set-face-attribute 'vterm-color-cyan nil :foreground "#0aaeb3")
-  (set-face-attribute 'vterm-color-cyan nil :background "#53fde9")
-  (set-face-attribute 'vterm-color-white nil :foreground "#d0bfa1")
-  (set-face-attribute 'vterm-color-white nil :background "#fce8c3")
   :hook (vterm-mode . (lambda ()
 			(setq-local global-hl-line-mode nil))))
