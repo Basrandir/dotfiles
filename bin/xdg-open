@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-case "${1%%:*}" in
-    http|https) exec firefox "$1"
-		;;
-    *) exec /usr/bin/xdg-open "$@"
-       ;;
-esac
-

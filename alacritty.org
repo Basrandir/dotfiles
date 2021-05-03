@@ -1,0 +1,28 @@
+#+TITLE: Alacritty
+#+AUTHOR: Bassam Saeed
+
+My terminal emulator of choice. Still need to evaluate kitty.
+
+* History
+  Gnome Terminal -> urxvt -> termite -> urxvt -> st -> xst ->
+  alacritty
+* Fonts
+  Still don't understand why the point size has to be so much higher
+  in alacritty to match the equivalent in st and/or rofi.
+
+  #+begin_src yaml
+    font:
+      normal:
+	family: Iosevka
+	style: Regular
+      bold:
+	family: Iosevka
+	style: Bold
+      italic:
+	family: Iosevka
+	style: Italic
+      bold_italic:
+	family: Iosevka
+	style: Bold Italic
+      size: 14.0
+  #+end_src

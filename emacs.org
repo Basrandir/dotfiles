@@ -1,15 +1,14 @@
 #+TITLE: Emacs Configuration
-#+PROPERTY: header-args:emacs-lisp :tangle ./init.el
-#+STARTUP: overview
-
-Utilizes ~org-babel~ to tangle most of the elisp source blocks to the
-appropriate ~.el~ configuration files.
+#+AUTHOR: Bassam Saeed
+#+PROPERTY: header-args  :comments both
+#+PROPERTY: header-args+ :mkdirp yes
+#+PROPERTY: header-args+ :tangle ~/.config/emacs/init.el
 
 * Early Init
   Emacs 27 and above loads ~early-init.el~ before initializing certain
   graphical elements and the package manager. Utilizing this, we can
   speed up initial start.
-  #+begin_src emacs-lisp :tangle ./early-init.el
+  #+begin_src emacs-lisp :tangle ~/.config/emacs/early-init.el
     ;;; early-init.el --- For Emacs 27+
 
     ;;; Commentary:
@@ -34,6 +33,13 @@ appropriate ~.el~ configuration files.
     (provide 'early-init)
 
     ;;; early-init.el ends here
+  #+end_src
+* Native Compilation
+  Using the Native comp version of emacs 28. This silences warnings by
+  the compiler. They are super annoying when pop-ing up new windows.
+
+  #+begin_src emacs-lisp :tangle (if (string-match-p "--with-nativecomp" system-configuration-options) "~/.config/emacs/init.el" "no")
+    (setq comp-async-report-warnings-errors nil)
   #+end_src
 * Straight.el
 ** Bootstrap

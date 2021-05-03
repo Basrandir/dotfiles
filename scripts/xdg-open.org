@@ -1,0 +1,23 @@
+#+TITLE: xdg-open
+#+AUTHOR: Bassam Saeed
+#+PROPERTY: header-args  :comments both
+#+PROPERTY: header-args+ :mkdirp yes
+#+PROPERTY: header-args+ :tangle ~/bin/xdg-open
+#+PROPERTY: header-args+ :shebang "#!/usr/bin/env bash"
+
+The idea here is to explicitly define default graphical
+applications. The default ~XDG MIME specifications~ is a little obtuse
+to configure without the help of a desktop environment managing it for
+you. So this was an easy way to handle that.
+
+Put the path of this file (usually ~$HOME/bin~) ahead of the standard
+~xdg-open~ path in the ~$PATH~ environment variable.
+
+#+begin_src bash
+  case "${1%%:*}" in
+      http|https) exec firefox "$1"
+		  ;;
+      ,*) exec /usr/bin/xdg-open "$@"
+	 ;;
+  esac
+#+end_src

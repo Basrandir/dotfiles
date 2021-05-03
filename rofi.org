@@ -1,0 +1,24 @@
+#+TITLE: Rofi
+#+AUTHOR: Bassam Saeed
+#+PROPERTY: header-args  :mkdirp yes
+#+PROPERTY: header-args+ :tangle ~/.config/rofi/config.rasi
+
+My program launcher. Also very versatile in that it's really just a
+narrowing list of items that can be fed anything. There's plenty of
+plugins that can extend the capabilities of rofi.
+
+In particular I use it to launch applications, do calculations and
+select emojis to the clipboard.
+
+* Begin Configuration
+  #+begin_src conf
+    * {
+  #+end_src
+* Fonts
+  #+begin_src conf
+    font: "Iosevka 12";
+  #+end_src
+* End Configuration
+  #+begin_src conf
+    }
+  #+end_src

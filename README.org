@@ -1,0 +1,46 @@
+#+TITLE: README
+#+AUTHOR: Bassam Saeed
+
+This repo contains all my dotfiles and scripts. It also contains some
+logic to help bring my machines to a consistent state. In particular
+this means to install the appropriate packages on the system (in this
+case it's Arch Linux). This part is mostly a work in progress.
+
+In this way, this repo would be more accurately described as my
+personal desktop Linux infrastructure. I have a 2 Linux machines, a
+desktop and a laptop and I wanted to maintain a consistent state
+between the two.
+
+* Literate Configuration
+  All my dotfiles and scripts are written with the idea of Literate
+  Programming in mind. The idea being that the documentation and
+  source code are part of a single file. For the dotfiles and scripts,
+  the source code itself is extracted out into their own appropriate
+  files and locations. The other configurations are evaluated when
+  needed (usually on initial setup).
+
+  I leverage the power of ~Emacs~ and in particular ~org-mode~ and
+  ~org-babel~ to accomplish this.
+
+* TODO Makefile
+  Create a file [[file:Makefile]] which allows me to easily ~tangle~ all my
+  actual code as well as run arbitrary code blocks during initial
+  setup. It should prevent me from having to go to each file and
+  manually trigger the actions required to get my system into a
+  consistent state.
+
+  After the initial setup, the Makefile is likely never needed. It's
+  probably just easier to evaluate and/or tangle the source blocks
+  live as changes are made.
+
+* Auto tangling
+  The [[file:emacs.org]] file automatically tangles the code to the
+  ~init.el~ configuration file used by ~Emacs~ whenever there's a change
+  made and the file is saved. I have considered having the other files
+  also follow this pattern but those files are less likely to be
+  modified regularly and so I'd prefer a more deliberate invoking of
+  the tangling of source code.
+
+  My Emacs configuration on the other hand I'm constantly playing
+  around with and as such it's a lot easier to just have it
+  automatically tangle.

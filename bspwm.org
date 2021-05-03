@@ -1,0 +1,89 @@
+#+TITLE: bspwm
+#+AUTHOR: Bassam Saeed
+#+PROPERTY: header-args  :comments both
+#+PROPERTY: header-args+ :mkdirp yes
+#+PROPERTY: header-args+ :tangle ~/.config/bspwm/bspwmrc
+#+PROPERTY: header-args+ :shebang "#!/usr/bin/env bash"
+
+[[https://github.com/baskerville/bspwm][  bspwm]] is an automatic tiling window manager.
+
+* Pseudo Desktop Environment
+  Some comforts
+** Cursor
+   Have the mouse cursor show up as a standard pointer.
+   
+   #+begin_src bash
+     xsetroot -cursor_name left_ptr &
+   #+end_src
+** Who needs capslock
+   Remap capslock to be Control when held, Esc when tapped.
+
+   #+begin_src bash
+     setxkbmap -option 'caps:ctrl_modifier'
+     xcape -e 'Caps_Lock=Escape'
+   #+end_src
+** Keybindings
+   bspwm by itself does not come with any key (or mouse) handling. So
+   we use another application by the same developer; sxhkd.
+
+   #+begin_src bash
+     sxhkd &
+   #+end_src
+** Monitor setup
+   Polaris has 1 primary monitor and then a 165hz secondary on the
+   right side in a vertical alignment.
+
+   #+begin_src bash :tangle (if (equal (system-name) "polaris") "~/.config/bspwm/bspwmrc" "no")
+     xrandr --output HDMI-A-0 --primary --auto --output DisplayPort-0 --auto --mode 1920x1080 --rate 165.00 --right-of HDMI-A-0 --rotate right
+   #+end_src
+** Wallpaper
+   Restore wallpaper previously set
+
+   #+begin_src bash
+     setroot --restore
+   #+end_src
+** My eyes... they burn
+   Using redshift to handle blue light and general colour temperature
+   of monitor throughout the day.
+
+   #+begin_src bash
+     redshift &
+   #+end_src
+** Compositor
+   As a window manager, bspwm doesn't include it's own compositor. I
+   only use it for fairly basic stuff.
+   #+begin_src bash
+     picom -b
+   #+end_src
+* BSPC
+  Now for the actual setup of the windowing environment. Below are
+  some general settings I prefer.
+
+  #+begin_src bash
+    bspc config border_width         2
+    bspc config window_gap          10
+
+    bspc config split_ratio          0.50
+    bspc config borderless_monocle   true
+    bspc config gapless_monocle      true
+  #+end_src
+** Workspaces
+   5 per monitor makes sense for me and works well.
+
+   #+begin_src bash
+     for monitor in $(bspc query -M); do
+	 bspc monitor $monitor -d I II III IV V
+     done
+   #+end_src
+** Rules
+   Specific window rules that I want to enforce for applications
+   beyond just the bspwm defaults. Specifically, for some reason Emacs
+   is the only application I know that isn't tiled by
+   default. Probably something to do with how weird and archaic its
+   GUI codebase is.
+
+   #+begin_src bash
+     bspc rule -a Firefox desktop=^1
+     bspc rule -a Emacs state=tiled
+     bspc rule -a mpv state=floating
+   #+end_src

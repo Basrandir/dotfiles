@@ -1,6 +1,0 @@
-#include ".themes/srcery/srcery-terminal/xresources/srcery.xresources"
-
-Xft.dpi:	116
-
-st.font:	Iosevka:pixelsize=17:antialias=true:autohint=true;
-st.bold_font:	1
