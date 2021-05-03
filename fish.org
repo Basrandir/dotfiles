@@ -39,3 +39,11 @@ where ~fisher~ isn't installed, or is hard to install.
   #+begin_src fish :tangle no
     fish_add_path -p /home/bassam/bin
   #+end_src
+* Aliases
+  Fish aliases are defined as functions that are autoloaded.
+
+  #+begin_src fish :tangle ~/.config/fish/functions/ls.fish
+    function ls --wraps=exa --description 'alias ls=exa'
+	exa $argv;
+    end
+  #+end_src
