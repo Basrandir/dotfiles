@@ -242,6 +242,9 @@
     #+end_src
 * Communications
 ** Telega
+   :PROPERTIES:
+   :header-args: :tangle (if (equal (system-name) "polaris") "~/.config/emacs/init.el" "no")
+   :END:
    An unofficial Telegram client for Emacs.
 
    First we need to set up visual-fill-mode which is a dependency of [[https://github.com/zevlg/telega.el][
@@ -716,7 +719,7 @@
 ** vterm
    An alternative Emacs terminal built on top libvterm. Need to figure
    out a way to automate colours.
-   #+begin_src emacs-lisp
+   #+begin_src emacs-lisp :tangle (if (equal (system-name) "polaris") "~/.config/emacs/init.el" "no")
      (use-package vterm
        :config
        (setq vterm-shell "/usr/bin/fish")
