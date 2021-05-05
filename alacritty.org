@@ -1,5 +1,8 @@
 #+TITLE: Alacritty
 #+AUTHOR: Bassam Saeed
+#+PROPERTY: header-args  :comments both
+#+PROPERTY: header-args+ :mkdirp yes
+#+PROPERTY: header-args+ :tangle ~/.config/alacritty/alacritty.yml
 
 My terminal emulator of choice. Still need to evaluate kitty.
 
@@ -10,7 +13,12 @@ My terminal emulator of choice. Still need to evaluate kitty.
   Still don't understand why the point size has to be so much higher
   in alacritty to match the equivalent in st and/or rofi.
 
-  #+begin_src yaml
+  Due to the nature of different DPI between my various devices, I
+  need to set different font names. And unfortunately alacritty uses a
+  yaml based config file which needs correct whitespace. And org-babel
+  can't maintain consistent indentation between source blocks. Hence
+  the duplicate font blocks.
+  #+begin_src yaml :tangle (if (equal (system-name) "proteus") "~/.config/alacritty/alacritty.yml")
     font:
       normal:
 	family: Iosevka
@@ -24,5 +32,23 @@ My terminal emulator of choice. Still need to evaluate kitty.
       bold_italic:
 	family: Iosevka
 	style: Bold Italic
-      size: 14.0
+      size: 9.0
+  #+end_src
+
+  Font size is dependant on dpi
+  #+begin_src yaml :tangle (if (equal (system-name) "polaris") "~/.config/alacritty/alacritty.yml")
+    font:
+      normal:
+	family: Iosevka
+	style: Regular
+      bold:
+	family: Iosevka
+	style: Bold
+      italic:
+	family: Iosevka
+	style: Italic
+      bold_italic:
+	family: Iosevka
+	style: Bold Italic
+      size: 11.0
   #+end_src
