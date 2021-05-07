@@ -136,15 +136,24 @@ everything I'd want. At least for now 😏.
    Basically the core utilities in the terminal emulator and program
    launcher.
 
+   Terminal Emulator
    #+begin_src bash
-     # terminal emulator
      super + Return
 	   alacritty -e fish
-
-     # program launcher
-     super + @space
-             rofi -show-icons -show drun -modi emoji,calc
    #+end_src
+*** Launcher
+    For some reason, I'm unable to get rofi-emoji and rofi-calc
+    working on Nixos. So for that machine (proteus) I need to remove
+    those as options.
+    #+begin_src bash :tangle (if (equal (system-name) "polaris") "~/.config/sxhkd/sxhkdrc" "no")
+      super + @space
+	    rofi -show-icons -show drun -modi emoji,calc
+    #+end_src
+
+    #+begin_src bash :tangle (if (equal (system-name) "proteus") "~/.config/sxhkd/sxhkdrc" "no")
+      super + @space
+	    rofi -show-icons -show drun -modi drun
+    #+end_src
 ** Emacs
    These keybindings open up specific Emacs(client) buffers.
 
