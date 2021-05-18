@@ -672,6 +672,8 @@
 
      (use-package elfeed-org
        :after elfeed
+       :custom
+       (rmh-elfeed-org-files (list "~/.config/emacs/elfeed.org"))
        :config
        (elfeed-org))
 
