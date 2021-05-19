@@ -1,5 +1,7 @@
 #+TITLE: Redshift
 #+AUTHOR: Bassam Saeed
+#+PROPERTY: header-args+ :mkdirp yes
+#+PROPERTY: header-args+ :tangle ~/.config/redshift/redshift.conf
 
 I use [[https://github.com/jonls/redshift][  Redshift]] to adjust the colour temperature of my screen. It's
 inspired by ~f.lux~ and is helpful with blue light issues.
@@ -29,8 +31,8 @@ inspired by ~f.lux~ and is helpful with blue light issues.
   I want to integrate geoclue2 location provider for my laptops
   however.
 
-  #+begin_src conf :tangle (when (equal (system-name) "polaris") "yes")
-    location-provider: manual
+  #+begin_src conf
+    location-provider=manual
   #+end_src
 
   The adjustment method I use is ~randr~ which is the newest and
