@@ -43,7 +43,7 @@
   #+end_src
 * Straight.el
 ** Bootstrap
-   Downloads and installs the [[https://github.com/raxod502/straight.el][  straight.el]] Emacs package manager as
+   Downloads and installs the [[https://github.com/raxod502/straight.el][ straight.el]] Emacs package manager as
    a replacement for the built in ~package.el~.
    #+begin_src emacs-lisp
      (setq straight-repository-branch "develop")
@@ -444,7 +444,7 @@
      Then call ORIG-FUN."
        (if (or (string= (url-type (url-generic-parse-url link)) "http")
 	       (string= (url-type (url-generic-parse-url link)) "https"))
-	   (setq description (concat "  " description)))
+	   (setq description (concat " " description)))
        (apply orig-fun (list link description)))
 
      ;; All external links have icon appended to them
