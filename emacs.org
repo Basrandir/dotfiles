@@ -38,7 +38,7 @@
   Using the Native comp version of emacs 28. This silences warnings by
   the compiler. They are super annoying when pop-ing up new windows.
 
-  #+begin_src emacs-lisp :tangle (if (string-match-p "--with-nativecomp" system-configuration-options) "~/.config/emacs/init.el" "no")
+  #+begin_src emacs-lisp :tangle (if (string-match-p "native" system-configuration-options) "~/.config/emacs/init.el" "no")
     (setq comp-async-report-warnings-errors nil)
   #+end_src
 * Straight.el
