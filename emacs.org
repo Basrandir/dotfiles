@@ -23,8 +23,8 @@
     (scroll-bar-mode -1)
 
     ;; Set default fonts
-    (set-face-attribute 'default nil :family "mononoki Nerd Font" :height 130)
-    (set-face-attribute 'fixed-pitch nil :family "Iosevka")
+    (set-face-attribute 'default nil :family "Cascadia Mono" :height 130)
+    (set-face-attribute 'fixed-pitch nil :family "Cascadia Mono")
     (set-face-attribute 'variable-pitch nil :family "B612" :width 'condensed)
 
     ;; Disable package manager init since we use straight.el instead
