@@ -5,7 +5,7 @@
 #+PROPERTY: header-args+ :tangle ~/.config/bspwm/bspwmrc
 #+PROPERTY: header-args+ :shebang "#!/usr/bin/env bash"
 
-[[https://github.com/baskerville/bspwm][  bspwm]] is an automatic tiling window manager.
+[[https://github.com/baskerville/bspwm][ bspwm]] is an automatic tiling window manager.
 
 * Pseudo Desktop Environment
   Some comforts
