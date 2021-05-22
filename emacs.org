@@ -322,9 +322,7 @@
        :commands (lsp lsp-deferred)
        :config
        (setq lsp-keymap-prefix "C-c l")
-       (lsp-enable-which-key-integration t)
-       :hook
-       (python-mode . lsp-deferred))
+       (lsp-enable-which-key-integration t))
 
      (use-package lsp-ui
        :after lsp-mode
@@ -338,7 +336,7 @@
        (lsp-mode . lsp-ui-mode))
    #+end_src
 ** Debugging
-   Replace the built-in debugger with [[https://github.com/realgud/realgud][  RealGud]].
+   Replace the built-in debugger with [[https://github.com/realgud/realgud][ RealGud]].
    #+begin_src emacs-lisp
      (use-package realgud
        :commands
