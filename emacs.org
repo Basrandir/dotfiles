@@ -273,12 +273,20 @@
    #+end_src
 * Programming
 ** Python
-   
 *** Poetry
     #+begin_src emacs-lisp :tangle no
       (use-package poetry
 	:config
 	(poetry-tracking-mode t))
+    #+end_src
+*** Pyright
+    Leveraging the pyright language server via lsp-mode
+
+    #+begin_src emacs-lisp
+      (use-package lsp-pyright
+	:hook (python-mode . (lambda ()
+			       (require 'lsp-pyright)
+			       (lsp-deferred))))
     #+end_src
 ** Rust
    #+begin_src emacs-lisp
