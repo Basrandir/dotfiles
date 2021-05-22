@@ -18,7 +18,7 @@ My terminal emulator of choice. Still need to evaluate kitty.
   yaml based config file which needs correct whitespace. And org-babel
   can't maintain consistent indentation between source blocks. Hence
   the duplicate font blocks.
-  #+begin_src yaml :tangle (if (equal (system-name) "proteus") "~/.config/alacritty/alacritty.yml")
+  #+begin_src yaml :tangle (if (equal (system-name) "proteus") "~/.config/alacritty/alacritty.yml" "no")
     font:
       normal:
 	family: Iosevka
@@ -36,19 +36,19 @@ My terminal emulator of choice. Still need to evaluate kitty.
   #+end_src
 
   Font size is dependant on dpi
-  #+begin_src yaml :tangle (if (equal (system-name) "polaris") "~/.config/alacritty/alacritty.yml")
+  #+begin_src yaml :tangle (if (equal (system-name) "polaris") "~/.config/alacritty/alacritty.yml" "no")
     font:
       normal:
-	family: Iosevka
+	family: Cascadia Mono
 	style: Regular
       bold:
-	family: Iosevka
+	family: Cascadia Mono
 	style: Bold
       italic:
-	family: Iosevka
+	family: Cascadia Mono
 	style: Italic
       bold_italic:
-	family: Iosevka
+	family: Cascadia Mono
 	style: Bold Italic
       size: 11.0
   #+end_src

@@ -23,8 +23,8 @@
     (scroll-bar-mode -1)
 
     ;; Set default fonts
-    (set-face-attribute 'default nil :family "mononoki Nerd Font" :height 130)
-    (set-face-attribute 'fixed-pitch nil :family "Iosevka")
+    (set-face-attribute 'default nil :family "Cascadia Mono" :height 130)
+    (set-face-attribute 'fixed-pitch nil :family "Cascadia Mono")
     (set-face-attribute 'variable-pitch nil :family "B612" :width 'condensed)
 
     ;; Disable package manager init since we use straight.el instead
@@ -38,14 +38,15 @@
   Using the Native comp version of emacs 28. This silences warnings by
   the compiler. They are super annoying when pop-ing up new windows.
 
-  #+begin_src emacs-lisp :tangle (if (string-match-p "--with-nativecomp" system-configuration-options) "~/.config/emacs/init.el" "no")
+  #+begin_src emacs-lisp :tangle (if (string-match-p "native" system-configuration-options) "~/.config/emacs/init.el" "no")
     (setq comp-async-report-warnings-errors nil)
   #+end_src
 * Straight.el
 ** Bootstrap
-   Downloads and installs the [[https://github.com/raxod502/straight.el][  straight.el]] Emacs package manager as
+   Downloads and installs the [[https://github.com/raxod502/straight.el][ straight.el]] Emacs package manager as
    a replacement for the built in ~package.el~.
    #+begin_src emacs-lisp
+     (setq straight-repository-branch "develop")
      (defvar bootstrap-version)
      (let ((bootstrap-file
 	    (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -451,7 +452,7 @@
      Then call ORIG-FUN."
        (if (or (string= (url-type (url-generic-parse-url link)) "http")
 	       (string= (url-type (url-generic-parse-url link)) "https"))
-	   (setq description (concat "  " description)))
+	   (setq description (concat " " description)))
        (apply orig-fun (list link description)))
 
      ;; All external links have icon appended to them
