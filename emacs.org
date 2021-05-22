@@ -54,21 +54,21 @@
        (unless (file-exists-p bootstrap-file)
 	 (with-current-buffer
 	     (url-retrieve-synchronously
-	      "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+	      "https://raw.githubusercontent.com/raxod502/straightn.el/develop/install.el"
 	      'silent 'inhibit-cookies)
 	   (goto-char (point-max))
 	   (eval-print-last-sexp)))
        (load bootstrap-file nil 'nomessage))
    #+end_src
 ** Use-Package syntactic sugar
-   Installs the [[https://github.com/jwiegley/use-package][  use-package]] macro and integrates it with ~straight.el~.
+   Installs the [[https://github.com/jwiegley/use-package][ use-package]] macro and integrates it with ~straight.el~.
    #+begin_src emacs-lisp
      (straight-use-package 'use-package)
      (setq straight-use-package-by-default t)
    #+end_src
 ** Updates
    The easiest way to update all packages at once is by using
-   ~straight-pull-all~. However there is a potential [[https://github.com/raxod502/straight.el/issues/323][  issue]] with
+   ~straight-pull-all~. However there is a potential [[https://github.com/raxod502/straight.el/issues/323][ issue]] with
    this. It's not necessarily one I've ever encountered but good to
    keep in mind when updating.
 * Custom File
@@ -135,7 +135,7 @@
      (use-package rainbow-mode)
    #+end_src
 ** Modeline
-   Replace the built-in modeline with [[https://github.com/seagle0128/doom-modeline][  doom-modeline]].
+   Replace the built-in modeline with [[https://github.com/seagle0128/doom-modeline][ doom-modeline]].
    #+begin_src emacs-lisp
      (use-package doom-modeline
        :init (doom-modeline-mode 1)
@@ -151,7 +151,10 @@
        :custom
        (initial-buffer-choice
 	(lambda ()
-	  (get-buffer "*dashboard*"))))
+	  (get-buffer "*dashboard*")))
+  
+       (dashboard-set-heading-icons t)
+       (dashboard-set-file-icons t))
    #+end_src
 * Behaviour
 ** Basics
