@@ -33,6 +33,11 @@ where ~fisher~ isn't installed, or is hard to install.
       pyenv init - | source
     end
   #+end_src
+* direnv
+  Trigger ~direnv~ at prompt on directory change
+  #+begin_src fish
+    direnv hook fish | source
+  #+end_src
 * PATH
   Add ~$HOME/bin~ to ~$PATH~ environment variable
 
