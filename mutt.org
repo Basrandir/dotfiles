@@ -1,0 +1,73 @@
+#+TITLE: mutt
+#+AUTHOR: Bassam Saeed
+#+PROPERTY: header-args  :comments both
+#+PROPERTY: header-args+ :mkdirp yes
+#+PROPERTY: header-args+ :tangle ~/.config/neomutt/neomuttrc
+
+Currently I'm using ~neomutt~ to handle all my mail needs. This
+includes, fetching, syncing, filtering and sending mail.
+
+* IMAP
+  This section describes how we fetch mail.
+
+  #+begin_src bash
+    set folder = "imaps://imap.gmail.com"
+
+    set imap_user = "daisuke2@gmail.com"
+    set imap_pass = `pass mail/gmail/mutt`
+
+    set   imap_check_subscribed
+    unset imap_passive
+    set   mail_check = 120
+  #+end_src
+* SMTP
+  This section describes how we send mail.
+
+  #+begin_src bash
+    set smtp_url  = "smtps://bassam.saeed@gmail.com@smtp.gmail.com"
+    set smtp_pass = `pass mail/gmail/mutt`
+
+    set realname = "Bassam Saeed"
+    set from     = "daisuke2@gmail.com"
+
+    set edit_headers = yes
+  #+end_src
+* Locations
+  Defines where we store the message and header caches.
+
+  #+begin_src bash
+    set header_cache     = "~/.config/neomutt/cache/headers"
+    set message_cachedir = "~/.config/neomutt/cache/bodies"
+    set mailcap_path     = "~/.config/neomutt/mailcap"
+  #+end_src
+* Folders
+  Gmail has a specific setup for its folders. Here I'm getting just
+  the core, important ones. Not going to bother with SPAM, and labels
+  I'll deal with locally.
+
+  #+begin_src bash
+    set spoolfile = "+INBOX"
+    set postponed = "+[Gmail]/Drafts"
+    set trash     = "+[Gmail]/Trash"
+  #+end_src
+* UI
+  Since HTML email has become so prevalant, I want to prioritize plain
+  text version of email if it exists. Then we fallback on trying to
+  have mutt display the HTML email.
+
+  #+begin_src bash
+    alternative_order text/plain text/html
+    auto_view text/html
+  #+end_src
+
+  By default mutt sorts new mail at the bottom of the list. I don't
+  like that.
+
+  #+begin_src bash
+    set sort = reverse-date-received
+  #+end_src
+* Colours
+
+  #+begin_src bash
+    color index red default ~P
+  #+end_src
