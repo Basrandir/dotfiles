@@ -100,15 +100,23 @@
      ;; Highlight the line the cursor is on
      (global-hl-line-mode t)
 
-     ;; Show time in modeline
-     (display-time-mode t)
-
      ;; Change cursor to vertical line
      (setq-default cursor-type 'bar)
 
      ;; Set margins on all sides
      (push '(internal-border-width . 16) default-frame-alist)
    #+end_src
+*** Display time in modeline
+    ~display-time-mode~ shows the time but also the system load
+    average. I don't care about that.
+
+    I also want to include the date.
+
+    #+begin_src emacs-lisp
+      (setq display-time-default-load-average nil)
+      (setq display-time-day-and-date t)
+      (display-time-mode t)
+    #+end_src
 ** Theme
    Srcery theme
    #+begin_src emacs-lisp
