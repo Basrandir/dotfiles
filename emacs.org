@@ -23,7 +23,7 @@
     (scroll-bar-mode -1)
 
     ;; Set default fonts
-    (set-face-attribute 'default nil :family "Cascadia Mono" :height 130)
+    (set-face-attribute 'default nil :family "Cascadia Mono" :height 110)
     (set-face-attribute 'fixed-pitch nil :family "Cascadia Mono")
     (set-face-attribute 'variable-pitch nil :family "B612" :width 'condensed)
 
@@ -167,9 +167,6 @@
 * Behaviour
 ** Basics
    #+begin_src emacs-lisp
-     ;; Sane scrolling
-     (setq scroll-conservatively 101)
-
      ;; Auto save all buffers when frame loses focus
      (add-hook 'focus-out-hook (lambda () (save-some-buffers t)))
 
@@ -213,9 +210,29 @@
     #+begin_src emacs-lisp
       (defun open-config ()
 	(interactive)
-	(find-file (concat user-emacs-directory "init.org")))
+	(find-file (concat "~/dotfiles/" "emacs.org")))
       (define-key global-map (kbd "C-c d") 'open-config)
     #+end_src
+** Scrolling
+   #+begin_src emacs-lisp
+     (use-package scroll-on-jump
+       :custom
+       (scroll-on-jump-smooth nil)
+       (scroll-on-jump-duration 0.1337)
+       :config
+       (scroll-on-jump-advice-add beginning-of-buffer)
+       (scroll-on-jump-advice-add end-of-buffer)
+       (scroll-on-jump-advice-add flyspell-goto-next-error)
+       (when (featurep 'smartparens)
+	 (define-key smartparens-mode-map
+	   (kbd "C-M-f") (scroll-on-jump-interactive 'sp-forward-sexp))
+	 (define-key smartparens-mode-map
+	   (kbd "C-M-b") (scroll-on-jump-interactive 'sp-backward-sexp)))
+       (scroll-on-jump-with-scroll-advice-add scroll-up-command)
+       (scroll-on-jump-with-scroll-advice-add scroll-down-command)
+       (scroll-on-jump-with-scroll-advice-add isearch-update)
+       (scroll-on-jump-with-scroll-advice-add recenter-top-bottom))
+   #+end_src
 ** Ace-Window
    [[https://github.com/abo-abo/ace-window][ Ace-window]] is a much better way of traversing Emacs windows once
    you get more than 2.
@@ -228,6 +245,13 @@
        ([remap other-window] . ace-window))
    #+end_src
 ** Completion Framework
+*** Consult
+    #+begin_src emacs-lisp
+      (use-package consult
+	:bind (
+	       ("C-s" . consult-line)
+	       ("M-s r" . consult-ripgrep)))
+    #+end_src
 *** Selectrum
     The core incremental narrowing interface. Built on top of the
     existing Emacs ~completing-read~ API.
@@ -365,7 +389,7 @@
     (add-hook 'org-mode-hook
 	      (lambda ()
 		(dolist (org-headings org-level-faces)
-		  (set-face-attribute org-headings nil :family "IBM Plex Sans"))))
+		  (set-face-attribute org-headings nil :family "B612"))))
 
     ;; Elimate org magic removing empty lines between headings when they're toggled closed
     (setq org-blank-before-new-entry '((heading . nil)
@@ -407,14 +431,37 @@
     ;; Replace ... for hidden content with ⤵
     (setq org-ellipsis "⤵")
 
-    ;; - List replaced with •
-    (font-lock-add-keywords 'org-mode
-			    '(("^ *\\([-]\\) "
-			       (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
-
     ;; Enable auto-fill mode (limit M-q)
     (add-hook 'text-mode-hook 'turn-on-auto-fill)
   #+end_src
+** General Look
+   A couple of additional font lock keywords for org-mode.
+*** Replace - with •
+    #+begin_src emacs-lisp
+      (font-lock-add-keywords
+       'org-mode
+       '(("^ *\\([-]\\) "
+	  (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+    #+end_src
+*** Leading headline stars colour
+    By default ~org-hide~ is a face applied to N-1 leading stars and the
+    foreground colour is set to the default background colour. I want
+    it to apply to _ALL_ stars.
+    #+begin_src emacs-lisp
+      (font-lock-add-keywords
+       'org-mode
+       '(("^\\*+ " . 'org-hide)))
+    #+end_src
+
+    Then we set the foreground colour of the ~org-hide~ face to the be
+    slightly lighter or darker (depending on theme) than the default
+    background colour.
+    #+begin_src emacs-lisp
+      (set-face-attribute 'org-hide nil
+			  :foreground (bassam/leading-astericks-color
+				       (color-name-to-rgb
+					(face-attribute 'default :background))))
+    #+end_src
 ** Keybindings
    #+begin_src emacs-lisp
      (define-key global-map (kbd "C-c o l") 'org-store-link)
@@ -434,7 +481,7 @@
 ** Org-superstar
    [[https://github.com/integral-dw/org-superstar-mode][ org-superstar]] is a modernized version of [[https://github.com/sabof/org-bullets][ org-bullets]] which
    prettifies org headings (and apparently lists).
-   #+begin_src emacs-lisp
+   #+begin_src emacs-lisp :tangle no
      (use-package org-superstar
        :after org
        :hook (org-mode . org-superstar-mode)
@@ -745,6 +792,54 @@
        (setq vterm-shell "/usr/bin/fish")
        :hook (vterm-mode . (lambda ()
 			     (setq-local global-hl-line-mode nil))))
+   #+end_src
+* General Code
+** Calculate Average Colour
+   This function takes 2 colours and returns the average hex
+   code.
+
+   #+begin_src emacs-lisp
+     (defun bassam/get-average-color (col1 col2)
+       "Returns the average of two colours COL1 and COL2."
+       (let ((red (/ (+ (pop col1) (pop col2)) 2))
+	     (green (/ (+ (pop col1) (pop col2)) 2))
+	     (blue (/ (+ (pop col1) (pop col2)) 2)))
+	 (color-rgb-to-hex red green blue 2)))
+   #+end_src
+** Brighten or Darken colour
+   This function determines whether an RGB colour is dark and light
+   and then returns a hex code that's slightly lighter or darker. Used
+   for [[Leading headline stars colour]].
+
+   #+begin_src emacs-lisp
+     (defun bassam/leading-astericks-color (bgcolors)
+       "This takes an argument BGCOLORS of normalized red green and
+     blue. Then returns subtly darkened, or brightened hex colour"
+       (let* ((red (* (pop bgcolors) 255))
+	      (green (* (pop bgcolors) 255))
+	      (blue (* (pop bgcolors) 255))
+
+	      ;; This formula is called HSP. I don't understand exactly how
+	      ;; it works, but basically if it's larger than 127.5, then the
+	      ;; colour is "bright", if less, the colour is "dark" See:
+	      ;; https://awik.io/determine-color-bright-dark-using-javascript/
+	      (hsp (sqrt (+
+			  (+ (* (* red red) 0.299)
+			     (* (* green green) 0.587))
+			  (* (* blue blue) 0.114))))
+	      ;; 0 (black) to darken if colour is bright, 255 (white) to
+	      ;; lighten if colour is dark
+	      (delta (cond ((> hsp 127.5) 0)
+			   ((< hsp 127.5) 255))))
+
+	 ;; Each RGB value then layered with the delta (black or white) to
+	 ;; make it darker or lighter with a fairly small alpha to make the
+	 ;; difference from the background subtle.
+	 (color-rgb-to-hex
+	  (/ (+ red (* (- delta red) 0.1)) 255)
+	  (/ (+ green (* (- delta green) 0.1)) 255)
+	  (/ (+ blue (* (- delta blue) 0.1)) 255)
+	  2)))
    #+end_src
 * Local Variables
   This local variable for eval will automatically tangle this file
