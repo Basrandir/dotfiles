@@ -15,7 +15,7 @@ where ~fisher~ isn't installed, or is hard to install.
 * TODO Ensure Fisher is installed
 
 * Prompt
-  I like the [[https://github.com/pure-fish/pure][  pure]] prompt for fish.
+  I like the [[https://github.com/pure-fish/pure][ pure]] prompt for fish.
 
   #+name: install-pure-shell
   #+begin_src fish :tangle no
@@ -23,16 +23,7 @@ where ~fisher~ isn't installed, or is hard to install.
   #+end_src
   
   #+CALL: install-pure-shell()
-* Pyenv
-  Python version management system adds shims and completions to the
-  shell.
 
-  #+begin_src fish
-    # pyenv init
-    if command -v pyenv 1>/dev/null 2>&1
-      pyenv init - | source
-    end
-  #+end_src
 * direnv
   Trigger ~direnv~ at prompt on directory change
   #+begin_src fish
