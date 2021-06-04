@@ -20,4 +20,5 @@ This is a sort of org-ception to get it to tangle.
   ,** https://raphlinus.github.io/feed.xml
   ,** https://blog.tecosaur.com/tmio/rss.xml
   ,** https://willschenk.com/feed.xml
+  ,** https://blog.lambda.cx/index.xml
 #+end_src
