@@ -158,6 +158,8 @@ everything I'd want. At least for now 😏.
    These keybindings open up specific Emacs(client) buffers.
 
    #+begin_src bash
+     super + shift + Return
+	  emacsclient -c -n
      super + e; v
 	  emacsclient -c -e '(vterm)'
      super + e; d
