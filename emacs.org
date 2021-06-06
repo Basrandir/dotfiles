@@ -71,6 +71,54 @@
    ~straight-pull-all~. However there is a potential [[https://github.com/raxod502/straight.el/issues/323][ issue]] with
    this. It's not necessarily one I've ever encountered but good to
    keep in mind when updating.
+* General Functions
+** Calculate Average Colour
+   This function takes 2 colours and returns the average hex
+   code.
+
+   #+begin_src emacs-lisp
+     (defun bassam/get-average-color (col1 col2)
+       "Returns the average of two colours COL1 and COL2."
+       (let ((red (/ (+ (pop col1) (pop col2)) 2))
+	     (green (/ (+ (pop col1) (pop col2)) 2))
+	     (blue (/ (+ (pop col1) (pop col2)) 2)))
+	 (color-rgb-to-hex red green blue 2)))
+   #+end_src
+** Brighten or Darken colour
+   This function determines whether an RGB colour is dark and light
+   and then returns a hex code that's slightly lighter or darker. Used
+   for [[Leading headline stars colour]].
+
+   #+begin_src emacs-lisp
+     (defun bassam/leading-astericks-color (bgcolors)
+       "This takes an argument BGCOLORS of normalized red green and
+     blue. Then returns subtly darkened, or brightened hex colour"
+       (let* ((red (* (pop bgcolors) 255))
+	      (green (* (pop bgcolors) 255))
+	      (blue (* (pop bgcolors) 255))
+
+	      ;; This formula is called HSP. I don't understand exactly how
+	      ;; it works, but basically if it's larger than 127.5, then the
+	      ;; colour is "bright", if less, the colour is "dark" See:
+	      ;; https://awik.io/determine-color-bright-dark-using-javascript/
+	      (hsp (sqrt (+
+			  (+ (* (* red red) 0.299)
+			     (* (* green green) 0.587))
+			  (* (* blue blue) 0.114))))
+	      ;; 0 (black) to darken if colour is bright, 255 (white) to
+	      ;; lighten if colour is dark
+	      (delta (cond ((> hsp 127.5) 0)
+			   ((< hsp 127.5) 255))))
+
+	 ;; Each RGB value then layered with the delta (black or white) to
+	 ;; make it darker or lighter with a fairly small alpha to make the
+	 ;; difference from the background subtle.
+	 (color-rgb-to-hex
+	  (/ (+ red (* (- delta red) 0.15)) 255)
+	  (/ (+ green (* (- delta green) 0.15)) 255)
+	  (/ (+ blue (* (- delta blue) 0.15)) 255)
+	  2)))
+   #+end_src
 * Custom File
   Store all settings from Customization interface in separate file
   #+begin_src emacs-lisp
@@ -792,54 +840,6 @@
        (setq vterm-shell "/usr/bin/fish")
        :hook (vterm-mode . (lambda ()
 			     (setq-local global-hl-line-mode nil))))
-   #+end_src
-* General Code
-** Calculate Average Colour
-   This function takes 2 colours and returns the average hex
-   code.
-
-   #+begin_src emacs-lisp
-     (defun bassam/get-average-color (col1 col2)
-       "Returns the average of two colours COL1 and COL2."
-       (let ((red (/ (+ (pop col1) (pop col2)) 2))
-	     (green (/ (+ (pop col1) (pop col2)) 2))
-	     (blue (/ (+ (pop col1) (pop col2)) 2)))
-	 (color-rgb-to-hex red green blue 2)))
-   #+end_src
-** Brighten or Darken colour
-   This function determines whether an RGB colour is dark and light
-   and then returns a hex code that's slightly lighter or darker. Used
-   for [[Leading headline stars colour]].
-
-   #+begin_src emacs-lisp
-     (defun bassam/leading-astericks-color (bgcolors)
-       "This takes an argument BGCOLORS of normalized red green and
-     blue. Then returns subtly darkened, or brightened hex colour"
-       (let* ((red (* (pop bgcolors) 255))
-	      (green (* (pop bgcolors) 255))
-	      (blue (* (pop bgcolors) 255))
-
-	      ;; This formula is called HSP. I don't understand exactly how
-	      ;; it works, but basically if it's larger than 127.5, then the
-	      ;; colour is "bright", if less, the colour is "dark" See:
-	      ;; https://awik.io/determine-color-bright-dark-using-javascript/
-	      (hsp (sqrt (+
-			  (+ (* (* red red) 0.299)
-			     (* (* green green) 0.587))
-			  (* (* blue blue) 0.114))))
-	      ;; 0 (black) to darken if colour is bright, 255 (white) to
-	      ;; lighten if colour is dark
-	      (delta (cond ((> hsp 127.5) 0)
-			   ((< hsp 127.5) 255))))
-
-	 ;; Each RGB value then layered with the delta (black or white) to
-	 ;; make it darker or lighter with a fairly small alpha to make the
-	 ;; difference from the background subtle.
-	 (color-rgb-to-hex
-	  (/ (+ red (* (- delta red) 0.1)) 255)
-	  (/ (+ green (* (- delta green) 0.1)) 255)
-	  (/ (+ blue (* (- delta blue) 0.1)) 255)
-	  2)))
    #+end_src
 * Local Variables
   This local variable for eval will automatically tangle this file

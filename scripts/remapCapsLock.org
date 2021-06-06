@@ -1,0 +1,33 @@
+#+TITLE: Remap Caps Lock
+#+AUTHOR: Bassam Saeed
+#+PROPERTY: header-args  :comments both
+#+PROPERTY: header-args+ :mkdirp yes
+#+PROPERTY: header-args+ :tangle ~/bin/remapCapsLock.sh
+#+PROPERTY: header-args+ :shebang "#!/usr/bin/env bash"
+
+Since I use a USB switch to switch my peripherals between the desktop
+and laptop, I need a way to set the remapping every time the switch happens.
+
+* UDEV rule
+  This rule will determine which script to call when it detects a ~ADD~
+  action for any USB device. There's probably a way to limit it to
+  just the keyboard but I don't really want to use specific product
+  IDs since that may change. But it might be the only way to make sure
+  the script isn't being called on the connection of every random USB
+  device.
+
+  #+begin_src bash
+    ACTION=="add", SUBSYSTEM=="usb", RUN+="/home/bassam/bin/remapCapsLock.sh"
+  #+end_src
+  
+* Do the remapping
+  By default it's just ~setxkbmap~ that fails upon subsequent
+  disconnect/adds. ~xcape~ seems to continue to work just fine.
+
+  #+begin_src bash
+    setxkbmap -option 'caps:ctrl_modifier'
+  #+end_src
+
+* TODO Look for an alternative to setxkbmap
+  Perhaps something like ~xmodmap~ will work or reconnects and make this
+  script redundant.
