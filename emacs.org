@@ -486,23 +486,40 @@
 	  (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
     #+end_src
 *** Leading headline stars colour
-    By default ~org-hide~ is a face applied to N-1 leading stars and the
-    foreground colour is set to the default background colour. I want
-    it to apply to _ALL_ stars.
+    Create a face that covers all leading stars. By default ~org-hide~
+    is a face applied to N-1 leading stars.
+    #+begin_src emacs-lisp
+      (defface org-hide-all
+	'((t (:foreground "black")))
+	  "Face used to hide leading stars in headlines.
+      The foreground color of this face should be equal to the background
+      color of the frame."
+	  :group 'org-faces)
+    #+end_src
+
+    Then we apply that face to all leading stars.
     #+begin_src emacs-lisp
       (font-lock-add-keywords
        'org-mode
-       '(("^\\*+ " . 'org-hide)))
+       '(("^\\*+ " . 'org-hide-all)))
     #+end_src
 
     Then we set the foreground colour of the ~org-hide~ face to the be
     slightly lighter or darker (depending on theme) than the default
     background colour.
     #+begin_src emacs-lisp
-      (set-face-attribute 'org-hide nil
-			  :foreground (bassam/leading-astericks-color
-				       (color-name-to-rgb
-					(face-attribute 'default :background))))
+      (defun bassam/set-org-hide-all ()
+	"Set the foreground colour of org-hide-all."
+	(set-face-attribute 'org-hide-all nil
+			    :foreground (bassam/leading-astericks-color
+					 (color-name-to-rgb
+					  (face-attribute 'default :background))))
+  
+	(remove-hook 'server-after-make-frame-hook 'bassam/set-org-hide-all))
+
+      (if (daemonp)
+	  (add-hook 'server-after-make-frame-hook 'bassam/set-org-hide-all)
+	(bassam/set-org-hide-all))
     #+end_src
 ** Keybindings
    #+begin_src emacs-lisp
