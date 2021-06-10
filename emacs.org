@@ -114,9 +114,9 @@
 	 ;; make it darker or lighter with a fairly small alpha to make the
 	 ;; difference from the background subtle.
 	 (color-rgb-to-hex
-	  (/ (+ red (* (- delta red) 0.15)) 255)
-	  (/ (+ green (* (- delta green) 0.15)) 255)
-	  (/ (+ blue (* (- delta blue) 0.15)) 255)
+	  (/ (+ red (* (- delta red) 0.2)) 255)
+	  (/ (+ green (* (- delta green) 0.2)) 255)
+	  (/ (+ blue (* (- delta blue) 0.2)) 255)
 	  2)))
    #+end_src
 * Custom File
