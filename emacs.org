@@ -357,12 +357,6 @@
    #+end_src
 * Programming
 ** Python
-*** Poetry
-    #+begin_src emacs-lisp :tangle no
-      (use-package poetry
-	:config
-	(poetry-tracking-mode t))
-    #+end_src
 *** Pyright
     Leveraging the pyright language server via lsp-mode
 
