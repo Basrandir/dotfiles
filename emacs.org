@@ -39,7 +39,7 @@
   the compiler. They are super annoying when pop-ing up new windows.
 
   #+begin_src emacs-lisp :tangle (if (string-match-p "native" system-configuration-options) "~/.config/emacs/init.el" "no")
-    (setq comp-async-report-warnings-errors nil)
+    (setq native-comp-async-report-warnings-errors 'silent)
   #+end_src
 * Straight.el
 ** Bootstrap
