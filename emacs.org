@@ -356,6 +356,14 @@
 		   (company-mode 1))))
    #+end_src
 * Programming
+** Envrc
+   A great integration package for ~direnv~ that allows Emacs to use
+   the environment setup by it.
+   #+begin_src emacs-lisp
+     (use-package envrc
+       :config
+       (envrc-global-mode))
+   #+end_src
 ** Python
 *** Pyright
     Leveraging the pyright language server via lsp-mode
