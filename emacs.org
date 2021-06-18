@@ -484,6 +484,15 @@
     ;; Enable auto-fill mode (limit M-q)
     (add-hook 'text-mode-hook 'turn-on-auto-fill)
   #+end_src
+** Org Tempo
+   ~org-tempo~ is a module that contains [[https://orgmode.org/manual/Structure-Templates.html][ structure templates]] such as
+   =<s= that I use all the time. As far as I'm aware, it used to be
+   loaded automatically with Org but now needs to be enabled manually.
+   #+begin_src emacs-lisp
+     (use-package org-tempo
+       :straight nil
+       :after org)
+   #+end_src
 ** General Look
    A couple of additional font lock keywords for org-mode.
 *** Replace - with •
