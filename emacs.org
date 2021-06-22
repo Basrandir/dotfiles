@@ -356,13 +356,25 @@
 		   (company-mode 1))))
    #+end_src
 * Programming
-** Envrc
-   A great integration package for ~direnv~ that allows Emacs to use
-   the environment setup by it.
+** LSP
+   Enable LSP mode for every programming buffer
    #+begin_src emacs-lisp
-     (use-package envrc
+     (use-package lsp-mode
+       :commands (lsp lsp-deferred)
        :config
-       (envrc-global-mode))
+       (setq lsp-keymap-prefix "C-c l")
+       (lsp-enable-which-key-integration t))
+
+     (use-package lsp-ui
+       :after lsp-mode
+       :commands lsp-ui-mode
+       :custom
+       (lsp-ui-peek-always-show t)
+       (lsp-ui-sideline-show-hover t)
+       (lsp-ui-doc-position 'at-point)
+       (lsp-eldoc-render-all t)
+       :hook
+       (lsp-mode . lsp-ui-mode))
    #+end_src
 ** Python
 *** Pyright
@@ -397,32 +409,20 @@
    #+begin_src emacs-lisp
      (use-package lua-mode)
    #+end_src
-** LSP
-   Enable LSP mode for every programming buffer
-   #+begin_src emacs-lisp
-     (use-package lsp-mode
-       :commands (lsp lsp-deferred)
-       :config
-       (setq lsp-keymap-prefix "C-c l")
-       (lsp-enable-which-key-integration t))
-
-     (use-package lsp-ui
-       :after lsp-mode
-       :commands lsp-ui-mode
-       :custom
-       (lsp-ui-peek-always-show t)
-       (lsp-ui-sideline-show-hover t)
-       (lsp-ui-doc-position 'at-point)
-       (lsp-eldoc-render-all t)
-       :hook
-       (lsp-mode . lsp-ui-mode))
-   #+end_src
 ** Debugging
    Replace the built-in debugger with [[https://github.com/realgud/realgud][ RealGud]].
    #+begin_src emacs-lisp
      (use-package realgud
        :commands
        (realgud:pdb))
+   #+end_src
+** Envrc
+   A great integration package for ~direnv~ that allows Emacs to use
+   the environment setup by it.
+   #+begin_src emacs-lisp
+     (use-package envrc
+       :config
+       (envrc-global-mode))
    #+end_src
 * Org
   Not installing org-mode since we're using the built-in one but
