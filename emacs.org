@@ -755,8 +755,8 @@
        (diff-hl-mode)
        (diff-hl-flydiff-mode)
        :hook
-       (magit-pre-refresh-hook . diff-hl-magit-pre-refresh)
-       (magit-post-refresh-hook . diff-hl-magit-post-refresh))
+       (magit-pre-refresh . diff-hl-magit-pre-refresh)
+       (magit-post-refresh . diff-hl-magit-post-refresh))
    #+end_src
 * Company
   #+begin_src emacs-lisp
