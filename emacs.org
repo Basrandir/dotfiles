@@ -740,16 +740,23 @@
       (add-to-list 'org-export-filter-link-functions
 		   'bassamsaeed.ca/filter-index-links))
   #+end_src
-* Magit
-  #+begin_src emacs-lisp
-    (use-package magit
-      :commands magit-status
-      :bind (("C-x g" . magit-status)))
-  #+end_src
-** Forge
-   Integrate common git forges (github and gitlab) into the magit
-   interface.
+* Git
+** Magit
    #+begin_src emacs-lisp
+     (use-package magit
+       :commands magit-status
+       :bind (("C-x g" . magit-status)))
+   #+end_src
+** diff-hl
+   A nice UI package that highlights uncommitted changes.
+   #+begin_src emacs-lisp
+     (use-package diff-hl
+       :config
+       (diff-hl-mode)
+       (diff-hl-flydiff-mode)
+       :hook
+       (magit-pre-refresh-hook . diff-hl-magit-pre-refresh)
+       (magit-post-refresh-hook . diff-hl-magit-post-refresh))
    #+end_src
 * Company
   #+begin_src emacs-lisp
