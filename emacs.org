@@ -755,7 +755,7 @@
   #+begin_src emacs-lisp
     (use-package company
       :custom
-      (company-idle-delay 0)
+      (company-idle-delay 0.2)
       (company-minimum-prefix-length 1)
       :hook
       (prog-mode . company-mode))
