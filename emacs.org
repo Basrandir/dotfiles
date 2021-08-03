@@ -876,7 +876,9 @@
        :custom
        ;; Human readable file sizes
        (dired-listing-switches "-lha")
-  
+       ;; Stops the proliferation of dired buffers
+       (dired-kill-when-opening-new-dired-buffer t)
+
        ;; Colourful columns
        (use-package diredfl
 	 :config
