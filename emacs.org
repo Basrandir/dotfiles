@@ -324,6 +324,16 @@
       (use-package orderless
 	:custom (completion-styles '(orderless)))
     #+end_src
+** Abbreviations
+   Enable abbrev-mode globally
+   #+begin_src emacs-lisp
+     (abbrev-mode)
+   #+end_src
+   
+   Write abbrevs automatically on file save and Emacs quit.
+   #+begin_src emacs-lisp
+     (setq save-abbrevs 'silent)
+   #+end_src
 * Communications
 ** Telega
    :PROPERTIES:
