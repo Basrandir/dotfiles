@@ -689,7 +689,7 @@
 	 :title "Bassam Saeed's Blog"
 	 :description "Personal Development Blog")
 	(webfeeder-build
-	 "posts.rss"
+	 "posts.xml"
 	 (concat bassamsaeed.ca/base-directory "public")
 	 "https://www.bassamsaeed.ca"
 	 (delete "posts/index.html"
