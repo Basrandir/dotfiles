@@ -44,3 +44,6 @@ between the two.
   My Emacs configuration on the other hand I'm constantly playing
   around with and as such it's a lot easier to just have it
   automatically tangle.
+
+* TODO Switch to GUIX
+  I want to switch over to managing my entire system with Guix + Guix Home.
