@@ -1,0 +1,223 @@
+#+TITLE: Emacs Configuration
+#+AUTHOR: Bassam Saeed
+#+PROPERTY: header-args  :comments both
+#+PROPERTY: header-args+ :mkdirp yes
+
+* Early Init
+Emacs 27+ loads ~early-init.el~ before initializing certain graphical
+elements and the package manager. With this, we can speed up initial
+start.
+
+** Avoid GC at startup
+Despite using Emacs as a daemon service (via Shepherd), it can be
+useful to try to speed up startup as much as possible for those times
+where I need to start it manually for whatever reason. This code is
+taken from [[https://github.com/doomemacs/doomemacs/blob/develop/docs/faq.org#how-does-doom-start-up-so-quickly][Doom Emac's excellent work with startup speed]].
+#+begin_src emacs-lisp
+  (setq gc-cons-threshold most-positive-fixnum
+	gc-cons-percentage 0.6)
+
+  ;; Reset GC after init files are loaded
+  (add-hook 'emacs-startup-hook
+	    (lambda ()
+	      (setq gc-cons-threshold 16777216
+		    gc-cons-percentage 0.1)))
+#+end_src
+
+** Native Compilation Warning
+Silence native compilation warnings by the compiler. They are super
+annoying when poping up as new windows.
+#+begin_src emacs-lisp
+  (when (featurep 'native-compile)
+    (setq native-comp-async-report-warnings-errors 'silent))
+#+end_src
+
+** Clear out graphic elements
+These are some of the default graphical elements that I don't need or
+care for. I do keep the menu bar though. I find it useful for
+discoverability of features.
+#+begin_src emacs-lisp
+  (horizontal-scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+#+end_src
+
+Likewise the splash page, while useful when I first started using
+Emacs, is not needed for me anymore.
+#+begin_src emacs-lisp
+  (setq inhibit-startup-message t)
+#+end_src
+
+** Fonts
+Setting the default fonts in the early-init file drastically speeds up
+startup time. It can cut it almost by half in my testing compared to
+having the code in ~init.el~.
+#+begin_src emacs-lisp
+  (set-face-attribute 'default nil :family "Iosevka" :height 150)
+  (set-face-attribute 'fixed-pitch nil :family "Iosevka")
+  (set-face-attribute 'variable-pitch nil :family "DejaVu Serif")
+#+end_src
+
+** Disable default package manager
+Since I don't use ~package.el~ (~guix~ and ~straight.el~ instead) there's no
+need for me to have this variable enabled. It probably doesn't hurt to
+keep it since I don't install any packages via ~package.el~ but might as
+well remove it.
+#+begin_src emacs-lisp
+  (setq package-enable-at-startup nil)
+#+end_src
+
+* Profile Emacs Startup
+Don't remember where I got this from but basically shows me in the
+minibuffer how quickly emacs starts up.
+#+begin_src emacs-lisp
+  (add-hook 'emacs-startup-hook
+	    (lambda ()
+	      (message "Emacs loaded in %s."
+		       (format "%.2f seconds"
+			       (float-time
+				(time-subtract after-init-time before-init-time))))))
+#+end_src
+
+* Straight.el
+Instead of the built-in ~package.el~, I prefer straight.el. In large
+part because it takes what's in the init files as gospel and doesn't
+load anything that isn't there.
+** Bootstrap
+#+begin_src emacs-lisp
+  (defvar bootstrap-version)
+  (let ((bootstrap-file
+	 (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+	(bootstrap-version 5))
+    (unless (file-exists-p bootstrap-file)
+      (with-current-buffer
+	  (url-retrieve-synchronously
+	   "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+	   'silent 'inhibit-cookies)
+	(goto-char (point-max))
+	(eval-print-last-sexp)))
+    (load bootstrap-file nil 'nomessage))
+#+end_src
+** Use-Package syntactic sugar
+I have use-package installed via my ~Guix~ configuration. If I didn't,
+or wanted to install it via straight, I could do the following:
+#+begin_src emacs-lisp :tangle no
+  (straight-use-package 'use-package)
+#+end_src
+
+* Defaults
+** Revert buffers if changed externally
+This auto reverts if an opened files was changed through some
+non-emacs way (vim 🤮)
+#+begin_src emacs-lisp
+  (setq global-auto-revert-non-file-buffers t)
+  (global-auto-revert-mode 1)
+#+end_src
+
+** Customization interface
+By default, the customization interface will add changes to the
+~init.el~ file. While I rarely use this interface, it's still beneficial
+for me to store these settings in a separate file
+#+begin_src emacs-lisp
+  (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+  (when (file-exists-p custom-file)
+    (load custom-file))
+#+end_src
+
+** Backups
+Primarily due to a combination of version control and auto-saving, I
+almost never use the backup files Emacs generates. However, it's nice
+to know that they exist just in case. One of the key settings here is
+to separate them into their own backup directory, rather than the
+default behaviour of cluttering up the directories where the edited
+files actually are.
+#+begin_src emacs-lisp
+  (setq backup-directory-alist `(("." . ,(expand-file-name "backup" user-emacs-directory)))
+	version-control t
+	kept-new-version 10
+	kept-old-versions 6
+	delete-old-versions t)
+#+end_src
+
+** Autosave
+Auto save all buffers when frame loses focus
+#+begin_src emacs-lisp
+  (add-hook 'focus-out-hook (lambda () (save-some-buffers t)))
+#+end_src
+
+Because I autosave everytime I leave an Emacs frame, I don't really
+need Emacs built-in [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Auto-Save.html][Auto-Saving]] feature. However, like the backup
+files, it's nice to have as a pice of mind. Here I just move them to a
+temporary directory instead of the default where, again like the
+backups, it populates the directly of the editing so here I just move
+it in a temp directory instead.
+#+begin_src emacs-lisp
+  (setq auto-save-file-name-transforms
+	`((".*" ,temporary-file-directory t)))
+#+end_src
+** Eliminate Popups
+Put as many prompts in the minibuffer as possible. A good example here
+is the Quit Without Saving paradigm, where default Emacs will show a
+popup asking for confirmation.
+#+begin_src emacs-lisp
+  (setq use-dialog-box nil)
+#+end_src
+** Column number in modeline
+By default, the modeline shows the current line number, it's also
+useful to me to have the current column number also displayed
+#+begin_src emacs-lisp
+  (column-number-mode t)
+#+end_src
+** Highlight current line
+A nice way to know at a glance where the cursor is. Combining this
+with the pulse effect makes it very unlikely to get lost when
+traversing windows.
+#+begin_src emacs-lisp
+  (global-hl-line-mode t)
+#+end_src
+** Cursor
+By default the Emacs cursor is a block, very similar to a standard
+terminal cursor, this changes it to a line which I prefer in a modern
+GUI.
+#+begin_src emacs-lisp
+  (setq-default cursor-type 'bar)
+#+end_src
+** Time in modeline
+~display-time~mode~ shows time in the modeline but also adds additional
+information that I don't need such as the system load average. This
+code removes the system load average and set the format for the
+displayed time.
+#+begin_src emacs-lisp
+  (setq display-time-default-load-average nil)
+  (setq display-time-day-and-date t)
+  (display-time-mode t)
+#+end_src
+** Highlight matching parens
+~show-paren-mode~ automatically highlights the associated paren. In
+Emasc 28+, this mode is enabled by default. Here I'm just setting some
+variables associated with it.
+#+begin_src emacs-lisp
+  (setq show-paren-delay 0
+	show-paren-when-point-inside-paren t)
+#+end_src
+** Delete Selection Mode
+By default after making a selection in Emacs, typed text is inserted
+at point while keeping the selected code as is. This goes against how
+basically every other application works and is awkward for me to
+use. I'd rather the text I'm typing replace the selecsted text.
+#+begin_src emacs-lisp
+  (delete-selection-mode t)
+#+end_src
+** Replace yes/no prompts with y/n
+Having to fully type 'yes' or 'no' is annoying.
+#+begin_src emacs-lisp
+  (fset 'yes-or-no-p 'y-or-n-p)
+#+end_src
+** Smooth Scrolling
+Emacs 29 introducted ~pixel-scroll-precision-mode~ which makes scrolling
+with a mouse more accurate and feels more like other GUI
+applications. I don't use the mouse too much but it's still useful.
+#+begin_src emacs-lisp
+  (when (string-match-p (regexp-quote "29") emacs-version)
+    (pixel-scroll-precision-mode))
+#+end_src

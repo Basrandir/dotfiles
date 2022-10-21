@@ -1,0 +1,25 @@
+#+TITLE: Elfeed list
+#+AUTHOR: Bassam Saeed
+
+Using [[https://github.com/remyhonig/elfeed-org][ Elfeed-org]] to configure my feed list using ~org-mode~.
+
+This is a sort of org-ception to get it to tangle.
+
+#+begin_src org
+  ,* Blogs
+  ,** https://www.bassamsaeed.ca/posts.atom
+  ,** https://blog.jethro.dev/index.xml
+  ,** https://michael.stapelberg.ch/feed.xml
+  ,** https://www.nateliason.com/blog/rss.xml
+  ,** https://rakyll.org/index.xml
+  ,** https://mgsloan.com/feed.xml
+  ,** https://www.murilopereira.com/index.xml
+  ,** https://www.manueluberti.eu/feed.xml
+  ,** https://blog.lambda.cx/index.xml
+  ,** https://raphlinus.github.io/feed.xml
+  ,** https://blog.tecosaur.com/tmio/rss.xml
+  ,** https://willschenk.com/feed.xml
+  ,** https://blog.lambda.cx/index.xml
+  ,** https://sqrtminusone.xyz/posts/index.xml
+  ,** https://karthinks.com/index.xml
+#+end_src

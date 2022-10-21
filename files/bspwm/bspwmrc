@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+export GTK_IM_MODULE=nimf
+export QT4_IM_MODULE="nimf"
+export QT_IM_MODULE=nimf
+export XMODIFIERS="@im=nimf"
+nimf
+
+xsetroot -cursor_name left_ptr &
+sxhkd &
+
+bspc config border_width	2
+bspc config window_gap		10
+bspc config split_ratio		0.50
+bspc config borderless_monocle	true
+bspc config gapless_monocle	true
+
+for monitor in $(bspc query -M); do
+    bspc monitor $monitor -d I II III IV V
+done
+
+bspc rule -a Firefox desktop=^1
+bspc rule -a Emacs state=tiled
+bspc rule -a mpv state=floating
+
+guix shell setroot -- setroot --restore

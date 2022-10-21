@@ -1,0 +1,99 @@
+% Created 2022-06-04 Sat 16:14
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{Bassam Saeed}
+\date{\today}
+\title{Emacs Configuration}
+\hypersetup{
+ pdfauthor={Bassam Saeed},
+ pdftitle={Emacs Configuration},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 29.0.50 (Org mode 9.5.3)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+\section{Early Init}
+\label{sec:org3e512f7}
+Emacs 27+ loads \texttt{early-init.el} before initializing certain graphical
+elements and the package manager. With this, we can speed up initial
+start.
+\subsection{Avoid GC at startup}
+\label{sec:org580bf67}
+Despite using Emacs as a daemon service (via Shepherd), it can be
+useful to try to speed up startup as much as possible for those times
+where I need to start it manually for whatever reason. This code is
+taken from \href{https://github.com/doomemacs/doomemacs/blob/develop/docs/faq.org\#how-does-doom-start-up-so-quickly}{Doom Emac's excellent work with startup speed}.
+\begin{verbatim}
+(setq gc-cons-threshold most-positive-fixnum
+      gc-cons-percentage 0.6)
+
+;; Reset GC after init files are loaded
+(add-hook 'emacs-startup-hook
+	  (lambda ()
+	    (setq gc-cons-threshold 16777216
+		  gc-cons-percentage 0.1)))
+\end{verbatim}
+
+\subsection{Native Compilation Warning}
+\label{sec:orged78b1e}
+Silence native compilation warnings by the compiler. They are super
+annoying when poping up as new windows.
+\begin{verbatim}
+(when (featurep 'native-compile)
+  (setq native-comp-async-report-warnings-errors 'silent))
+\end{verbatim}
+
+\subsection{Clear out graphic elements}
+\label{sec:org848c00d}
+These are some of the default graphical elements that I don't need or
+care for. I do keep the menu bar though. I find it useful for
+discoverability of features.
+\begin{verbatim}
+(horizontal-scroll-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+\end{verbatim}
+
+Likewise the splash page, while useful when I first started using
+Emacs, is not needed for me anymore.
+\begin{verbatim}
+(setq inhibit-startup-message t)
+\end{verbatim}
+
+\subsection{Fonts}
+\label{sec:org11ca543}
+Setting the default fonts in the early-init file drastically speeds up
+startup time. It can cut it almost by half in my testing compared to
+having the code in \texttt{init.el}.
+\begin{verbatim}
+(set-face-attribute 'default nil :family "Iosevka" :height 150)
+(set-face-attribute 'fixed-pitch nil :family "Iosevka")
+(set-face-attribute 'variable-pitch nil :family "DejaVu Serif")
+\end{verbatim}
+
+\subsection{Disable default package manager}
+\label{sec:org36e77af}
+Since I don't use \texttt{package.el} (\texttt{guix} and \texttt{straight.el} instead) there's no
+need for me to have this variable enabled. It probably doesn't hurt to
+keep it since I don't install any packages via \texttt{package.el} but might as
+well remove it.
+\begin{verbatim}
+(setq package-enable-at-startup nil)
+\end{verbatim}
+\end{document}
