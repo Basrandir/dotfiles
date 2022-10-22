@@ -15,6 +15,7 @@
  (gnu packages emacs)
  (gnu packages rust)
  (gnu packages version-control)
+ (gnu packages wm)
  (gnu services)
  (guix gexp))
 
@@ -40,6 +41,7 @@
 		"password-store"
 		"pavucontrol"
 		"pinentry-rofi"
+		"polybar"
 		"pqiv"
 		"pulseaudio"
 		"qt5ct"
@@ -49,7 +51,6 @@
 		"rofi-pass"
 		"rsync"
 		"sshfs"
-		"telegram-desktop"
 		"unicode-emoji"
 		))))
 
@@ -110,6 +111,14 @@
 			home-files-service-type
 			(list `(".config/fish/conf.d/catppuccin.fish"
 				,(local-file "files/fish/catppuccin.fish"))))
+	(simple-service 'polybar-config
+		       home-files-service-type
+		       (list `(".config/polybar/config.ini"
+			       ,(local-file "files/polybar/config.ini"))))
+	(simple-service 'sxhkd-config
+			home-files-service-type
+			(list `(".config/sxhkd/sxhkdrc"
+				,(local-file "files/sxhkd/sxhkdrc"))))
 	;; (simple-service 'bspwm-config
 	;; 		home-files-service-type
 	;; 		(list `(".config/bspwm/bspwmrc"

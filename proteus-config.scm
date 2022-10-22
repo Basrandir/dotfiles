@@ -3,6 +3,7 @@
 ;; environments.
 
 (use-modules (gnu)
+	     (gnu packages linux)
              (nongnu packages linux)
              (nongnu system linux-initrd))
 (use-service-modules cups desktop networking ssh xorg)
@@ -56,6 +57,7 @@
 		    (specification->package "bspwm")
                     (specification->package "sxhkd")
                     (specification->package "xsetroot")
+		    (specification->package "light")
 		    (specification->package "openssh")
                     (specification->package "gnupg")
                     (specification->package "pinentry")
@@ -66,6 +68,7 @@
  ;; log-in service, networking with NetworkManager, and more.
  (services
   (append (list (service cups-service-type)
+		(udev-rules-service 'light light)
 		(set-xorg-configuration
                  (xorg-configuration
                   (extra-config '("Section \"Device\"
