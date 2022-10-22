@@ -24,3 +24,4 @@ bspc rule -a Emacs state=tiled
 bspc rule -a mpv state=floating
 
 guix shell setroot -- setroot --restore
+guix shell xset -- xset -b
