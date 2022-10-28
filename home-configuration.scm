@@ -26,6 +26,7 @@
 	  (map specification->package
 	       (list
 		"alacritty"
+		"anki"
 		"direnv"
 		"firefox"
 		"font-fantasque-sans"
