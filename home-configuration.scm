@@ -51,6 +51,8 @@
 		"rofi-pass"
 		"rsync"
 		"sshfs"
+		"telegram-desktop"
+		"ungoogled-chromium"
 		"unicode-emoji"
 		))))
 
