@@ -45,6 +45,9 @@
 ;; Auto save all buffers when frame loses focus
 (add-hook 'focus-out-hook (lambda () (save-some-buffers t)))
 
+;; Enable electric pair mode
+(electric-pair-mode +1)
+
 ;; Highlight matching parens
 (setq show-paren-delay 0
       show-paren-when-point-inside-paren t)
