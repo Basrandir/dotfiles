@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 
-export GTK_IM_MODULE=nimf
-export QT4_IM_MODULE="nimf"
-export QT_IM_MODULE=nimf
-export XMODIFIERS="@im=nimf"
-nimf
-
 xsetroot -cursor_name left_ptr &
 sxhkd &
 
@@ -15,8 +9,9 @@ bspc config split_ratio		0.50
 bspc config borderless_monocle	true
 bspc config gapless_monocle	true
 
-for monitor in $(bspc query -M); do
-    bspc monitor $monitor -d I II III IV V
+for monitor in $(bspc query -M --names); do
+    bspc monitor $monitor -d ჱ ჲ ჳ ჴ ჵ
+    MONITOR=$monitor polybar & disown
 done
 
 bspc rule -a Firefox desktop=^1
@@ -25,5 +20,6 @@ bspc rule -a mpv state=floating
 
 polybar & disown
 
+[[ "$HOSTNAME" == "polaris" ]] && guix shell xrandr -- xrandr --output DisplayPort-0 --primary --auto --output HDMI-A-0 --auto --mode 1920x1080 --rate 165.00 --left-of DisplayPort-0
 guix shell setroot -- setroot --restore
 guix shell xset -- xset -b
