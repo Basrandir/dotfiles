@@ -10,8 +10,8 @@ bspc config borderless_monocle	true
 bspc config gapless_monocle	true
 
 for monitor in $(bspc query -M --names); do
-    bspc monitor $monitor -d ჱ ჲ ჳ ჴ ჵ
-    MONITOR=$monitor polybar & disown
+    bspc monitor $monitor -d १ २ ३ ४ ५
+    Monitor=$monitor polybar & disown
 done
 
 bspc rule -a Firefox desktop=^1
