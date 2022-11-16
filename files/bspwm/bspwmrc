@@ -11,7 +11,7 @@ bspc config gapless_monocle	true
 
 for monitor in $(bspc query -M --names); do
     bspc monitor $monitor -d १ २ ३ ४ ५
-    Monitor=$monitor polybar & disown
+    MONITOR=$monitor polybar & disown
 done
 
 bspc rule -a Firefox desktop=^1
