@@ -37,6 +37,7 @@
 (require 'module-pkm)
 (require 'module-shell)
 (require 'module-ui)
+(require 'module-programming)
 
 ;; Set margins on all sides
 (push '(internal-border-width . 16) default-frame-alist)
@@ -56,27 +57,7 @@
 			   (when (telega-chat-bot-p telega-chatbuf--chat)
 			     '(telega-company-botcmd))))))
 
-;; Tree-sitter
-(use-package tree-sitter
-  :straight t)
-
-(use-package tree-sitter-langs
-  :straight t
-  :after tree-sitter)
-
-;; Typescript
-(use-package tsi
-  :after tree-sitter
-  :straight (tsi :type git :host github :repo "orzechowskid/tsi.el")
-  :commands (tsi-typescript-mode tsi-json-mode tsi-css-mode))
-
-(use-package tsx-mode
-  :after tsi
-  :straight (tsx-mode :type git :host github :repo "orzechowskid/tsx-mode.el")
-  :config
-  (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . tsx-mode)))
-
-;; Make GC pauses faster by decreasing the threshold.
+;; Make GC pauses faster.
 (setq gc-cons-threshold (* 2 1000 1000))
 
 (provide 'init)

@@ -28,6 +28,8 @@
 		"alacritty"
 		"anki"
 		"direnv"
+		"fd"
+		"ffmpegthumbnailer"
 		"firefox"
 		"font-fantasque-sans"
 		"font-google-noto"
@@ -36,6 +38,7 @@
 		"imagemagick"
 		"kdenlive"
 		"lxappearance"
+		"mediainfo"
 		"mgba"
 		"mpv"
 		"okular"
@@ -55,6 +58,7 @@
 		"telegram-desktop"
 		"ungoogled-chromium"
 		"unicode-emoji"
+		"unzip"
 		))))
 
 (define emacs-packages
@@ -65,6 +69,7 @@
 	;; Emacs Extensions
 	"emacs-ace-window"
 	"emacs-all-the-icons"
+	"emacs-apheleia"
 	"emacs-autothemer"
 	"emacs-avy"
 	"emacs-consult"
@@ -86,6 +91,7 @@
 	"emacs-org-roam"
 	"emacs-org-modern"
 	"emacs-password-store"
+	"emacs-pdf-tools"
 	"emacs-rust-mode"
 	"emacs-svg-tag-mode"
 	"emacs-use-package"
