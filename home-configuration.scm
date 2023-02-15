@@ -41,6 +41,7 @@
 		"mediainfo"
 		"mgba"
 		"mpv"
+		"obs"
 		"okular"
 		"password-store"
 		"pavucontrol"

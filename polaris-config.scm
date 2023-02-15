@@ -4,12 +4,13 @@
 
 (use-modules (gnu) (gnu system nss)
              (gnu packages gnupg)
+	     (gnu packages package-management)
              (gnu packages ssh)
              (gnu packages wm)
              (gnu packages xdisorg)
              (nongnu packages linux)
              (nongnu system linux-initrd))
-(use-service-modules desktop shepherd sound xorg)
+(use-service-modules desktop nix shepherd sound xorg)
 (use-package-modules bootloaders certs xorg)
 
 (operating-system
@@ -59,6 +60,8 @@
 		    bspwm sxhkd xsetroot
 		    openssh
 		    gnupg pinentry
+		    ;; access to nix packages and services
+		    nix
                     ;; for HTTPS access
                     nss-certs)
                    %base-packages))
@@ -66,6 +69,7 @@
  ;; Use the "desktop" services, which include the X11
  ;; log-in service, networking with NetworkManager, and more.
  (services (append (list
+		    (service nix-service-type)
 		    (set-xorg-configuration
                           (xorg-configuration
                            (extra-config '("Section \"Device\"
