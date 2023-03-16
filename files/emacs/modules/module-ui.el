@@ -6,10 +6,8 @@
 
 ;;;; Theme
 
-(use-package catppuccin-theme
-  :straight t)
-
-(load-theme 'catppuccin-mocha t)
+(elpaca catppuccin-theme
+  (load-theme 'catppuccin t))
 
 ;; Flash the line the cursor is on when moving
 ;; taken from https://karthinks.com/software/batteries-included-with-emacs

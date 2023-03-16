@@ -4,7 +4,6 @@
 
 ;;; Code:
 (use-package ox-publish
-  :straight nil
   :config
   (setq bassamsaeed.ca/base-directory "~/src/bassamsaeed.ca/")
   (setq bassamsaeed.ca/header-file (concat bassamsaeed.ca/base-directory "partials/header.html"))

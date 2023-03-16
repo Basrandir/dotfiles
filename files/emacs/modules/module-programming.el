@@ -9,10 +9,11 @@
 	       '(tsx-ts-mode . prettier-typescript))
   (apheleia-global-mode +1))
 
-(use-package css-in-js-mode
-  :straight
-  '(css-in-js-mode :type git :host github :repo "orzechowskid/tree-sitter-css-in-js" :branch "main" :post-build
-                   ((require 'css-in-js-mode) (css-in-js-mode-fetch-shared-library t))))
+(elpaca (tree-sitter-css-in-js
+	 :host github
+	 :repo "orzechowskid/tree-sitter-css-in-js")
+  (require 'css-in-js-mode)
+  (css-in-js-mode-fetch-shared-library t))
 
 (provide 'module-programming)
 
