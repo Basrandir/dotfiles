@@ -61,20 +61,6 @@
 ;; Set margins on all sides
 (push '(internal-border-width . 16) default-frame-alist)
 
-;; Telega - Telegram client
-;; (use-package visual-fill-column)
-(use-package telega
-  :after visual-fill-column
-  :commands (telega)
-  :config
-  (telega-notifications-mode 1)
-  (add-hook 'telega-chat-mode-hook
-	      (set (make-local-variable 'comapny-backends)
-		   (append '(telega-company-emoji
-			     telega-company-username
-			     telega-company-hashtag)
-			   (when (telega-chat-bot-p telega-chatbuf--chat)
-			     '(telega-company-botcmd))))))
 ;; Treesitter
 (elpaca treesit-auto
   (setq treesit-auto-install 'prompt)

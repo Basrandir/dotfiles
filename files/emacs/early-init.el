@@ -27,7 +27,7 @@
 (set-face-attribute 'fixed-pitch nil :family "Iosevka")
 (set-face-attribute 'variable-pitch nil :family "DejaVu Serif")
 
-;; Disable package manger init since we use guix and straight.el instead
+;; Disable package manger init since we use guix and Elpaca instead
 (setq package-enable-at-startup nil)
 
 (provide 'early-init)
