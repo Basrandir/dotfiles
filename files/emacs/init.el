@@ -44,6 +44,11 @@
 (add-hook 'after-init-hook #'elpaca-process-queues)
 (elpaca `(,@elpaca-order))
 
+;; Integrate elpaca with use-package
+(elpaca elpaca-use-package
+  (elpaca-use-package-mode))
+(elpaca-wait)
+
 ;; Add custom modules folder to load path
 (add-to-list 'load-path (expand-file-name "modules" user-emacs-directory))
 
@@ -54,17 +59,12 @@
 (require 'module-lsp)
 (require 'module-org)
 (require 'module-pkm)
+(require 'module-programming)
 (require 'module-shell)
 (require 'module-ui)
-(require 'module-programming)
 
 ;; Set margins on all sides
 (push '(internal-border-width . 16) default-frame-alist)
-
-;; Treesitter
-(elpaca treesit-auto
-  (setq treesit-auto-install 'prompt)
-  (global-treesit-auto-mode))
 
 ;; Make GC pauses faster.
 (setq gc-cons-threshold (* 2 1000 1000))

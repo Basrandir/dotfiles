@@ -6,7 +6,9 @@
 
 ;;;; Theme
 
-(elpaca catppuccin-theme
+(use-package catppuccin-theme
+  :elpaca t
+  :config
   (load-theme 'catppuccin t))
 
 ;; Flash the line the cursor is on when moving

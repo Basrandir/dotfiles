@@ -27,6 +27,7 @@
 	       (list
 		"alacritty"
 		"anki"
+		"binutils"
 		"direnv"
 		"fd"
 		"ffmpegthumbnailer"
@@ -34,6 +35,8 @@
 		"font-fantasque-sans"
 		"font-google-noto"
 		"font-iosevka"
+		"gcc"
+		"glibc"
 		"guile"
 		"imagemagick"
 		"kdenlive"
@@ -60,42 +63,49 @@
 		"ungoogled-chromium"
 		"unicode-emoji"
 		"unzip"
+		"xdg-utils"
 		))))
 
 (define emacs-packages
   (map specification->package
        (list
 	;; Emacs
-	"emacs-next-pgtk"
+	"emacs-next-tree-sitter"
 	;; Emacs Extensions
 	"emacs-ace-window"
 	"emacs-all-the-icons"
+	"emacs-all-the-icons-completion"
+	"emacs-all-the-icons-dired"
 	"emacs-apheleia"
 	"emacs-autothemer"
 	"emacs-avy"
 	"emacs-consult"
 	"emacs-corfu"
 	"emacs-dap-mode"
+	"emacs-diff-hl"
 	"emacs-diredfl"
 	"emacs-embark"
 	"emacs-envrc"
 	"emacs-geiser"
 	"emacs-geiser-guile"
 	"emacs-guix"
+	"emacs-kind-icon"
 	"emacs-lsp-mode"
 	"emacs-lsp-ui"
 	"emacs-lsp-java"
 	"emacs-magit"
 	"emacs-marginalia"
+	"emacs-meow"
 	"emacs-orderless"
 	"emacs-org-appear"
-	"emacs-org-roam"
 	"emacs-org-modern"
 	"emacs-password-store"
 	"emacs-pdf-tools"
 	"emacs-rust-mode"
 	"emacs-svg-tag-mode"
-	"emacs-use-package"
+	"emacs-tempel"
+	"emacs-tempel-collection"
+	"emacs-eglot-tempel"
 	"emacs-vertico"
 	"emacs-vterm"
 	"emacs-webfeeder")))
@@ -178,6 +188,8 @@
 				,(local-file "files/emacs/init.el"))
                               `(".config/emacs/early-init.el"
 				,(local-file "files/emacs/early-init.el"))
+			      `(".config/emacs/templates"
+				,(local-file "files/emacs/templates"))
 			      `(".config/emacs/modules"
 				,(local-file "files/emacs/modules"
 					     #:recursive? #t)))))))

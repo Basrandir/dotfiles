@@ -9,11 +9,13 @@
 	       '(tsx-ts-mode . prettier-typescript))
   (apheleia-global-mode +1))
 
-(elpaca (tree-sitter-css-in-js
-	 :host github
-	 :repo "orzechowskid/tree-sitter-css-in-js")
-  (require 'css-in-js-mode)
-  (css-in-js-mode-fetch-shared-library t))
+;; Tree-sitter
+(use-package treesit-auto
+  :elpaca t
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (global-treesit-auto-mode))
 
 (provide 'module-programming)
 
