@@ -61,6 +61,7 @@
 (require 'module-pkm)
 (require 'module-programming)
 (require 'module-shell)
+(require 'module-templates)
 (require 'module-ui)
 
 ;; Set margins on all sides

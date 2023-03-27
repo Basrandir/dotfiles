@@ -16,6 +16,9 @@
 			   (push '("#+end_src" . "λ") prettify-symbols-alist)
 			   (prettify-symbols-mode)))
 
+;; Follow (go to) links when clicking RET
+(setq org-return-follows-link t)
+
 ;; Elimate org magic removing empty lines between headings when they're toggled closed
 (setq org-blank-before-new-entry '((heading . nil)
 				   (plain-list-item . nil)))
@@ -61,9 +64,9 @@
 
 ;;;; Org Capture
 (setq org-capture-templates
-      `(("c" "capture" entry (file "~/doc/org/capture.org")
+      `(("c" "capture" entry (file "~/doc/org/inbox.org")
 	 "* TODO %?")
-	("o" "org-protocol-capture" entry (file "~/doc/org/capture.org")
+	("o" "org-protocol-capture" entry (file "~/doc/org/inbox.org")
 	 "* TODO [[%:link][%:description]]\n\n %i" :immediate-finish t)))
 
 ;; Inspired by this thread:
@@ -89,6 +92,9 @@
 
 (advice-add 'org-switch-to-buffer-other-window :after #'supress-window-splitting)
 (advice-add 'org-capture-finalize :after #'delete-capture-frame)
+
+;; Org Agenda
+(setq org-agenda-files '("~/doc/org/routine.org"))
 
 (provide 'module-org)
 

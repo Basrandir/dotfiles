@@ -106,18 +106,6 @@ super + @space
 super + shift + p
     rofi-pass
 
-super + shift + Return
-    emacsclient -c -n
-super + e; v
-    emacsclient -c -e '(vterm)'
-super + e; d
-    emacsclient -c -e '(dired nil)'
-super + e; e
-    emacsclient -c -e '(elfeed)'
-alt + n
-    bspc rule -a \* -o state=floating && \
-    emacsclient -c -e '(deft)'
-
 # make sxhkd reload its configuration files:
 super + Escape
     pkill -USR1 -x sxhkd; notify-send 'sxhkd' 'Reloaded config'
@@ -146,9 +134,6 @@ super + e; e
 super + e; c
     bspc rule -a \* -o state=floating && \
     emacsclient -c -F '(quote (name . "capture"))' -e '(activate-capture-frame)'
-alt + n
-    bspc rule -a \* -o state=floating && \
-    emacsclient -c -e '(deft)'
 
 #
 # function keys
