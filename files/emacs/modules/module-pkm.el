@@ -3,19 +3,19 @@
 ;;; Commentary:
 
 ;;; Code:
-
-(use-package org-roam
+(use-package denote
+  :elpaca (denote :host sourcehut
+		  :repo "protesilaos/denote")
   :custom
-  (org-roam-directory (file-truename "~/doc/org/memex"))
-  :bind (("C-c n l" . org-roam-buffer-toggle)
-	 ("C-c n f" . org-roam-node-find)
-	 ("C-c n g" . org-roam-graph)
-	 ("C-c n i" . org-roam-node-insert)
-	 ("C-c n c" . org-roam-capture)
-	 ;; Dailies
-	 ("C-c n j" . org-roam-dailies-capture-today))
+  (denote-directory (expand-file-name "~/doc/org/memex"))
   :config
-  (org-roam-db-autosync-mode))
+  (defun my-denote-journal ()
+    "Create an entry tagged 'journal' with the date as its title."
+    (interactive)
+    (denote
+     (format-time-string "%A %e %B %Y") ; format like Tuesday 14 July 2022
+     '("journal"))) ; multiple keywords are a list of strings: '("one" "two")
+  :bind (("C-c m f" . denote-open-or-create)))
 
 (provide 'module-pkm)
 
