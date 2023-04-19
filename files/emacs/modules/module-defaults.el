@@ -48,6 +48,13 @@
 ;; Enable electric pair mode
 (electric-pair-mode +1)
 
+;; org-tempo template expansion uses '<' which electric-pair-mode
+;; erroneously inserts the closing '>', the below code stops that
+(add-hook 'org-mode-hook (lambda ()
+			   (setq-local electric-pair-inhibit-predicate
+				       `(lambda (c)
+					  (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
+
 ;; Highlight matching parens
 (setq show-paren-delay 0
       show-paren-when-point-inside-paren t)
