@@ -18,13 +18,14 @@
 (horizontal-scroll-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(menu-bar-mode -1)
 
 ;; Hide splash page
 (setq inhibit-startup-message t)
 
 ;; Set default fonts
-(set-face-attribute 'default nil :family "Iosevka" :height 175)
-(set-face-attribute 'fixed-pitch nil :family "Iosevka")
+(set-face-attribute 'default nil :family "FantasqueSansMono" :height 175)
+(set-face-attribute 'fixed-pitch nil :family "FantasqueSansMono")
 (set-face-attribute 'variable-pitch nil :family "DejaVu Serif")
 
 ;; Disable package manger init since we use guix and Elpaca instead
