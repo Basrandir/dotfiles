@@ -34,7 +34,6 @@
 		"firefox"
 		"font-fantasque-sans"
 		"font-google-noto"
-		"font-iosevka"
 		"gcc"
 		"glibc"
 		"guile"
@@ -71,7 +70,7 @@
        (list
 	;; Emacs
 	"emacs-next-tree-sitter"
-	;; Emacs Extensions
+	;; Emacs Extensnions
 	"emacs-ace-window"
 	"emacs-all-the-icons"
 	"emacs-all-the-icons-completion"
@@ -84,15 +83,11 @@
 	"emacs-dap-mode"
 	"emacs-diff-hl"
 	"emacs-diredfl"
+	"emacs-eat"
 	"emacs-embark"
 	"emacs-envrc"
-	"emacs-geiser"
-	"emacs-geiser-guile"
-	"emacs-guix"
+	"emacs-hide-mode-line"
 	"emacs-kind-icon"
-	"emacs-lsp-mode"
-	"emacs-lsp-ui"
-	"emacs-lsp-java"
 	"emacs-magit"
 	"emacs-marginalia"
 	"emacs-meow"
@@ -101,6 +96,7 @@
 	"emacs-org-modern"
 	"emacs-password-store"
 	"emacs-pdf-tools"
+	"emacs-rainbow-mode"
 	"emacs-rust-mode"
 	"emacs-svg-tag-mode"
 	"emacs-tempel"
