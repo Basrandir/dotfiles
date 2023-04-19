@@ -96,6 +96,9 @@
 ;; Org Agenda
 (setq org-agenda-files '("~/doc/org/routine.org"))
 
+;; Org habits
+(add-to-list 'org-modules 'org-habit t)
+
 (provide 'module-org)
 
 ;;; module-org.el ends here
