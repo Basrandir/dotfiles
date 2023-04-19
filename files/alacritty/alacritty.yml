@@ -319,17 +319,17 @@ color_schemes:
 
 font:
   normal:
-    family: Iosevka
+    family: FantasqueSansMono
     style: Regular
   bold:
-    family: Iosevka
+    family: FantasqueSansMono
     style: Bold
   italic:
-    family: Iosevka
+    family: FantasqueSansMono
     style: Italic
   bold_italic:
-    family: Iosevka
+    family: FantasqueSansMono
     style: Bold Italic
-  size: 11.0
+  size: 14.0
 
-colors: *mocha
+colors: *elesh
