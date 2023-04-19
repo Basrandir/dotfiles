@@ -1,0 +1,7 @@
+emacs-lisp-mode
+
+(start ";;; "p".el -*- lexical-binding: t; -*-"n n";;; Commentary:"n p n n";;; Code:"n p n n"(provide '"p")"n n";;; "p".el ends here")
+
+org-mode
+
+(book "#+TITLE: "p n"#+AUTHOR: "p n"#+Fiction: "p n"#+Genres: "p n"#+Rating: "p n"#+Date_Finished: "p n n"* How did I discover this book?")
