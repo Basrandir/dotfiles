@@ -11,15 +11,17 @@
   :config
   (load-theme 'catppuccin t))
 
-;; Flash the line the cursor is on when moving
-;; taken from https://karthinks.com/software/batteries-included-with-emacs
-(defun pulse-line (&rest _)
-  "Pulse the current line."
-  (pulse-momentary-highlight-one-line (point)))
+;; Tabs and ribbons for the mode line
+(use-package moody
+  :elpaca t
+  :config
+  (setq x-underline-at-descent-line t)
+  (moody-replace-mode-line-buffer-identification)
+  (moody-replace-vc-mode)
+  (moody-replace-eldoc-minibuffer-message-function))
 
-(dolist (command '(scroll-up-command scroll-down-command
-				     recenter-top-bottom other-window))
-  (advice-add command :after #'pulse-line))
+;; Enable rainbow-mode
+(use-package rainbow-mode)
 
 (provide 'module-ui)
 
