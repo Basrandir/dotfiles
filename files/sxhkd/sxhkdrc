@@ -126,7 +126,7 @@ super + F1
 super + shift + Return
     emacsclient -c -n
 super + e; v
-    emacsclient -c -e '(vterm)'
+    emacsclient -c -e '(eat)'
 super + e; d
     emacsclient -c -e '(dired nil)'
 super + e; e

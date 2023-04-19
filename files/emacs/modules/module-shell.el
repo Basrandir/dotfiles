@@ -4,6 +4,12 @@
 
 ;;; Code:
 
+(use-package eat
+  :init
+  (add-hook 'eat-mode-hook #'hide-mode-line-mode)
+  :custom
+  (explicit-shell-file-name "/home/bassam/.guix-home/profile/bin/fish"))
+
 ;; An alternative Emacs terminal built on top libvterm. Need to figure
 ;; out a way to automate colours.
 (use-package vterm
