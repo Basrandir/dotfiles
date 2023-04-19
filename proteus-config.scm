@@ -47,7 +47,7 @@
                (comment "Bassam Saeed")
                (group "users")
 	       (home-directory "/home/bassam")
-               (supplementary-groups '("wheel" "netdev"
+               (supplementary-groups '("wheel" "netdev" "lp"
                                        "audio" "video")))
               %base-user-accounts))
  
@@ -68,6 +68,7 @@
  ;; log-in service, networking with NetworkManager, and more.
  (services
   (append (list (service cups-service-type)
+		(bluetooth-service #:auto-enable? #t)
 		(udev-rules-service 'light light)
 		(set-xorg-configuration
                  (xorg-configuration
