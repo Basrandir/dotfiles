@@ -18,8 +18,6 @@ bspc rule -a Firefox desktop=^1
 bspc rule -a Emacs state=tiled
 bspc rule -a mpv state=floating
 
-polybar & disown
-
 [[ "$HOSTNAME" == "polaris" ]] && guix shell xrandr -- xrandr --output DisplayPort-0 --primary --auto --output HDMI-A-0 --auto --mode 1920x1080 --rate 165.00 --left-of DisplayPort-0
 guix shell setroot -- setroot --restore
 guix shell xset -- xset -b
