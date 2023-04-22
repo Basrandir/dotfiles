@@ -72,9 +72,6 @@
 	"emacs-next-tree-sitter"
 	;; Emacs Extensnions
 	"emacs-ace-window"
-	"emacs-all-the-icons"
-	"emacs-all-the-icons-completion"
-	"emacs-all-the-icons-dired"
 	"emacs-apheleia"
 	"emacs-autothemer"
 	"emacs-avy"
