@@ -1,9 +1,35 @@
 color_schemes:
-
-
+  elesh: &elesh
+    primary:
+      background: '0x09090b'
+      foreground: '0xdcd5cf'
+      bright_foreground: '0xdcd5cf'
+    # Cursor colors
+    cursor:
+      text: '0x09090b'
+      cursor: '0xdcd5cf'
+    # Normal colors
+    normal:
+      black: '0x09090b'
+      red: '0x3B4449'
+      green: '0x4D4D50'
+      yellow: '0x6B6364'
+      blue: '0x92514F'
+      magenta: '0x92847B'
+      cyan: '0xA49E9C'
+      white: '0xdcd5cf'
+    # Bright colors
+    bright:
+      black: '0x9a9590'
+      red: '0x3B4449'
+      green: '0x4D4D50'
+      yellow: '0x6B6364'
+      blue: '0x92514F'
+      magenta: '0x92847B'
+      cyan: '0xA49E9C'
+      white: '0xdcd5cf'
 
   latte: &latte
-
     # Default colors
     primary:
       background: '#eff1f5' # base
@@ -319,17 +345,17 @@ color_schemes:
 
 font:
   normal:
-    family: FantasqueSansMono
+    family: Cascadia Mono
     style: Regular
   bold:
-    family: FantasqueSansMono
+    family: Cascadia Mono
     style: Bold
   italic:
-    family: FantasqueSansMono
+    family: Cascadia Mono
     style: Italic
   bold_italic:
-    family: FantasqueSansMono
+    family: Cascadia Mono
     style: Bold Italic
-  size: 14.0
+  size: 12.0
 
 colors: *elesh

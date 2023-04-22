@@ -24,7 +24,7 @@
 (setq inhibit-startup-message t)
 
 ;; Set default fonts
-(set-face-attribute 'default nil :family "FantasqueSansMono" :height 175)
+(set-face-attribute 'default nil :family "Cascadia Mono" :height 170)
 (set-face-attribute 'fixed-pitch nil :family "FantasqueSansMono")
 (set-face-attribute 'variable-pitch nil :family "DejaVu Serif")
 

@@ -1,7 +1,7 @@
 configuration{
     modi: "run,drun,window";
     lines: 5;
-    font: "FantasqueSansMono 16";
+    font: "Cascadia Mono 16";
     show-icons: true;
     icon-theme: "Oranchelo";
     terminal: "st";
