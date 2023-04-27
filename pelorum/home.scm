@@ -1,25 +1,19 @@
-;; This "home-environment" file can be passed to 'guix home reconfigure'
-;; to reproduce the content of your profile.  This is "symbolic": it only
-;; specifies package names.  To reproduce the exact same profile, you also
-;; need to capture the channels being used, as returned by "guix describe".
-;; See the "Replicating Guix" section in the manual.
+(define-module (pelorum home)
+  #:use-module (gnu home)
+  #:use-module (gnu home services)
+  #:use-module (gnu home services desktop)
+  #:use-module (gnu home services shepherd)
+  #:use-module (gnu home services shells)
+  #:use-module (gnu home services xdg)
+  #:use-module (gnu packages)
+  #:use-module (gnu packages emacs)
+  #:use-module (gnu packages rust)
+  #:use-module (gnu packages version-control)
+  #:use-module (gnu packages wm)
+  #:use-module (gnu services)
+  #:use-module (guix gexp))
 
-(use-modules
- (gnu home)
- (gnu home services)
- (gnu home services desktop)
- (gnu home services shepherd)
- (gnu home services shells)
- (gnu home services xdg)
- (gnu packages)
- (gnu packages emacs)
- (gnu packages rust)
- (gnu packages version-control)
- (gnu packages wm)
- (gnu services)
- (guix gexp))
-
-(define base-packages
+(define base-home-packages
   (append (list
 	   git `(,git "send-email")
 	   rust `(,rust "cargo") `(,rust "rustfmt"))
@@ -34,7 +28,7 @@
 		"firefox"
 		"font-google-noto"
 		"font-microsoft-cascadia"
-		"gcc"
+		"gcc-toolchain"
 		"glibc"
 		"guile"
 		"imagemagick"
@@ -105,33 +99,34 @@
 
 (home-environment
  (packages (append
-	    base-packages
+	    base-home-packages
 	    emacs-packages))
  (services
   (list (service home-bash-service-type
                  (home-bash-configuration
                   (guix-defaults? #t)
 		  (environment-variables
-		   '(("QT_QPA_PLATFORMTHEME" . "qt5ct")))))
+		   '(("QT_QPA_PLATFORMTHEME" . "qt5ct")
+		     ("PATH" . "$PATH:$HOME/bin")))))
         (service home-fish-service-type
 		 (home-fish-configuration
 		  (aliases
 		   '(("ll" . "ls -l")
 		     ("mvi" . "mpv --config-dir=$HOME/.config/mvi")))
 		  (config
-		   (list (local-file "files/fish/config.fish")))))
+		   (list (local-file "../files/fish/config.fish")))))
 	(simple-service 'fish-config
 			home-files-service-type
 			(list `(".config/fish/conf.d/catppuccin.fish"
-				,(local-file "files/fish/catppuccin.fish"))))
+				,(local-file "../files/fish/catppuccin.fish"))))
 	(simple-service 'polybar-config
 		       home-files-service-type
 		       (list `(".config/polybar/config.ini"
-			       ,(local-file "files/polybar/config.ini"))))
+			       ,(local-file "../files/polybar/config.ini"))))
 	(simple-service 'sxhkd-config
 			home-files-service-type
 			(list `(".config/sxhkd/sxhkdrc"
-				,(local-file "files/sxhkd/sxhkdrc"))))
+				,(local-file "../files/sxhkd/sxhkdrc"))))
 	;; (simple-service 'bspwm-config
 	;; 		home-files-service-type
 	;; 		(list `(".config/bspwm/bspwmrc"
@@ -154,17 +149,17 @@
 	(simple-service 'alacritty-config
 			home-files-service-type
 			(list `(".config/alacritty/alacritty.yml"
-				,(local-file "files/alacritty/alacritty.yml"))))
+				,(local-file "../files/alacritty/alacritty.yml"))))
 	(simple-service 'rofi-config
 			home-files-service-type
 			(list `(".config/rofi/config.rasi"
-				,(local-file "files/rofi/config.rasi"))
+				,(local-file "../files/rofi/config.rasi"))
 			      `(".local/share/rofi/themes/catppuccin.rasi"
-				,(local-file "files/rofi/catppuccin.rasi"))))
+				,(local-file "../files/rofi/catppuccin.rasi"))))
 	(simple-service 'gtk-config
 			home-files-service-type
 			(list `(".themes"
-				,(local-file "files/gtk"
+				,(local-file "../files/gtk"
 					     #:recursive? #t))))
 	(service home-shepherd-service-type
 		 (home-shepherd-configuration
@@ -178,11 +173,11 @@
 	(simple-service 'emacs-config
 			home-files-service-type
                         (list `(".config/emacs/init.el"
-				,(local-file "files/emacs/init.el"))
+				,(local-file "../files/emacs/init.el"))
                               `(".config/emacs/early-init.el"
-				,(local-file "files/emacs/early-init.el"))
+				,(local-file "../files/emacs/early-init.el"))
 			      `(".config/emacs/templates"
-				,(local-file "files/emacs/templates"))
+				,(local-file "../files/emacs/templates"))
 			      `(".config/emacs/modules"
-				,(local-file "files/emacs/modules"
+				,(local-file "../files/emacs/modules"
 					     #:recursive? #t)))))))
