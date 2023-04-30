@@ -61,6 +61,7 @@
 (require 'module-defaults)
 (require 'module-dired)
 (require 'module-ide)
+(require 'module-meow)
 (require 'module-org)
 (require 'module-pkm)
 (require 'module-shell)
