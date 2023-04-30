@@ -39,6 +39,9 @@
 	      ("C-c C-c C-t" . rust-test)
 	      ("C-c C-c C-r" . rust-run)))
 
+(use-package tsx-ts-mode
+  :mode "\\.tsx\\'")
+
 (use-package eglot
   :bind (:map eglot-mode-map
 	      ("M-h" . eldoc-box-eglot-help-at-point))
