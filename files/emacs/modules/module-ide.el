@@ -44,7 +44,7 @@
 
 (use-package eglot
   :bind (:map eglot-mode-map
-	      ("M-h" . eldoc-box-eglot-help-at-point))
+	      ("M-h" . eldoc-box-help-at-point))
   ;; :hook (eglot--managed-mode . limit-eldoc-to-single-line)
   :init
   (defun limit-eldoc-to-single-line ()
