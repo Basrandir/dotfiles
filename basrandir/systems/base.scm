@@ -1,4 +1,4 @@
-(define-module (pelorum systems base)
+(define-module (basrandir systems base)
   #:use-module (srfi srfi-1)
   #:use-module (gnu)
   #:use-module (gnu system)

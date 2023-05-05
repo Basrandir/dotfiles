@@ -1,5 +1,5 @@
-(define-module (pelorum systems polaris)
-  #:use-module (pelorum systems base)
+(define-module (basrandir systems polaris)
+  #:use-module (basrandir systems base)
   #:use-module (gnu)
   #:use-module (gnu system)
   #:use-module (gnu system file-systems))

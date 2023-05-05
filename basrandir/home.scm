@@ -1,4 +1,4 @@
-(define-module (pelorum home)
+(define-module (basrandir home)
   #:use-module (gnu home)
   #:use-module (gnu home services)
   #:use-module (gnu home services desktop)
