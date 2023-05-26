@@ -66,6 +66,8 @@
 (setq org-capture-templates
       `(("c" "capture" entry (file "~/doc/org/inbox.org")
 	 "* TODO %?")
+	("w" "weight" table-line (file "~/doc/org/weight.org")
+	 "| %u | %? ||||")
 	("o" "org-protocol-capture" entry (file "~/doc/org/inbox.org")
 	 "* TODO [[%:link][%:description]]\n\n %i" :immediate-finish t)))
 
