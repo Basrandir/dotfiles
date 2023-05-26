@@ -27,7 +27,7 @@
 		"ffmpegthumbnailer"
 		"firefox"
 		"font-google-noto"
-		"font-microsoft-cascadia"
+		"font-recursive"
 		"gcc-toolchain"
 		"glibc"
 		"guile"

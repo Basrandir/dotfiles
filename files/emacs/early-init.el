@@ -24,8 +24,8 @@
 (setq inhibit-startup-message t)
 
 ;; Set default fonts
-(set-face-attribute 'default nil :family "Cascadia Mono" :height 170)
-(set-face-attribute 'fixed-pitch nil :family "FantasqueSansMono")
+(set-face-attribute 'default nil :family "Rec Mono Duotone" :height 170)
+(set-face-attribute 'fixed-pitch nil :family "Rec Mono Duotone")
 (set-face-attribute 'variable-pitch nil :family "DejaVu Serif")
 
 ;; Disable package manger init since we use guix and Elpaca instead
