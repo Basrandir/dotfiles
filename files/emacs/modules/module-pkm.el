@@ -4,8 +4,6 @@
 
 ;;; Code:
 (use-package denote
-  :elpaca (denote :host sourcehut
-		  :repo "protesilaos/denote")
   :custom
   (denote-directory (expand-file-name "~/doc/org/memex"))
   :config
