@@ -74,10 +74,18 @@
   (vertico-multiform-mode)
   :config
   (setq vertico-multiform-commands
-	'((consult-line indexed buffer)))
+	'((consult-line indexed buffer (:not posframe))
+	  (t posframe)))
   (setq vertico-multiform-categories
 	'((imenu buffer)
 	  (t reverse))))
+
+(use-package vertico-posframe
+  :after vertico
+  :config
+  (setq vertico-posframe-parameters
+	'((left-fringe . 8)
+	  (right-fringe . 8))))
 
 (provide 'module-completion)
 

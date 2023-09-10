@@ -94,6 +94,7 @@
 	"emacs-tempel-collection"
 	"emacs-eglot-tempel"
 	"emacs-vertico"
+	"emacs-vertico-posframe"
 	"emacs-vterm"
 	"emacs-webfeeder")))
 
