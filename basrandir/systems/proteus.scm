@@ -4,17 +4,19 @@
   #:use-module (gnu system)
   #:use-module (gnu system file-systems))
 
-(use-service-modules xorg)
-(use-package-modules xorg)
+(use-service-modules cups desktop xorg)
+(use-package-modules linux xorg)
 
 (define proteus-packages
-  (cons* (map specification->package
-	     '("light"))
-	 base-system-packages))
+  (append (map specification->package
+	       '("light"))
+	  base-system-packages))
 
 (define proteus-services
   (cons* (service cups-service-type)
-	 (bluetooth-service #:auto-enable? #t)
+	 (service bluetooth-service-type
+                  (bluetooth-configuration
+                   (auto-enable? #t)))
 	 (udev-rules-service 'light light)
 	 (set-xorg-configuration
           (xorg-configuration
@@ -32,16 +34,16 @@ Section \"InputClass\"
   Option \"NaturalScrolling\"  \"true\"
 EndSection"))))
 	 
-	 (modify-services %desktop-services
+	 (modify-services base-system-services
 			  (guix-service-type config => (guix-configuration
 							(inherit config)
 							(substitute-urls
 							 (append (list "https://substitutes.nonguix.org")
 								 %default-substitute-urls))
 							(authorized-keys
-							 (append (list (local-file "./signing-key.pub"))
+							 (append (list (local-file "../../signing-key.pub"))
 								 %default-authorized-guix-keys)))))
-	 base-system-services))
+	 ))
 
 (operating-system
  (inherit base-operating-system)
@@ -49,11 +51,11 @@ EndSection"))))
  
  (swap-devices (list (swap-space
                       (target (uuid
-                               "3dd9c567-ff89-4999-99e5-abed78766dc4")))))
+                               "161f8a1f-806d-48fb-8f8b-bd50e2927b83")))))
  
  (file-systems (append
                 (list (file-system
-                       (device (uuid "0c71d2d1-83a2-4b6b-a2c5-cfcfc996d232" 'ext4))
+                       (device (uuid "57b0806a-9239-4784-8d5e-05ecd9a06ef6" 'ext4))
                        (mount-point "/")
                        (type "ext4"))
                       (file-system
