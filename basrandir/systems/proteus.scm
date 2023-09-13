@@ -13,12 +13,12 @@
 	 base-system-packages))
 
 (define proteus-services
-  (cons (service cups-service-type)
-	(bluetooth-service #:auto-enable? #t)
-	(udev-rules-service 'light light)
-	(set-xorg-configuration
-         (xorg-configuration
-          (extra-config '("Section \"Device\"
+  (cons* (service cups-service-type)
+	 (bluetooth-service #:auto-enable? #t)
+	 (udev-rules-service 'light light)
+	 (set-xorg-configuration
+          (xorg-configuration
+           (extra-config '("Section \"Device\"
   Identifier \"Intel Graphics\"
   Driver     \"intel\"
   Option     \"TearFree\" \"true\"
@@ -31,17 +31,17 @@ Section \"InputClass\"
   Option \"Tapping\" \"on\"
   Option \"NaturalScrolling\"  \"true\"
 EndSection"))))
-	
-	(modify-services %desktop-services
-			 (guix-service-type config => (guix-configuration
-						       (inherit config)
-						       (substitute-urls
-							(append (list "https://substitutes.nonguix.org")
-								%default-substitute-urls))
-						       (authorized-keys
-							(append (list (local-file "./signing-key.pub"))
-								%default-authorized-guix-keys)))))
-	base-system-services))
+	 
+	 (modify-services %desktop-services
+			  (guix-service-type config => (guix-configuration
+							(inherit config)
+							(substitute-urls
+							 (append (list "https://substitutes.nonguix.org")
+								 %default-substitute-urls))
+							(authorized-keys
+							 (append (list (local-file "./signing-key.pub"))
+								 %default-authorized-guix-keys)))))
+	 base-system-services))
 
 (operating-system
  (inherit base-operating-system)

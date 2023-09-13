@@ -1,6 +1,8 @@
 (define-module (basrandir systems base)
+  #:use-module (basrandir packages)
   #:use-module (srfi srfi-1)
   #:use-module (gnu)
+  #:use-module (gnu services)
   #:use-module (gnu system)
   #:use-module (gnu system nss)
   #:use-module (gnu system setuid)
@@ -10,7 +12,7 @@
   #:export (base-system-packages
 	    base-system-services))
 
-(use-service-modules desktop nix) ;;shepherd sound xorg)
+(use-service-modules desktop nix xorg) ;;shepherd sound xorg)
 ;; (use-package-modules bootloaders certs xorg)
 
 (define base-system-packages
@@ -21,13 +23,18 @@
 		 "openssh"
 		 "gnupg"
 		 "pinentry"
+		 "river"
+		 "sway"
 		 "nix"
 		 "nss-certs"))
 	  %base-packages))
 
 (define base-system-services
-  (cons* (service nix-service-type)
-         %desktop-services))
+  (cons (service nix-service-type)
+        (modify-services %desktop-services
+			 (gdm-service-type config => (gdm-configuration
+						      (inherit config)
+						      (wayland? #t))))))
 
 (define-public base-operating-system
   (operating-system

@@ -8,10 +8,10 @@
 (use-package-modules xorg)
 
 (define polaris-services
-  (cons* (set-xorg-configuration
-          (xorg-configuration
-           (extra-config
-            '("Section \"Device\"
+  (cons (set-xorg-configuration
+         (xorg-configuration
+          (extra-config
+           '("Section \"Device\"
   Identifier \"AMD\"
   Driver     \"amdgpu\"
   Option     \"TearFree\" \"true\"
@@ -23,7 +23,7 @@ Section \"InputClass\"
   MatchIsTouchpad \"on\"
   Option \"NaturalScrolling\"  \"true\"
 EndSection"))))
-         base-system-services))
+        base-system-services))
 
 (operating-system
   (inherit base-operating-system)
