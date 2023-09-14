@@ -9,10 +9,14 @@ bspc config split_ratio		0.50
 bspc config borderless_monocle	true
 bspc config gapless_monocle	true
 
-for monitor in $(bspc query -M --names); do
+monitors_ordered=$(bspc query -M --names | sort)
+
+for monitor in $monitors_ordered; do
     bspc monitor $monitor -d १ २ ३ ४ ५
     MONITOR=$monitor polybar & disown
 done
+
+bspc wm --reorder-monitors $(echo "$monitors_ordered" | tr '\n' ' ')
 
 bspc rule -a Firefox desktop=^1
 bspc rule -a Emacs state=tiled

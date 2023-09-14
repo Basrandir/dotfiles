@@ -2,11 +2,13 @@
   #:use-module (gnu home)
   #:use-module (gnu home services)
   #:use-module (gnu home services desktop)
+  #:use-module (gnu home services gnupg)
   #:use-module (gnu home services shepherd)
   #:use-module (gnu home services shells)
   #:use-module (gnu home services xdg)
   #:use-module (gnu packages)
   #:use-module (gnu packages emacs)
+  #:use-module (gnu packages gnupg)
   #:use-module (gnu packages rust)
   #:use-module (gnu packages version-control)
   #:use-module (gnu packages wm)
@@ -28,20 +30,23 @@
 		"firefox"
 		"font-google-noto"
 		"font-recursive"
+		"fuzzel"
 		"gcc-toolchain"
 		"glibc"
 		"guile"
 		"imagemagick"
+		"isync"
 		"kdenlive"
 		"lxappearance"
 		"mediainfo"
 		"mgba"
 		"mpv"
+		"notmuch"
 		"obs"
 		"okular"
 		"password-store"
 		"pavucontrol"
-		"pinentry-rofi"
+		"pinentry-emacs"
 		"polybar"
 		"pqiv"
 		"pulseaudio"
@@ -52,7 +57,7 @@
 		"rofi-pass"
 		"rsync"
 		"sshfs"
-		"telegram-desktop"
+		;; "telegram-desktop"
 		"ungoogled-chromium"
 		"unicode-emoji"
 		"unzip"
@@ -63,7 +68,8 @@
   (map specification->package
        (list
 	;; Emacs
-	"emacs-next-tree-sitter"
+	;; "emacs-next-tree-sitter" ;; For Xorg
+	"emacs-next-pgtk" ;; For Wayland
 	;; Emacs Extensnions
 	"emacs-ace-window"
 	"emacs-apheleia"
@@ -83,6 +89,7 @@
 	"emacs-magit"
 	"emacs-marginalia"
 	"emacs-meow"
+	"emacs-notmuch"
 	"emacs-orderless"
 	"emacs-org-appear"
 	"emacs-org-modern"
@@ -91,6 +98,7 @@
 	"emacs-rainbow-mode"
 	"emacs-rust-mode"
 	"emacs-svg-tag-mode"
+	"emacs-telega"
 	"emacs-tempel"
 	"emacs-tempel-collection"
 	"emacs-eglot-tempel"
@@ -104,7 +112,12 @@
 	    base-home-packages
 	    emacs-packages))
  (services
-  (list (service home-bash-service-type
+  (list (service home-gpg-agent-service-type
+		 (home-gpg-agent-configuration
+		  (pinentry-program
+		   (file-append pinentry-emacs "/bin/pinentry-emacs"))
+		  (ssh-support? #t)))
+	(service home-bash-service-type
                  (home-bash-configuration
                   (guix-defaults? #t)
 		  (environment-variables
@@ -119,8 +132,8 @@
 		   (list (local-file "../files/fish/config.fish")))))
 	(simple-service 'fish-config
 			home-files-service-type
-			(list `(".config/fish/conf.d/catppuccin.fish"
-				,(local-file "../files/fish/catppuccin.fish"))))
+			(list `(".config/fish/conf.d/angmar.fish"
+				,(local-file "../files/fish/angmar.fish"))))
 	(simple-service 'polybar-config
 		       home-files-service-type
 		       (list `(".config/polybar/config.ini"
@@ -129,10 +142,16 @@
 			home-files-service-type
 			(list `(".config/sxhkd/sxhkdrc"
 				,(local-file "../files/sxhkd/sxhkdrc"))))
+	;; BSPWM and River configs need to be executable. Need to find
+	;; a way to accomplish that using Guix (home)
 	;; (simple-service 'bspwm-config
 	;; 		home-files-service-type
 	;; 		(list `(".config/bspwm/bspwmrc"
 	;; 			,(local-file "files/bspwm/bspwmrc"))))
+	;; (simple-service 'river-config
+	;; 		home-files-service-type
+	;; 		(list `(".config/river/init"
+	;; 			,(local-file "../files/river/init"))))
 	(service home-xdg-user-directories-service-type
 		 (home-xdg-user-directories-configuration
 		  (download "$HOME/Downloads")
@@ -163,6 +182,10 @@
 			(list `(".themes"
 				,(local-file "../files/gtk"
 					     #:recursive? #t))))
+	(simple-service 'isync-config
+			home-files-service-type
+			(list `(".mbsyncrc"
+				,(local-file "../files/isync/mbsyncrc"))))
 	(service home-shepherd-service-type
 		 (home-shepherd-configuration
 		  (services (append (list ;; I thought this isn't needed?
