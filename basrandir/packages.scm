@@ -1,5 +1,6 @@
 (define-module (basrandir packages)
   #:use-module (gnu packages freedesktop)
+  #:use-module (gnu packages man)
   #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages wm)
   #:use-module (gnu packages xdisorg)
@@ -26,7 +27,7 @@
 	       (base32
 		"1nvhqs6wwisf8ama7y1y3q3nf2jm9sh5bn46z8kyds8cikm0x1vh"))))
     (build-system gnu-build-system)
-    (inputs (list libevdev libxkbcommon pixman pkg-config wayland wayland-protocols wlroots zig))
+    (inputs (list libevdev libxkbcommon pixman pkg-config scdoc wayland wayland-protocols wlroots zig))
     (arguments
      (list #:phases #~(modify-phases %standard-phases
 			(delete 'configure)
