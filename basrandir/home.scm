@@ -47,6 +47,7 @@
 		"password-store"
 		"pavucontrol"
 		"pinentry-emacs"
+		"pinentry-gnome3"
 		"polybar"
 		"pqiv"
 		"pulseaudio"
@@ -57,7 +58,7 @@
 		"rofi-pass"
 		"rsync"
 		"sshfs"
-		;; "telegram-desktop"
+		"telegram-desktop"
 		"ungoogled-chromium"
 		"unicode-emoji"
 		"unzip"
@@ -115,7 +116,7 @@
   (list (service home-gpg-agent-service-type
 		 (home-gpg-agent-configuration
 		  (pinentry-program
-		   (file-append pinentry-emacs "/bin/pinentry-emacs"))
+		   (file-append pinentry-gnome3 "/bin/pinentry-gnome3"))
 		  (ssh-support? #t)))
 	(service home-bash-service-type
                  (home-bash-configuration
