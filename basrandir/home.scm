@@ -79,7 +79,7 @@
 	"emacs-consult"
 	"emacs-corfu"
 	"emacs-dap-mode"
-	"emacs-denote"
+	;;"emacs-denote"
 	"emacs-diff-hl"
 	"emacs-diredfl"
 	"emacs-eat"
