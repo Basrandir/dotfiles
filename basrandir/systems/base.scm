@@ -24,7 +24,6 @@
 		 "gnupg"
 		 "pinentry"
 		 "river"
-		 "sway"
 		 "nix"
 		 "nss-certs"))
 	  %base-packages))
