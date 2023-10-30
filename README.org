@@ -1,0 +1,9 @@
+#+TITLE: System and User Configuration
+* TODO Get .password-store folder cloned
+My passwords are stored in a private repo, ~Guix Home~ should ensure the
+folder exists locally and if not, clone it.
+* TODO Ensure mail folders are created
+The ~mbsync~ command requires the existence of the appropriate mail
+folders as defined in the ~.mbsyncrc~ configuration file. In this case,
+I want to make sure ~Guix Home~ ensures the creation of the ~~/.mail~
+folder and appropriate subdirectories.
