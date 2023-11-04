@@ -18,7 +18,7 @@
 (define base-home-packages
   (append (list
 	   git `(,git "send-email")
-	   rust `(,rust "cargo") `(,rust "rustfmt"))
+	   rust `(,rust "cargo"))
 	  (map specification->package
 	       (list
 		"alacritty"
