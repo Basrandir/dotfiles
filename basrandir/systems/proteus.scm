@@ -4,7 +4,7 @@
   #:use-module (gnu system)
   #:use-module (gnu system file-systems))
 
-(use-service-modules cups desktop xorg)
+(use-service-modules cups desktop pm xorg)
 (use-package-modules linux xorg)
 
 (define proteus-packages
@@ -18,6 +18,11 @@
                   (bluetooth-configuration
                    (auto-enable? #t)))
 	 (udev-rules-service 'light light)
+	 (service tlp-service-type
+		  (tlp-configuration
+		   (cpu-scaling-governor-on-ac (list "performance"))
+		   (cpu-scaling-governor-on-bat (list "powersave"))
+		   (sched-powersave-on-bat? #t)))
 	 (set-xorg-configuration
           (xorg-configuration
            (extra-config '("Section \"Device\"
