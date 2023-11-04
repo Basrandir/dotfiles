@@ -21,6 +21,10 @@
 	   rust `(,rust "cargo"))
 	  (map specification->package
 	       (list
+		;; Desktop Environment
+		"fuzzel"
+		"waybar"
+		
 		"alacritty"
 		"anki"
 		"binutils"
@@ -30,7 +34,6 @@
 		"firefox"
 		"font-google-noto"
 		"font-recursive"
-		"fuzzel"
 		"gcc-toolchain"
 		"glibc"
 		"guile"
@@ -155,7 +158,7 @@
 	;; 			,(local-file "../files/river/init"))))
 	(service home-xdg-user-directories-service-type
 		 (home-xdg-user-directories-configuration
-		  (download "$HOME/Downloads")
+		  (download "$HOME/downloads")
 		  (videos "$HOME/media/videos")
 		  (music "$HOME/media/music")
 		  (pictures "$HOME/media/images")
