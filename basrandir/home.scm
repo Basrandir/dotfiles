@@ -47,6 +47,7 @@
 		"notmuch"
 		"obs"
 		"okular"
+		"pamixer"
 		"password-store"
 		"pavucontrol"
 		"pinentry-emacs"
