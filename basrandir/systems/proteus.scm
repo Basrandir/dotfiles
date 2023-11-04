@@ -56,15 +56,15 @@ EndSection"))))
  
  (swap-devices (list (swap-space
                       (target (uuid
-                               "161f8a1f-806d-48fb-8f8b-bd50e2927b83")))))
+                               "d1b13220-e253-4fa7-bc2b-38b8d37aef07")))))
  
  (file-systems (append
                 (list (file-system
-                       (device (uuid "57b0806a-9239-4784-8d5e-05ecd9a06ef6" 'ext4))
+                       (device (uuid "3e28816d-9c31-465a-b126-0f632e200ed5" 'ext4))
                        (mount-point "/")
                        (type "ext4"))
                       (file-system
-                       (device (uuid "B134-3679" 'fat32))
+                       (device (uuid "B223-C489" 'fat32))
                        (mount-point "/boot/efi")
                        (type "vfat")))
                 %base-file-systems))
