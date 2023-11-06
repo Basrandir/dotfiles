@@ -140,9 +140,13 @@
 			(list `(".config/fish/conf.d/angmar.fish"
 				,(local-file "../files/fish/angmar.fish"))))
 	(simple-service 'polybar-config
-		       home-files-service-type
-		       (list `(".config/polybar/config.ini"
-			       ,(local-file "../files/polybar/config.ini"))))
+			home-files-service-type
+			(list `(".config/polybar/config.ini"
+				,(local-file "../files/polybar/config.ini"))))
+	(simple-service 'waybar-config
+			home-files-service-type
+			(list `(".config/waybar/config"
+				,(local-file "../files/waybar/config"))))
 	(simple-service 'sxhkd-config
 			home-files-service-type
 			(list `(".config/sxhkd/sxhkdrc"
