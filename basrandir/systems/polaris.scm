@@ -31,17 +31,17 @@ EndSection"))))
   
   (swap-devices (list
                  (swap-space (target
-			      (uuid "9565cc80-88e4-4f07-80e9-06017c9a2ee0")))))
+			      (uuid "98d54898-5d10-420d-b9b2-51e0931818a2")))))
   
   ;; Assume the target root file system is labelled "my-root",
   ;; and the EFI System Partition has UUID 1234-ABCD.
   (file-systems (append
                  (list (file-system
-			 (device (uuid "eb08e4ac-c876-4a5d-98d1-b57365d4be65"))
+			 (device (uuid "c5962eb1-c0bf-46fb-8a16-2b2d65249785"))
 			 (mount-point "/")
 			 (type "ext4"))
                        (file-system
-			 (device (uuid "BF48-5B66" 'fat))
+			 (device (uuid "DC47-9D61" 'fat))
 			 (mount-point "/boot/efi")
 			 (type "vfat")))
                  %base-file-systems))
