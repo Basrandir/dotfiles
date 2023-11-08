@@ -163,7 +163,7 @@ riverctl rule-add csd -app-id "bar"
 riverctl default-layout rivertile
 rivertile -view-padding 6 -outer-padding 6 &
 
-[[ "$HOSTNAME" == "polaris" ]] && guix shell wlr-randr -- wlr-randr --output DP-2 --mode 3840x2160@120Hz --pos 1920,0 --output HDMI-A-1 --pos 0,0
+[[ "$HOSTNAME" == "polaris" ]] && guix shell wlr-randr -- wlr-randr --output DP-1 --mode 3840x2160@120Hz --scale 1.6 --pos 1920,0 --output HDMI-A-1 --pos 0,0
 
 [[ "$HOSTNAME" == "proteus" ]] && riverctl input pointer-1267-32-Elan_Touchpad natural-scroll enabled
 
