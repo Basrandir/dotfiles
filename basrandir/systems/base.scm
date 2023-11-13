@@ -17,10 +17,7 @@
 
 (define base-system-packages
   (append (map specification->package
-	       '("bspwm"
-		 "sxhkd"
-		 "xsetroot"
-		 "openssh"
+	       '("openssh"
 		 "gnupg"
 		 "pinentry"
 		 "river"
@@ -29,11 +26,14 @@
 	  %base-packages))
 
 (define base-system-services
-  (cons (service nix-service-type)
-        (modify-services %desktop-services
-			 (gdm-service-type config => (gdm-configuration
-						      (inherit config)
-						      (wayland? #t))))))
+  (cons* (service nix-service-type)
+	 (service bluetooth-service-type
+		  (bluetooth-configuration
+		   (auto-enable? #t)))
+         (modify-services %desktop-services
+			  (gdm-service-type config => (gdm-configuration
+						       (inherit config)
+						       (wayland? #t))))))
 
 (define-public base-operating-system
   (operating-system

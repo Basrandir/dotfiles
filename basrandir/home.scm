@@ -21,7 +21,7 @@
 	   rust `(,rust "cargo"))
 	  (map specification->package
 	       (list
-		;; Desktop Environment
+		;; Wayland Desktop Environment
 		"fuzzel"
 		"waybar"
 		
@@ -61,8 +61,6 @@
 		"qt5ct"
 		"quodlibet"
 		"ripgrep"
-		"rofi"
-		"rofi-pass"
 		"rsync"
 		"sshfs"
 		"telegram-desktop"
@@ -138,10 +136,10 @@
 		     ("mvi" . "mpv --config-dir=$HOME/.config/mvi")))
 		  (config
 		   (list (local-file "../files/fish/config.fish")))))
-	(simple-service 'fish-config
-			home-files-service-type
-			(list `(".config/fish/conf.d/angmar.fish"
-				,(local-file "../files/fish/angmar.fish"))))
+	;(simple-service 'fish-config
+	;		home-files-service-type
+	;		(list `(".config/fish/conf.d/angmar.fish"
+	;			,(local-file "../files/fish/angmar.fish"))))
 	(simple-service 'polybar-config
 			home-files-service-type
 			(list `(".config/polybar/config.ini"
@@ -194,10 +192,10 @@
 			(list `(".themes"
 				,(local-file "../files/gtk"
 					     #:recursive? #t))))
-	(simple-service 'isync-config
-			home-files-service-type
-			(list `(".mbsyncrc"
-				,(local-file "../files/isync/mbsyncrc"))))
+	;(simple-service 'isync-config
+	;		home-files-service-type
+	;		(list `(".mbsyncrc"
+	;			,(local-file "../files/isync/mbsyncrc"))))
 	(service home-shepherd-service-type
 		 (home-shepherd-configuration
 		  (services (append (list ;; I thought this isn't needed?
