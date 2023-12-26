@@ -4,7 +4,7 @@
 
 ;;; Code:
 (use-package ellama
-  :elpaca t
+  :elpaca (ellama :host github :repo "s-kostyaev/ellama")
   :init
   (setopt ellama-language "English")
   (require 'llm-ollama)

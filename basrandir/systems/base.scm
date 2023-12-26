@@ -22,11 +22,13 @@
 		 "pinentry"
 		 "river"
 		 "nix"
-		 "nss-certs"))
+		 "nss-certs"
+		 "xorg-server-xwayland"))
 	  %base-packages))
 
 (define base-system-services
-  (cons* (service nix-service-type)
+  (cons* polkit-wheel-service
+	 (service nix-service-type)
 	 (service bluetooth-service-type
 		  (bluetooth-configuration
 		   (auto-enable? #t)))
@@ -63,7 +65,7 @@
 		  (name "bassam")
 		  (comment "Bassam Saeed")
 		  (group "users")
-		  (supplementary-groups '("wheel" "netdev" "lp"
+		  (supplementary-groups '("wheel" "netdev" "lp" "libvirt" "kvm"
 					  "audio" "video")))
 		 %base-user-accounts))
 

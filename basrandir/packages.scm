@@ -35,7 +35,7 @@
 			  (lambda* (#:key outputs #:allow-other-keys)
 			    (let ((out (assoc-ref outputs "out")))
 			      (setenv "ZIG_GLOBAL_CACHE_DIR" (string-append (getcwd) "/zig-cache"))
-			      (invoke "zig" "build" "-Drelease-safe" "--prefix" out "install"))))
+			      (invoke "zig" "build" "-Drelease-safe" "-Dxwayland" "--prefix" out "install"))))
 			(add-after 'build 'create-desktop-file
 			  (lambda* (#:key outputs #:allow-other-keys)
 			    (let* ((out (assoc-ref outputs "out"))

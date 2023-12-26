@@ -111,6 +111,7 @@ riverctl map normal Super Right send-layout-cmd rivertile "main-location right"
 riverctl map normal Super Down  send-layout-cmd rivertile "main-location bottom"
 riverctl map normal Super Left  send-layout-cmd rivertile "main-location left"
 
+riverctl map normal Super+Shift S spawn 'grim -g "$(slurp)" $HOME/media/images/screenshots/$(date +"%s_grim.png")'
 # Declare a passthrough mode. This mode has only a single mapping to return to
 # normal mode. This makes it useful for testing a nested wayland compositor
 riverctl declare-mode passthrough
@@ -167,4 +168,5 @@ rivertile -view-padding 6 -outer-padding 6 &
 
 [[ "$HOSTNAME" == "proteus" ]] && riverctl input pointer-1267-32-Elan_Touchpad natural-scroll enabled
 
+swaybg -m fill -i /home/bassam/media/images/wallpapers/lotr/anato-finnstark-anato-finnstark-anato-finnstark-web-petit-4.jpg &
 riverctl spawn waybar

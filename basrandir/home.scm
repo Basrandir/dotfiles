@@ -18,12 +18,15 @@
 (define base-home-packages
   (append (list
 	   git `(,git "send-email")
-	   rust `(,rust "cargo"))
+	   rust `(,rust "cargo") `(,rust "tools"))
 	  (map specification->package
 	       (list
 		;; Wayland Desktop Environment
 		"fuzzel"
 		"waybar"
+		"swaybg"
+		"slurp"
+		"grim"
 		
 		"alacritty"
 		"anki"
@@ -40,6 +43,7 @@
 		"gcc-toolchain"
 		"glibc"
 		"guile"
+		"hunspell-dict-en-us"
 		"imagemagick"
 		"isync"
 		"kdenlive"
@@ -47,6 +51,7 @@
 		"mediainfo"
 		"mgba"
 		"mpv"
+		"neovim"
 		"notmuch"
 		"obs"
 		"okular"
@@ -63,10 +68,12 @@
 		"ripgrep"
 		"rsync"
 		"sshfs"
+		"steam"
 		"telegram-desktop"
 		"ungoogled-chromium"
 		"unicode-emoji"
 		"unzip"
+		"virt-manager"
 		"xdg-utils"
 		))))
 
@@ -91,6 +98,7 @@
 	"emacs-embark"
 	"emacs-envrc"
 	"emacs-hide-mode-line"
+	"emacs-jinx"
 	"emacs-kind-icon"
 	"emacs-magit"
 	"emacs-marginalia"
@@ -128,6 +136,7 @@
                   (guix-defaults? #t)
 		  (environment-variables
 		   '(("QT_QPA_PLATFORMTHEME" . "qt5ct")
+		     ("MOZ_ENABLE_WAYLAND" . "1")
 		     ("PATH" . "$PATH:$HOME/bin")))))
         (service home-fish-service-type
 		 (home-fish-configuration
@@ -146,8 +155,9 @@
 				,(local-file "../files/polybar/config.ini"))))
 	(simple-service 'waybar-config
 			home-files-service-type
-			(list `(".config/waybar/config"
-				,(local-file "../files/waybar/config"))))
+			(list `(".config/waybar"
+				,(local-file "../files/waybar"
+					     #:recursive? #t))))
 	(simple-service 'sxhkd-config
 			home-files-service-type
 			(list `(".config/sxhkd/sxhkdrc"
@@ -203,7 +213,7 @@
 				      (documentation "Emacs server.")
 				      (provision '(emacs-server))
 				      (start #~(make-forkexec-constructor
-						(list #$(file-append emacs "/bin/emacs" "--daemon"))))
+						(list #$(file-append emacs-next-pgtk "/bin/emacs --fg-daemon=server"))))
 				      (stop #~(make-kill-destructor))))))))
 	(simple-service 'emacs-config
 			home-files-service-type

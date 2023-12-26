@@ -14,9 +14,6 @@
 
 (define proteus-services
   (cons* (service cups-service-type)
-	 (service bluetooth-service-type
-                  (bluetooth-configuration
-                   (auto-enable? #t)))
 	 (udev-rules-service 'light light)
 	 (service tlp-service-type
 		  (tlp-configuration

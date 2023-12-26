@@ -70,6 +70,10 @@
 (require 'module-templates)
 (require 'module-ui)
 
+(use-package jinx
+  :bind (("M-$" . jinx-correct)
+	 ("C-M-$" . jinx-languages)))
+
 ;; Set margins on all sides
 (push '(internal-border-width . 16) default-frame-alist)
 

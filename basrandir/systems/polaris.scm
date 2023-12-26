@@ -4,14 +4,14 @@
   #:use-module (gnu system)
   #:use-module (gnu system file-systems))
 
-(use-service-modules xorg)
+(use-service-modules virtualization xorg)
 (use-package-modules xorg)
 
 (define polaris-services
-  (cons (set-xorg-configuration
-         (xorg-configuration
-          (extra-config
-           '("Section \"Device\"
+  (cons* (set-xorg-configuration
+          (xorg-configuration
+           (extra-config
+            '("Section \"Device\"
   Identifier \"AMD\"
   Driver     \"amdgpu\"
   Option     \"TearFree\" \"true\"
@@ -23,7 +23,11 @@ Section \"InputClass\"
   MatchIsTouchpad \"on\"
   Option \"NaturalScrolling\"  \"true\"
 EndSection"))))
-        base-system-services))
+	 (service virtlog-service-type)
+	 (service libvirt-service-type
+		  (libvirt-configuration
+		   (unix-sock-group "libvirt")))
+         base-system-services))
 
 (operating-system
   (inherit base-operating-system)
