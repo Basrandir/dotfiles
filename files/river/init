@@ -170,3 +170,4 @@ rivertile -view-padding 6 -outer-padding 6 &
 
 swaybg -m fill -i /home/bassam/media/images/wallpapers/lotr/anato-finnstark-anato-finnstark-anato-finnstark-web-petit-4.jpg &
 riverctl spawn waybar
+exec dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river

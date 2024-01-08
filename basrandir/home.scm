@@ -1,4 +1,5 @@
 (define-module (basrandir home)
+  #:use-module (basrandir services pipewire)
   #:use-module (gnu home)
   #:use-module (gnu home services)
   #:use-module (gnu home services desktop)
@@ -35,6 +36,7 @@
 		"fd"
 		"ffmpegthumbnailer"
 		"firefox"
+		"flatpak"
 		"font-google-noto"
 		"font-google-noto-emoji"
 		"font-google-noto-sans-cjk"
@@ -64,6 +66,7 @@
 		"pqiv"
 		"pulseaudio"
 		"qt5ct"
+		"qtwayland"
 		"quodlibet"
 		"ripgrep"
 		"rsync"
@@ -74,6 +77,9 @@
 		"unicode-emoji"
 		"unzip"
 		"virt-manager"
+		"xdg-desktop-portal"
+		"xdg-desktop-portal-wlr"
+		"xdg-desktop-portal-gtk"
 		"xdg-utils"
 		))))
 
@@ -126,7 +132,9 @@
 	    base-home-packages
 	    emacs-packages))
  (services
-  (list (service home-gpg-agent-service-type
+  (list (service home-dbus-service-type)
+	(service home-pipewire-service-type)	
+	(service home-gpg-agent-service-type
 		 (home-gpg-agent-configuration
 		  (pinentry-program
 		   (file-append pinentry-gnome3 "/bin/pinentry-gnome3"))
@@ -137,6 +145,8 @@
 		  (environment-variables
 		   '(("QT_QPA_PLATFORMTHEME" . "qt5ct")
 		     ("MOZ_ENABLE_WAYLAND" . "1")
+		     ("XDG_CURRENT_DESKTOP" . "river")
+		     ("RTC_USE_PIPEWIRE" . "true")
 		     ("PATH" . "$PATH:$HOME/bin")))))
         (service home-fish-service-type
 		 (home-fish-configuration
