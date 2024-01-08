@@ -74,9 +74,6 @@
   :bind (("M-$" . jinx-correct)
 	 ("C-M-$" . jinx-languages)))
 
-;; Set margins on all sides
-(push '(internal-border-width . 16) default-frame-alist)
-
 ;; Make GC pauses faster.
 (setq gc-cons-threshold (* 2 1000 1000))
 

@@ -23,6 +23,9 @@
 ;; Enable rainbow-mode
 (use-package rainbow-mode)
 
+;; Set margins on all sides
+(push '(internal-border-width . 16) default-frame-alist)
+
 (provide 'module-ui)
 
 ;;; module-ui.el ends here
