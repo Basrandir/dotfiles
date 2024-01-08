@@ -1,4 +1,34 @@
 color_schemes:
+  angmar: &angmar
+    # Default colors
+    primary:
+      background: '#0a090b'
+      foreground: '#e8e0c8'
+  # Cursor colors
+    cursor:
+      text:   '#0a090b'
+      cursor: '#e8e0c8'
+  # Normal colors
+    normal:
+      black:   '#0a090b'
+      red:     '#CEAD77'
+      green:   '#DFC27E'
+      yellow:  '#789791'
+      blue:    '#A9AB8E'
+      magenta: '#CAB98C'
+      cyan:    '#BAC5A9'
+      white:   '#e8e0c8'
+  # Bright colors
+    bright:
+      black:   '#a29c8c'
+      red:     '#CEAD77'
+      green:   '#DFC27E'
+      yellow:  '#789791'
+      blue:    '#A9AB8E'
+      magenta: '#CAB98C'
+      cyan:    '#BAC5A9'
+      white:   '#e8e0c8'
+
   elesh: &elesh
     primary:
       background: '0x09090b'
