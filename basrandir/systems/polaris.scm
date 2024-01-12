@@ -4,7 +4,7 @@
   #:use-module (gnu system)
   #:use-module (gnu system file-systems))
 
-(use-service-modules virtualization xorg)
+(use-service-modules xorg)
 (use-package-modules xorg)
 
 (define polaris-services
@@ -23,10 +23,6 @@ Section \"InputClass\"
   MatchIsTouchpad \"on\"
   Option \"NaturalScrolling\"  \"true\"
 EndSection"))))
-	 (service virtlog-service-type)
-	 (service libvirt-service-type
-		  (libvirt-configuration
-		   (unix-sock-group "libvirt")))
          base-system-services))
 
 (operating-system

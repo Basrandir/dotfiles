@@ -12,7 +12,7 @@
   #:export (base-system-packages
 	    base-system-services))
 
-(use-service-modules desktop nix xorg) ;;shepherd sound xorg)
+(use-service-modules desktop nix virtualization xorg) ;;shepherd sound xorg)
 ;; (use-package-modules bootloaders certs xorg)
 
 (define base-system-packages
@@ -29,6 +29,10 @@
 (define base-system-services
   (cons* polkit-wheel-service
 	 (service nix-service-type)
+	 (service virtlog-service-type)
+	 (service libvirt-service-type
+		  (libvirt-configuration
+		   (unix-sock-group "libvirt")))
 	 (service bluetooth-service-type
 		  (bluetooth-configuration
 		   (auto-enable? #t)))
