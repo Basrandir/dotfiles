@@ -9,6 +9,9 @@
 (use-package org-tempo
   :after org)
 
+(use-package org-timeblock
+  :elpaca t)
+
 ;; Beautify Org Src blocks
 (add-hook 'org-mode-hook (lambda ()
 			   "Beautify Org Src blocks"
