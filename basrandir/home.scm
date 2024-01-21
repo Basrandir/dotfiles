@@ -144,6 +144,7 @@
                   (guix-defaults? #t)
 		  (environment-variables
 		   '(("QT_QPA_PLATFORMTHEME" . "qt5ct")
+		     ("XDG_DATA_DIRS" . "$XDG_DATA_DIRS:$HOME/.local/share/flatpak/exports/share")
 		     ("MOZ_ENABLE_WAYLAND" . "1")
 		     ("XDG_CURRENT_DESKTOP" . "river")
 		     ("RTC_USE_PIPEWIRE" . "true")
