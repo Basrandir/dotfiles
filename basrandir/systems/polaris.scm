@@ -5,10 +5,11 @@
   #:use-module (gnu system file-systems))
 
 (use-service-modules xorg)
-(use-package-modules xorg)
+(use-package-modules games xorg)
 
 (define polaris-services
-  (cons* (set-xorg-configuration
+  (cons* (udev-rules-service 'steam-devices steam-devices-udev-rules)
+	 (set-xorg-configuration
           (xorg-configuration
            (extra-config
             '("Section \"Device\"

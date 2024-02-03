@@ -72,6 +72,7 @@
 		"rsync"
 		"sshfs"
 		"steam"
+		"steam-devices-udev-rules"
 		"telegram-desktop"
 		"ungoogled-chromium"
 		"unicode-emoji"
