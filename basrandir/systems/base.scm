@@ -39,7 +39,15 @@
          (modify-services %desktop-services
 			  (gdm-service-type config => (gdm-configuration
 						       (inherit config)
-						       (wayland? #t))))))
+						       (wayland? #t)))
+			  (guix-service-type config => (guix-configuration
+							(inherit config)
+							(substitute-urls
+							 (append (list "https://substitutes.nonguix.org")
+								 %default-substitute-urls))
+							(authorized-keys
+							 (append (list (local-file "../../signing-key.pub"))
+								 %default-authorized-guix-keys)))))))
 
 (define-public base-operating-system
   (operating-system
