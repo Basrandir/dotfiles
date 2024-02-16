@@ -9,6 +9,7 @@
   #:use-module (gnu home services xdg)
   #:use-module (gnu packages)
   #:use-module (gnu packages emacs)
+  #:use-module (gnu packages glib)
   #:use-module (gnu packages gnupg)
   #:use-module (gnu packages rust)
   #:use-module (gnu packages version-control)
@@ -19,7 +20,8 @@
 (define base-home-packages
   (append (list
 	   git `(,git "send-email")
-	   rust `(,rust "cargo") `(,rust "tools"))
+	   rust `(,rust "cargo") `(,rust "tools")
+	   glib `(,glib "bin"))
 	  (map specification->package
 	       (list
 		;; Wayland Desktop Environment
@@ -42,6 +44,7 @@
 		"font-google-noto-sans-cjk"
 		"font-google-noto-serif-cjk"
 		"font-recursive"
+		"gammastep"
 		"gcc-toolchain"
 		"glibc"
 		"guile"
