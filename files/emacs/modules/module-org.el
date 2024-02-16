@@ -10,7 +10,11 @@
   :after org)
 
 (use-package org-timeblock
-  :elpaca t)
+  :elpaca t
+  :after org
+  :custom
+  (org-timeblock-inbox-file "/home/bassam/doc/org/personal.org")
+  (org-timeblock-show-future-repeats t))
 
 ;; Beautify Org Src blocks
 (add-hook 'org-mode-hook (lambda ()
@@ -99,7 +103,8 @@
 (advice-add 'org-capture-finalize :after #'delete-capture-frame)
 
 ;; Org Agenda
-(setq org-agenda-files '("~/doc/org/routine.org"))
+(setq org-agenda-files '("~/doc/org/routine.org"
+			 "~/doc/org/personal.org"))
 
 ;; Org habits
 (add-to-list 'org-modules 'org-habit t)
