@@ -22,7 +22,6 @@
 		 "pinentry"
 		 "river"
 		 "nix"
-		 "nss-certs"
 		 "xorg-server-xwayland"))
 	  %base-packages))
 
