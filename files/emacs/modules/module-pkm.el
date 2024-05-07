@@ -4,7 +4,7 @@
 
 ;;; Code:
 (use-package denote
-  :elpaca (denote :host sourcehut :repo "protesilaos/denote")
+  :elpaca (denote :host github :repo "protesilaos/denote")
   :custom
   (denote-directory (expand-file-name "~/doc/org/memex"))
   (denote-journal-extras-title-format 'day-date-month-year)
@@ -46,8 +46,13 @@ creation date of the file this function is called from."
   (advice-remove 'denote #'my/denote-id-format-advice))
 
 (defun my/denote-id-format-advice (orig-fun &rest args)
-  (let ((denote-id-format "%Y%m%d"))
+  (let ((denote-id-format "%Y%m%d")
+	(denote-id-regexp "[0-9]\\{8\\}"))
     (apply orig-fun args)))
+
+(defun my/denote-create-note-child ()
+  "Create a new note with a signature that's a child to the current one."
+  (interactive))
 
 (provide 'module-pkm)
 
