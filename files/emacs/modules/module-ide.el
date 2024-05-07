@@ -23,6 +23,10 @@
   (set-face-attribute 'eldoc-box-border nil :background "white"))
 
 ;; Tree-sitter
+(use-package treesit
+  :custom
+  (treesit-font-lock-level 4))
+
 (use-package treesit-auto
   :elpaca t
   :custom
@@ -30,8 +34,20 @@
   :config
   (global-treesit-auto-mode))
 
+;; Eglot
+(use-package eglot
+  :bind (:map eglot-mode-map
+	      ("C-c a" . eglot-code-actions)
+	      ("M-h" . eldoc-box-help-at-point))
+  ;; :hook (eglot--managed-mode . limit-eldoc-to-single-line)
+  :init
+  (defun limit-eldoc-to-single-line ()
+    "Limit Eldoc output to a single line in the echo area."
+    (setq-local eldoc-echo-area-use-multiline-p nil)))
+
 ;; Rust
-(use-package rust-mode
+(use-package rust-ts-mode
+  :mode ("\\.rs" . rust-ts-mode)
   :hook (rust-ts-mode . eglot-ensure)
   :bind (:map rust-ts-mode-map
 	      ("C-c C-c C-u" . rust-compile)
@@ -41,15 +57,6 @@
 
 (use-package tsx-ts-mode
   :mode "\\.tsx\\'")
-
-(use-package eglot
-  :bind (:map eglot-mode-map
-	      ("M-h" . eldoc-box-help-at-point))
-  ;; :hook (eglot--managed-mode . limit-eldoc-to-single-line)
-  :init
-  (defun limit-eldoc-to-single-line ()
-    "Limit Eldoc output to a single line in the echo area."
-    (setq-local eldoc-echo-area-use-multiline-p nil)))
 
 (use-package envrc
   :after eglot
