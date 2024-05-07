@@ -27,7 +27,7 @@
 	       (base32
 		"1nvhqs6wwisf8ama7y1y3q3nf2jm9sh5bn46z8kyds8cikm0x1vh"))))
     (build-system gnu-build-system)
-    (inputs (list libevdev libxkbcommon pixman pkg-config scdoc wayland wayland-protocols wlroots zig))
+    (inputs (list libevdev libxkbcommon pixman pkg-config scdoc wayland wayland-protocols wlroots-0.16 zig))
     (arguments
      (list #:phases #~(modify-phases %standard-phases
 			(delete 'configure)
