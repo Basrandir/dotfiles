@@ -4,6 +4,10 @@
 
 ;;; Code:
 
+(use-package org
+  :hook
+  (org-mode . org-indent-mode))
+
 ;; org-tempo is a module that contains structure templates such as <s that I use all the time.
 ;; As far as I'm aware, it used to be loaded automatically with Org but now needs to be enabled manually.
 (use-package org-tempo
