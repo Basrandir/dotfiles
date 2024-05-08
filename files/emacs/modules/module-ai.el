@@ -13,7 +13,34 @@
 	   :host "ollama.containers.saeed.house"
 	   :port 80
 	   :chat-model "codellama"
-	   :embedding-model "codellama")))
+	   :embedding-model "codellama"))
+
+  (setopt ellama-providers
+	  '(("llama2" . (make-llm-ollama
+			 :host "ollama.containers.saeed.house"
+			 :port 80
+			 :chat-model "llama2"
+			 :embedding-model "llama2"))
+	    ("codellama" . (make-llm-ollama
+			    :host "ollama.containers.saeed.house"
+			    :port 80
+			    :chat-model "codellama"
+			    :embedding-model "codellama"))
+	    ("deepseek-coder" . (make-llm-ollama
+				 :host "ollama.containers.saeed.house"
+				 :port 80
+				 :chat-model "deepseek-coder"
+				 :embedding-model "deepseek-coder"))
+	    ("openchat" . (make-llm-ollama
+			   :host "ollama.containers.saeed.house"
+			   :port 80
+			   :chat-model "openchat"
+			   :embedding-model "openchat"))
+	    ("openhermes" . (make-llm-ollama
+			     :host "ollama.containers.saeed.house"
+			     :port 80
+			     :chat-model "openhermes"
+			     :embedding-model "openhermes")))))
 
 (provide 'module-ai)
 
