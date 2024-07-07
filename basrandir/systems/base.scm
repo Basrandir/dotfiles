@@ -35,6 +35,17 @@
 	 (service bluetooth-service-type
 		  (bluetooth-configuration
 		   (auto-enable? #t)))
+	 (simple-service
+	  'podman-subuid-subgid
+	  etc-service-type
+	  `(("subuid"
+	     ,(plain-file
+	       "subuid"
+	       "bassam:100000:65536\n"))
+	    ("subgid"
+	     ,(plain-file
+	       "subgid"
+	       "bassam:100000:65536\n"))))
          (modify-services %desktop-services
 			  (gdm-service-type config => (gdm-configuration
 						       (inherit config)

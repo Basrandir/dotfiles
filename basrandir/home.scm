@@ -36,6 +36,7 @@
 		"binutils"
 		"curl"
 		"direnv"
+		"distrobox"
 		"fd"
 		"ffmpegthumbnailer"
 		"firefox"
@@ -66,6 +67,7 @@
 		"pavucontrol"
 		"pinentry-emacs"
 		"pinentry-gnome3"
+		"podman"
 		"polybar"
 		"pqiv"
 		"pulseaudio"
@@ -232,6 +234,23 @@
 				      (start #~(make-forkexec-constructor
 						(list #$(file-append emacs-next-pgtk "/bin/emacs --fg-daemon=server"))))
 				      (stop #~(make-kill-destructor))))))))
+	(simple-service 'podman-configs
+			home-xdg-configuration-files-service-type
+			`(("containers/registries.conf"
+			   ,(plain-file
+			     "registries.conf"
+			     "unqualified-search-registries = ['docker.io', \
+'registry.fedoraproject.org', \
+'registry.access.redhat.com', \
+'registry.centos.org']"))
+			  ("containers/storage.conf"
+			   ,(plain-file
+			     "storage.conf"
+			     "[storage]\ndriver = \"overlay\""))
+			  ("containers/policy.json"
+			   ,(plain-file
+			     "policy.json"
+			     "{\"default\": [{\"type\": \"insecureAcceptAnything\"}]}"))))
 	(simple-service 'emacs-config
 			home-files-service-type
                         (list `(".config/emacs/init.el"
