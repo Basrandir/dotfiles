@@ -6,10 +6,54 @@
 
 (use-package org
   :hook
-  (org-mode . org-indent-mode))
+  (org-mode . org-indent-mode)
+  (org-mode . (lambda ()
+		"Beautify Org Src blocks"
+		(push '("#+begin_src" . "λ") prettify-symbols-alist)
+		(push '("#+end_src" . "λ") prettify-symbols-alist)
+		(prettify-symbols-mode)))
+  :bind (("C-c o l" . org-store-link)
+	 ("C-c o a" . 'org-agenda-list)
+	 ("C-c o c" . 'org-capture)
+	 ("C-c o b" . 'org-iswitchb))
+  :config
+  ;; Enable Org habits
+  (add-to-list 'org-modules 'org-habit t)
 
-;; org-tempo is a module that contains structure templates such as <s that I use all the time.
-;; As far as I'm aware, it used to be loaded automatically with Org but now needs to be enabled manually.
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((shell . t)
+     (python . t)))
+  :custom
+  ;; Follow (go to) links when clicking RET
+  (org-return-follows-link t)
+
+  ;; Elimate org magic removing empty lines between headings when
+  ;; they're toggled closed
+  (org-blank-before-new-entry '((heading . nil)
+				(plain-list-item . nil)))
+  (org-cycle-separator-lines 1)
+  
+  ;; Enabling displaying images by default
+  (org-startup-with-inline-images t)
+
+  ;; Remove / and * emphasis for italics and bold respectively
+  (org-hide-emphasis-markers t)
+
+  ;; Replace ... for hidden content with ⤵
+  (org-ellipsis "⤵")
+  
+  ;; Org Agenda
+  (setq org-agenda-files '("~/doc/org/routine.org"
+			   "~/doc/org/personal.org"))
+  
+  ;; Set the default notes file where most captured tasks and ideas
+  ;; will go to
+  (org-default-notes-file "~/doc/org/inbox.org"))
+
+;; org-tempo is a module that contains structure templates such as <s
+;; that I use all the time.  As far as I'm aware, it used to be loaded
+;; automatically with Org but now needs to be enabled manually.
 (use-package org-tempo
   :after org)
 
@@ -19,32 +63,6 @@
   :custom
   (org-timeblock-inbox-file "/home/bassam/doc/org/personal.org")
   (org-timeblock-show-future-repeats t))
-
-;; Beautify Org Src blocks
-(add-hook 'org-mode-hook (lambda ()
-			   "Beautify Org Src blocks"
-			   (push '("#+begin_src" . "λ") prettify-symbols-alist)
-			   (push '("#+end_src" . "λ") prettify-symbols-alist)
-			   (prettify-symbols-mode)))
-
-;; Follow (go to) links when clicking RET
-(setq org-return-follows-link t)
-
-;; Elimate org magic removing empty lines between headings when they're toggled closed
-(setq org-blank-before-new-entry '((heading . nil)
-				   (plain-list-item . nil)))
-(setq org-cycle-separator-lines 1)
-
-;; Enabling displaying images by default
-(setq org-startup-with-inline-images t)
-
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((shell . t)
-   (python . t)))
-
-;; Remove / and * emphasis for italics and bold respectively
-(setq org-hide-emphasis-markers t)
 
 ;; While hiding emphasis markers is great, editing them can be
 ;; slightly annoying in that situation. Org-appear allows these
@@ -57,30 +75,27 @@
   ;; visible to links as well
   (org-appear-autolinks t))
 
-;; Replace ... for hidden content with ⤵
-(setq org-ellipsis "⤵")
-
-;; Enable auto-fill mode (limit M-q)
-(add-hook 'text-mode-hook 'turn-on-auto-fill)
-
-;; General Org Keybindings
-(define-key global-map (kbd "C-c o l") 'org-store-link)
-(define-key global-map (kbd "C-c o a") 'org-agenda-list)
-(define-key global-map (kbd "C-c o c") 'org-capture)
-(define-key global-map (kbd "C-c o b") 'org-iswitchb)
-
 (use-package org-modern
   :after org
   :hook (org-mode . org-modern-mode))
 
 ;;;; Org Capture
-(setq org-capture-templates
-      `(("c" "capture" entry (file "~/doc/org/inbox.org")
-	 "* TODO %?")
-	("w" "weight" table-line (file "~/doc/org/weight.org")
-	 "| %u | %? ||||")
-	("o" "org-protocol-capture" entry (file "~/doc/org/inbox.org")
-	 "* TODO [[%:link][%:description]]\n\n %i" :immediate-finish t)))
+
+(use-package org-capture
+  :after org
+  :custom
+  (org-capture-templates
+   `(("f" "Fleeting note" item
+      (file+headline org-default-notes-file "Notes")
+      "- %?")
+     ("t" "New task" entry
+      (file+headline org-default-notes-file "Tasks")
+      "* TODO %i%?")
+     ("w" "weight" table-line (file "~/doc/org/weight.org")
+      "| %u | %? ||||")
+     ("o" "org-protocol-capture" entry (file "~/doc/org/inbox.org")
+      "* TODO [[%:link][%:description]]\n\n %i" :immediate-finish t))))
+
 
 ;; Inspired by this thread:
 ;; https://old.reddit.com/r/emacs/comments/74gkeq/system_wide_org_capture/
@@ -105,13 +120,6 @@
 
 (advice-add 'org-switch-to-buffer-other-window :after #'supress-window-splitting)
 (advice-add 'org-capture-finalize :after #'delete-capture-frame)
-
-;; Org Agenda
-(setq org-agenda-files '("~/doc/org/routine.org"
-			 "~/doc/org/personal.org"))
-
-;; Org habits
-(add-to-list 'org-modules 'org-habit t)
 
 (provide 'module-org)
 
