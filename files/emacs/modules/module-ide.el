@@ -18,7 +18,7 @@
 
 ;; Documentation
 (use-package eldoc-box
-  :elpaca t
+  :ensure t
   :config
   (set-face-attribute 'eldoc-box-border nil :background "white"))
 
@@ -28,7 +28,7 @@
   (treesit-font-lock-level 4))
 
 (use-package treesit-auto
-  :elpaca t
+  :ensure t
   :custom
   (treesit-auto-install 'prompt)
   :config
