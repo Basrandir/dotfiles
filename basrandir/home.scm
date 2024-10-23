@@ -177,10 +177,6 @@
 		     ("mvi" . "mpv --config-dir=$HOME/.config/mvi")))
 		  (config
 		   (list (local-file "../files/fish/config.fish")))))
-	;(simple-service 'fish-config
-	;		home-files-service-type
-	;		(list `(".config/fish/conf.d/angmar.fish"
-	;			,(local-file "../files/fish/angmar.fish"))))
 	(simple-service 'polybar-config
 			home-files-service-type
 			(list `(".config/polybar/config.ini"
