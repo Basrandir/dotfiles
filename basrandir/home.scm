@@ -36,6 +36,7 @@
 		"anki"
 		"binutils"
 		"curl"
+		"darktable"
 		"direnv"
 		"distrobox"
 		"fd"
@@ -61,6 +62,7 @@
 		"mpv"
 		"neovim"
 		"notmuch"
+		"nyxt"
 		"obs"
 		"okular"
 		"pamixer"
@@ -75,6 +77,7 @@
 		"qt5ct"
 		"qtwayland"
 		"quodlibet"
+		"recoll"
 		"ripgrep"
 		"rsync"
 		"sshfs"
@@ -88,8 +91,8 @@
 		"wl-clipboard"
 		"xdg-desktop-portal"
 		"xdg-desktop-portal-wlr"
-		"xdg-desktop-portal-gtk"
 		"xdg-utils"
+		"yt-dlp"
 		))))
 
 (define emacs-packages
@@ -137,7 +140,6 @@
 	"emacs-rainbow-mode"
 	"emacs-rust-mode"
 	"emacs-svg-tag-mode"
-	"emacs-telega"
 	"emacs-tempel"
 	"emacs-tempel-collection"
 	"emacs-eglot-tempel"
