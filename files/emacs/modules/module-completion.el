@@ -39,6 +39,9 @@
 	      ("M-d" . #'corfu-popupinfo-toggle))
   :custom
   (corfu-auto t)
+  ;; Emacs 30+ invokes ispell as a capf function for text mode which
+  ;; is triggered by corfu. Which I don't use.
+  (text-mode-ispell-word-completion nil)
   :config
   (defun corfu-enable-in-minibuffer ()
     "Enable Corfu in the minibuffer if `completion-at-point` is bound."
