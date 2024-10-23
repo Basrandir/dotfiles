@@ -105,6 +105,7 @@
 	"emacs-avy"
 	"emacs-consult"
 	;; "emacs-corfu"
+	"emacs-dashboard"
 	"emacs-dap-mode"
 	;;"emacs-denote"
 	"emacs-diff-hl"
