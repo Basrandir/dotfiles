@@ -104,7 +104,7 @@
 	"emacs-autothemer"
 	"emacs-avy"
 	"emacs-consult"
-	"emacs-corfu"
+	;; "emacs-corfu"
 	"emacs-dap-mode"
 	;;"emacs-denote"
 	"emacs-diff-hl"
@@ -117,7 +117,7 @@
 	"emacs-jinx"
 	"emacs-kind-icon"
 	"emacs-magit"
-	"emacs-marginalia"
+	;; "emacs-marginalia"
 	"emacs-meow"
 	"emacs-notmuch"
 	"emacs-olivetti"
@@ -134,8 +134,8 @@
 	"emacs-tempel"
 	"emacs-tempel-collection"
 	"emacs-eglot-tempel"
-	"emacs-vertico"
-	"emacs-vertico-posframe"
+	;; "emacs-vertico"
+	;; "emacs-vertico-posframe"
 	"emacs-vterm"
 	"emacs-webfeeder")))
 

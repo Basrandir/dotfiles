@@ -30,6 +30,7 @@
    consult-find :preview-key 'any))
 
 (use-package corfu
+  :ensure t
   :init
   (global-corfu-mode)
   (corfu-popupinfo-mode)
@@ -62,6 +63,7 @@
   (setq prefix-help-command #'embark-prefix-help-command))
 
 (use-package marginalia
+  :ensure t
   :init (marginalia-mode))
 
 (use-package orderless
@@ -69,6 +71,7 @@
 	   (read-buffer-completion-ignore-case t)))
 
 (use-package vertico
+  :ensure t
   :init
   (vertico-mode)
   (vertico-multiform-mode)
@@ -82,6 +85,7 @@
 
 (use-package vertico-posframe
   :after vertico
+  :ensure t
   :config
   (setq vertico-posframe-parameters
 	'((left-fringe . 8)
