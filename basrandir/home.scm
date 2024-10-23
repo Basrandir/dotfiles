@@ -123,6 +123,7 @@
 	"emacs-orderless"
 	"emacs-org-appear"
 	"emacs-org-modern"
+	"emacs-org-timeblock"
 	"emacs-password-store"
 	"emacs-pdf-tools"
 	"emacs-rainbow-mode"

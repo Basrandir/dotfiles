@@ -58,10 +58,10 @@
   :after org)
 
 (use-package org-timeblock
-  :elpaca t
   :after org
   :custom
-  (org-timeblock-inbox-file "/home/bassam/doc/org/personal.org")
+  (org-timeblock-span 7)
+  (org-timeblock-inbox-file "/home/bassam/doc/org/routine.org")
   (org-timeblock-show-future-repeats t))
 
 ;; While hiding emphasis markers is great, editing them can be
