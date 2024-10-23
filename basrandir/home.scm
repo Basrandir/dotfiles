@@ -110,6 +110,7 @@
 	"emacs-diff-hl"
 	"emacs-diredfl"
 	"emacs-eat"
+	"emacs-ef-themes"
 	"emacs-embark"
 	"emacs-envrc"
 	"emacs-gptel"

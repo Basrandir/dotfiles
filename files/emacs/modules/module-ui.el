@@ -5,11 +5,9 @@
 ;;; Code:
 
 ;;;; Theme
-
-(use-package catppuccin-theme
-  :elpaca t
+(use-package ef-themes
   :config
-  (load-theme 'catppuccin t))
+  (load-theme 'ef-cyprus t))
 
 ;; Tabs and ribbons for the mode line
 (use-package moody
