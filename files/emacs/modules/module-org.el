@@ -96,6 +96,9 @@
      ("o" "org-protocol-capture" entry (file "~/doc/org/inbox.org")
       "* TODO [[%:link][%:description]]\n\n %i" :immediate-finish t))))
 
+(use-package olivetti
+  :hook
+  ((org-mode elfeed-show-mode) . olivetti-mode))
 
 ;; Inspired by this thread:
 ;; https://old.reddit.com/r/emacs/comments/74gkeq/system_wide_org_capture/

@@ -120,6 +120,7 @@
 	"emacs-marginalia"
 	"emacs-meow"
 	"emacs-notmuch"
+	"emacs-olivetti"
 	"emacs-orderless"
 	"emacs-org-appear"
 	"emacs-org-modern"
