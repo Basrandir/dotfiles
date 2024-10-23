@@ -112,6 +112,11 @@
 	"emacs-diredfl"
 	"emacs-eat"
 	"emacs-ef-themes"
+	;; Elfeed
+	"emacs-elfeed"
+	"emacs-elfeed-goodies"
+	"emacs-elfeed-protocol"
+	"emacs-elfeed-org"
 	"emacs-embark"
 	"emacs-envrc"
 	"emacs-gptel"
@@ -270,6 +275,8 @@
 				,(local-file "../files/emacs/early-init.el"))
 			      `(".config/emacs/templates"
 				,(local-file "../files/emacs/templates"))
+			      `(".config/emacs/elfeed.org"
+				,(local-file "../files/emacs/elfeed.org"))
 			      `(".config/emacs/modules"
 				,(local-file "../files/emacs/modules"
 					     #:recursive? #t)))))))

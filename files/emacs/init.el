@@ -66,6 +66,7 @@
 (require 'module-completion)
 (require 'module-defaults)
 (require 'module-dired)
+(require 'module-feed)
 (require 'module-ide)
 (require 'module-meow)
 (require 'module-org)
