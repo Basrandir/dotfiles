@@ -30,6 +30,7 @@
 		"swaybg"
 		"slurp"
 		"grim"
+		"swaynotificationcenter"
 		
 		"alacritty"
 		"anki"
@@ -84,6 +85,7 @@
 		"unicode-emoji"
 		"unzip"
 		"virt-manager"
+		"wl-clipboard"
 		"xdg-desktop-portal"
 		"xdg-desktop-portal-wlr"
 		"xdg-desktop-portal-gtk"
@@ -156,7 +158,7 @@
 		     ("MOZ_ENABLE_WAYLAND" . "1")
 		     ("XDG_CURRENT_DESKTOP" . "river")
 		     ("RTC_USE_PIPEWIRE" . "true")
-		     ("PATH" . "$PATH:$HOME/bin")))))
+		     ("PATH" . "$PATH:$HOME/bin:$HOME/scripts")))))
         (service home-fish-service-type
 		 (home-fish-configuration
 		  (aliases
@@ -176,6 +178,11 @@
 			home-files-service-type
 			(list `(".config/waybar"
 				,(local-file "../files/waybar"
+					     #:recursive? #t))))
+	(simple-service 'scripts-config
+			home-files-service-type
+			(list `("scripts"
+				,(local-file "../files/scripts"
 					     #:recursive? #t))))
 	(simple-service 'sxhkd-config
 			home-files-service-type

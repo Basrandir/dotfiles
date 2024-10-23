@@ -1,34 +1,20 @@
-### screenshot.sh --- using maim and slop to take screenshots
+#!/usr/bin/env bash
+### screenshot.sh --- using grim and slurp to take screenshots
 ###
 ### Usage:
-###   screenshot.sh [-ash] [-o output]
+###   screenshot.sh [-c]
 ###
 ### Options:
-###   -a screenshot active window
-###   -s allows you to select a region to screenshot
-###   -h hide cursor in final screenshot
+###   -c include cursor in final screenshot
 
 usage() {
     sed -n 's/^### \?//p' "$0"
     exit 1
 }
 
-screenshot_dir="$HOME/media/images/screenshots"
-
-window_title() {
-    local title
-    title="$(cat /proc/$(xdotool getwindowpid $(xdotool getactivewindow))/comm)"
-    screenshot_dir="$screenshot_dir/$title"
-    mkdir -p "$screenshot_dir"
-}
-
 while getopts ':asho:' OPT; do
     case ${OPT} in
-	a) active_window=1
-	   ;;
-	s) select_region=1
-	   ;;
-	h) hide_cursor=1
+	c) include_cursor=1
 	   ;;
 	\?) usage
 	    ;;
@@ -40,34 +26,22 @@ done
 
 shift "$((OPTIND -1))"
 
-if [ $active_window ]; then
-    maim_flags="$maim_flags --window=$(xdotool getactivewindow)"
-    window_title
-elif [ $select_region ]; then
-    maim_flags="$maim_flags -s"
-    window_title
-else
-    screenshot_dir="$screenshot_dir/fullscreen"
-    mkdir -p "$screenshot_dir"
-fi
+flags="$flags -g $(slurp)"
 
-if [ $hide_cursor ]; then
-    maim_flags="$maim_flags -u"
+if [ $include_cursor ]; then
+    grim="$flags -c"
 fi
 
 date=$(date +%Y.%m.%d_%T)
+screenshot_dir="$HOME/media/images/screenshots"
 screenshot_path="$screenshot_dir/$date.png"
-maim_flags="$(echo $maim_flags | xargs)"
+flags="$(echo $flags | xargs)"
 
-if [ -z "$maim_flags" ]; then
-    maim "$screenshot_path"
-else
-    maim "$maim_flags" "$screenshot_path"
-fi
+grim "$flags" "$screenshot_path"
 
-if [ $? -eq 1 ]; then
-    notify-send "Screenshot" "Cancelled"
+if [ $? -eq 0 ]; then
+    wl-copy < "$screenshot_path"
+    guix shell libnotify -- notify-send "Screenshot" "Taken"
 else
-    cat "$screenshot_path" | xclip -selection clipboard -t image/png
-    notify-send "Screenshot" "Taken"
+    guix shell libnotify -- notify-send "Screenshot" "Cancelled"
 fi
