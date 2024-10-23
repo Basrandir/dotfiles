@@ -17,9 +17,8 @@
     (insert selected-emoji)))
 
 (use-package consult
-  :bind (
-	 ("C-s" . consult-line)        ;; orig. isearch-forward
-	 ("C-x b" . consult-buffer)    ;; org. switch-to-buffer
+  :bind (("C-x b" . consult-buffer)    ;; org. switch-to-buffer
+	 ("M-s s" . consult-line)
 	 ("M-s d" . consult-find)
 	 ("M-s f" . (lambda () (interactive) (consult-find "~")))
 	 ("M-s r" . consult-ripgrep))
