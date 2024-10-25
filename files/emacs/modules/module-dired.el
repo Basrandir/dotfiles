@@ -36,10 +36,9 @@
 	(progn (revert-buffer) ; otherwise just revert to re-show
 	       (set (make-local-variable 'dired-dotfiles-show-p) t))))))
 
+;; Setup through Denote config
 (use-package diredfl
-  :after dired
-  :config
-  (diredfl-global-mode 1))
+  :after dired)
 
 (provide 'module-dired)
 

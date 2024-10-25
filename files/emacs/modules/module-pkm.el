@@ -8,7 +8,17 @@
   :custom
   (denote-directory (expand-file-name "~/doc/org/memex"))
   (denote-journal-extras-title-format 'day-date-month-year)
-  :bind (("C-c m f" . denote-open-or-create)))
+  :bind (("C-c m f" . denote-open-or-create))
+
+  :config
+  (defun my/denote-dired-mode-hook()
+    (denote-dired-mode-in-directories)
+    (if denote-dired-mode
+	(dired-hide-details-mode +1)
+      (diredfl-mode +1)))
+
+  :hook
+  (dired-mode . my/denote-dired-mode-hook))
 
 (defun my/denote-files-created ()
   "Return a list of denote files created on the same day as the
