@@ -26,7 +26,6 @@
 	       (list
 		;; Wayland Desktop Environment
 		"fuzzel"
-		"waybar"
 		"swaybg"
 		"slurp"
 		"grim"
