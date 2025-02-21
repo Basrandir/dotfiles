@@ -1,0 +1,46 @@
+[colors.bright]
+black = "#a29c8c"
+blue = "#A9AB8E"
+cyan = "#BAC5A9"
+green = "#DFC27E"
+magenta = "#CAB98C"
+red = "#CEAD77"
+white = "#e8e0c8"
+yellow = "#789791"
+
+[colors.cursor]
+cursor = "#e8e0c8"
+text = "#0a090b"
+
+[colors.normal]
+black = "#0a090b"
+blue = "#A9AB8E"
+cyan = "#BAC5A9"
+green = "#DFC27E"
+magenta = "#CAB98C"
+red = "#CEAD77"
+white = "#e8e0c8"
+yellow = "#789791"
+
+[colors.primary]
+background = "#0a090b"
+foreground = "#e8e0c8"
+
+[font]
+size = 12.0
+
+[font.bold]
+family = "RecMonoDuotone Nerd Font"
+style = "Bold"
+
+[font.bold_italic]
+family = "RecMonoDuotone Nerd Font"
+style = "Bold Italic"
+
+[font.italic]
+family = "RecMonoDuotone Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "RecMonoDuotone Nerd Font"
+style = "Regular"
