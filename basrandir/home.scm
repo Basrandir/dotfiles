@@ -20,7 +20,7 @@
 (define base-home-packages
   (append (list
 	   git `(,git "send-email")
-	   rust `(,rust "cargo") `(,rust "tools")
+	   ;; rust `(,rust "cargo") `(,rust "tools")
 	   glib `(,glib "bin"))
 	  (map specification->package
 	       (list
