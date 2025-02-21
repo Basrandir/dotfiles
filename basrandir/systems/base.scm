@@ -88,8 +88,12 @@
 		  (comment "Bassam Saeed")
 		  (group "users")
 		  (supplementary-groups '("wheel" "netdev" "lp" "libvirt" "kvm"
-					  "audio" "video")))
+					  "input" "uinput" "audio" "video")))
 		 %base-user-accounts))
+
+    (groups (cons* (user-group
+                    (name "uinput"))
+                   %base-groups))
 
     (packages base-system-packages)
     (services base-system-services)

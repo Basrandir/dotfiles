@@ -1,0 +1,12 @@
+(defcfg
+ input  (device-file "/dev/input/by-id/usb-Keychron_Keychron_Link-if02-event-kbd")
+ output (uinput-sink "KMonad Virtual Keyboard")
+ fallthrough true
+ allow-cmd true
+ )
+
+(defsrc caps)
+
+(defalias caps_tap (tap-next-release esc lctl))
+
+(deflayer main @caps_tap)
