@@ -12,6 +12,7 @@
 ;;; Code:
 (use-package apheleia
   :config
+  (add-to-list 'apheleia-formatters '(rustfmt . ("rustfmt" "--quiet" "--emit" "stdout" "--edition" "2021")))
   (add-to-list 'apheleia-mode-alist
 	       '(tsx-ts-mode . prettier-typescript))
   (apheleia-global-mode +1))
@@ -37,7 +38,7 @@
 ;; Eglot
 (use-package eglot
   :bind (:map eglot-mode-map
-	      ("C-c a" . eglot-code-actions)
+	      ("C-c e" . eglot-code-actions)
 	      ("M-h" . eldoc-box-help-at-point))
   ;; :hook (eglot--managed-mode . limit-eldoc-to-single-line)
   :init

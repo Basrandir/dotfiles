@@ -42,5 +42,4 @@
 
 (provide 'module-dired)
 
-
 ;;; module-dired.el ends here

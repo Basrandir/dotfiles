@@ -4,9 +4,9 @@
 
 ;;; Code:
 (use-package denote
-  ;;:elpaca (denote :host github :repo "protesilaos/denote")
   :custom
   (denote-directory (expand-file-name "~/doc/org/memex"))
+  (denote-dired-directories-include-subdirectories t)
   (denote-journal-extras-title-format 'day-date-month-year)
   :bind (("C-c m f" . denote-open-or-create))
 

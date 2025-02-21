@@ -5,6 +5,7 @@
 ;;; Code:
 
 (use-package org
+  :ensure nil
   :hook
   (org-mode . org-indent-mode)
   (org-mode . (lambda ()
@@ -76,11 +77,12 @@
   (org-appear-autolinks t))
 
 (use-package org-modern
+  :ensure t
   :after org
-  :hook (org-mode . org-modern-mode))
+  :config
+  (global-org-modern-mode))
 
 ;;;; Org Capture
-
 (use-package org-capture
   :after org
   :custom

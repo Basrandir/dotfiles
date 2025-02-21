@@ -4,22 +4,12 @@
 
 ;;; Code:
 
-(defun consult-emoji ()
-  "Insert an emoji at point."
-  (interactive)
-  (let* ((emojis (with-temp-buffer))
-	 (selected-emoji (consult--read
-                          emojis
-                          :prompt "Emoji: "
-                          :category 'emoji
-                          :sort nil
-                          :history t)))
-    (insert selected-emoji)))
-
 (use-package consult
   :bind (("C-x b" . consult-buffer)    ;; org. switch-to-buffer
-	 ("M-s s" . consult-line)
-	 ("M-s d" . consult-find)
+	 ("M-s l" . consult-line)
+	 ("M-s i" . consult-info)
+	 ("M-s d" . consult-fd)
+	 ("M-s e" . (lambda () (interactive) (consult-fd "~/dotfiles/files/emacs")))
 	 ("M-s f" . (lambda () (interactive) (consult-find "~")))
 	 ("M-s r" . consult-ripgrep))
   :config
@@ -29,7 +19,6 @@
    consult-find :preview-key 'any))
 
 (use-package corfu
-  :ensure t
   :init
   (global-corfu-mode)
   (corfu-popupinfo-mode)
@@ -49,13 +38,6 @@
       (corfu-mode 1)))
   (add-hook 'minibuffer-setup-hook #'corfu-enable-in-minibuffer))
 
-;; (use-package kind-icon
-;;   :after corfu
-;;   :custom
-;;   (kind-icon-default-face 'corfu-default) ; to compute blended backgrounds correctly
-;;   :config
-;;   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
-
 (use-package embark
   :bind
   (("C-." . embark-act)
@@ -65,7 +47,6 @@
   (setq prefix-help-command #'embark-prefix-help-command))
 
 (use-package marginalia
-  :ensure t
   :init (marginalia-mode))
 
 (use-package orderless
@@ -73,7 +54,6 @@
 	   (read-buffer-completion-ignore-case t)))
 
 (use-package vertico
-  :ensure t
   :init
   (vertico-mode)
   (vertico-multiform-mode)
@@ -87,7 +67,6 @@
 
 (use-package vertico-posframe
   :after vertico
-  :ensure t
   :config
   (setq vertico-posframe-parameters
 	'((left-fringe . 8)

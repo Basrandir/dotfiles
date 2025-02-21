@@ -62,6 +62,7 @@
 (add-to-list 'load-path (expand-file-name "modules" user-emacs-directory))
 
 ;; Require Modules
+(require 'module-org)
 (require 'module-ai)
 (require 'module-completion)
 (require 'module-defaults)
@@ -69,15 +70,19 @@
 (require 'module-feed)
 (require 'module-ide)
 (require 'module-meow)
-(require 'module-org)
 (require 'module-pkm)
 (require 'module-shell)
+(require 'module-stream)
 (require 'module-templates)
 (require 'module-ui)
 
+(use-package typst-ts-mode
+  :ensure (typst-ts-mode :host codeberg :repo "meow_king/typst-ts-mode"))
+
 (use-package jinx
   :bind (("M-$" . jinx-correct)
-	 ("C-M-$" . jinx-languages)))
+	 ("C-M-$" . jinx-languages))
+  :hook (text-mode . jinx-mode))
 
 ;; Make GC pauses faster.
 (setq gc-cons-threshold (* 2 1000 1000))
