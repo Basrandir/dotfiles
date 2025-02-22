@@ -105,13 +105,25 @@ riverctl map normal Super Space toggle-float
 # Super+F to toggle fullscreen
 riverctl map normal Super F toggle-fullscreen
 
-# Super+{Up,Right,Down,Left} to change layout orientation
-riverctl map normal Super Up    send-layout-cmd rivertile "main-location top"
-riverctl map normal Super Right send-layout-cmd rivertile "main-location right"
-riverctl map normal Super Down  send-layout-cmd rivertile "main-location bottom"
-riverctl map normal Super Left  send-layout-cmd rivertile "main-location left"
-
 riverctl map normal Super+Shift S spawn 'screenshot.sh'
+
+# Create an Emacs mode for chorded keybindings
+riverctl declare-mode emacs
+riverctl map normal Super E enter-mode emacs
+
+# Create the Super+E Emacs keybindings
+riverctl map emacs None v spawn "emacsclient -c -e '(eat)'"
+riverctl map emacs None d spawn "emacsclient -c -e '(dired nil)'"
+riverctl map emacs None e spawn "emacsclient -c -e '(elfeed)'"
+riverctl map emacs None c spawn "emacsclient -c -F '(quote (name . \"capture\"))' -e '(activate-capture-frame)'"
+
+# Go back to normal mode after binding is completed
+riverctl map -release emacs None Escape enter-mode normal
+riverctl map -release emacs None v enter-mode normal
+riverctl map -release emacs None d enter-mode normal
+riverctl map -release emacs None e enter-mode normal
+riverctl map -release emacs None c enter-mode normal
+
 # Declare a passthrough mode. This mode has only a single mapping to return to
 # normal mode. This makes it useful for testing a nested wayland compositor
 riverctl declare-mode passthrough
@@ -155,21 +167,32 @@ riverctl set-repeat 50 300
 
 # Make all views with an app-id that starts with "float" and title "foo" start floating.
 riverctl rule-add float -app-id 'float*' -title 'foo'
+riverctl float-filter-add title "capture"
 
 # Make all views with app-id "bar" and any title use client-side decorations
 riverctl rule-add csd -app-id "bar"
 
 # Set the default layout generator to be rivertile and start it.
 # River will send the process group of the init executable SIGTERM on exit.
-riverctl default-layout rivertile
-rivertile -view-padding 6 -outer-padding 6 &
+riverctl default-layout river-ultitile
+river-ultitile &
+gap=$(( RANDOM % 11 + 1 ))
+riverctl send-layout-cmd river-ultitile "set global integer main-size-if-only-centered-main -= $gap"
 
-[[ "$HOSTNAME" == "polaris" ]] && guix shell wlr-randr -- wlr-randr --output DP-1 --mode 3840x2160@120Hz --scale 1.5 --pos 1920,0 --output HDMI-A-1 --pos 0,0
+# Change layout
+riverctl map normal Super Up    send-layout-cmd river-ultitile "set string layout = vstack"
+riverctl map normal Super Right send-layout-cmd river-ultitile "set string layout = hstack"
+riverctl map normal Super Down  send-layout-cmd river-ultitile "set string layout = monocle"
+riverctl map normal Super Left  send-layout-cmd river-ultitile "set string layout = main"
+
+if [[ "$HOSTNAME" == "polaris" ]]; then
+    guix shell wlr-randr -- wlr-randr --output HDMI-A-1 --mode 3840x2160@120Hz --pos 1080,0 --output HDMI-A-2 --pos 0,0 --transform 90
+    guix shell xrandr -- xrandr --output HDMI-A-1 --primary
+fi
 
 [[ "$HOSTNAME" == "proteus" ]] && riverctl input pointer-1267-32-Elan_Touchpad natural-scroll enabled
 
-swaybg -m fill -i /home/bassam/media/images/wallpapers/lotr/anato-finnstark-anato-finnstark-anato-finnstark-web-petit-4_upscayl_4x_remacri.png &
-riverctl spawn waybar
+swaybg -c "#000000" &
 riverctl spawn 'kmonad $HOME/dotfiles/files/kmonad/caps.kbd'
 riverctl spawn swaync
 exec dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river
