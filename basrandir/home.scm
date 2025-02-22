@@ -168,7 +168,7 @@
 		     ("MOZ_ENABLE_WAYLAND" . "1")
 		     ("XDG_CURRENT_DESKTOP" . "river")
 		     ("RTC_USE_PIPEWIRE" . "true")
-		     ("PATH" . "$PATH:$HOME/bin:$HOME/scripts")))))
+		     ("PATH" . "$PATH:$HOME/bin:$HOME/scripts:$HOME/.local/bin")))))
         (service home-fish-service-type
 		 (home-fish-configuration
 		  (aliases
@@ -176,15 +176,6 @@
 		     ("mvi" . "mpv --config-dir=$HOME/.config/mvi")))
 		  (config
 		   (list (local-file "../files/fish/config.fish")))))
-	(simple-service 'polybar-config
-			home-files-service-type
-			(list `(".config/polybar/config.ini"
-				,(local-file "../files/polybar/config.ini"))))
-	(simple-service 'waybar-config
-			home-files-service-type
-			(list `(".config/waybar"
-				,(local-file "../files/waybar"
-					     #:recursive? #t))))
 	(simple-service 'scripts-config
 			home-files-service-type
 			(list `("scripts"
@@ -221,8 +212,8 @@
 		  (longitude -79.64)))
 	(simple-service 'alacritty-config
 			home-files-service-type
-			(list `(".config/alacritty/alacritty.yml"
-				,(local-file "../files/alacritty/alacritty.yml"))))
+			(list `(".config/alacritty/alacritty.toml"
+				,(local-file "../files/alacritty/alacritty.toml"))))
 	(simple-service 'rofi-config
 			home-files-service-type
 			(list `(".config/rofi/config.rasi"
