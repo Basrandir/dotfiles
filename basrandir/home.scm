@@ -32,7 +32,6 @@
 		"swaynotificationcenter"
 		
 		"alacritty"
-		"anki"
 		"binutils"
 		"curl"
 		"darktable"
