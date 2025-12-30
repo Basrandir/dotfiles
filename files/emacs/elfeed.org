@@ -28,3 +28,5 @@ This is a sort of org-ception to get it to tangle.
 **** https://www.awn.com/news/rss.xml
 **** https://cartoonbrew.com/feed
 **** https://www.animationmagazine.net/feed/
+*** Short Films
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC-vrN89jIox3XqAKbEMeFgQ][GOBELINS]]

@@ -60,10 +60,6 @@ creation date of the file this function is called from."
 	(denote-id-regexp "[0-9]\\{8\\}"))
     (apply orig-fun args)))
 
-(defun my/denote-create-note-child ()
-  "Create a new note with a signature that's a child to the current one."
-  (interactive))
-
 (use-package consult-notes
   :ensure t
   :config

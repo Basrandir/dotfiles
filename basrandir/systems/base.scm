@@ -3,7 +3,10 @@
   #:use-module (srfi srfi-1)
   #:use-module (gnu)
   #:use-module (gnu services)
+  #:use-module (gnu services containers)
+  #:use-module (gnu services networking)
   #:use-module (gnu system)
+  #:use-module (gnu system accounts)
   #:use-module (gnu system nss)
   #:use-module (gnu system setuid)
   #:use-module (nongnu packages linux)
@@ -35,17 +38,24 @@
 	 (service bluetooth-service-type
 		  (bluetooth-configuration
 		   (auto-enable? #t)))
-	 (simple-service
-	  'podman-subuid-subgid
-	  etc-service-type
-	  `(("subuid"
-	     ,(plain-file
-	       "subuid"
-	       "bassam:100000:65536\n"))
-	    ("subgid"
-	     ,(plain-file
-	       "subgid"
-	       "bassam:100000:65536\n"))))
+	 (service iptables-service-type)
+	 (service rootless-podman-service-type
+                  (rootless-podman-configuration
+                   (subgids
+                    (list (subid-range (name "bassam"))))
+                   (subuids
+                    (list (subid-range (name "bassam"))))))
+	 ;; (simple-service
+	 ;;  'podman-subuid-subgid
+	 ;;  etc-service-type
+	 ;;  `(("subuid"
+	 ;;     ,(plain-file
+	 ;;       "subuid"
+	 ;;       "bassam:100000:65536\n"))
+	 ;;    ("subgid"
+	 ;;     ,(plain-file
+	 ;;       "subgid"
+	 ;;       "bassam:100000:65536\n"))))
          (modify-services %desktop-services
 			  (gdm-service-type config => (gdm-configuration
 						       (inherit config)

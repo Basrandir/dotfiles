@@ -37,6 +37,7 @@
 		"darktable"
 		"direnv"
 		"distrobox"
+		"element-desktop"
 		"fd"
 		"ffmpegthumbnailer"
 		"firefox"
@@ -45,23 +46,29 @@
 		"font-google-noto-emoji"
 		"font-google-noto-sans-cjk"
 		"font-google-noto-serif-cjk"
-		"font-recursive"
+		;; "font-recursive"
+		"font-wqy-zenhei"	; CJK for Steam
 		"gammastep"
 		"gcc-toolchain"
 		"glibc"
+		"go"
+		"gopls"
+		"gtk-layer-shell"
 		"guile"
 		"hunspell-dict-en-us"
 		"imagemagick"
 		"isync"
 		"kdenlive"
 		"kmonad"
+		"krita"
 		"lxappearance"
 		"mediainfo"
+		"mesa"
 		"mgba"
 		"mpv"
 		"neovim"
 		"notmuch"
-		"nyxt"
+		;; "nyxt"
 		"obs"
 		"okular"
 		"pamixer"
@@ -83,13 +90,13 @@
 		"steam"
 		"steam-devices-udev-rules"
 		"telegram-desktop"
-		"ungoogled-chromium"
 		"unicode-emoji"
 		"unzip"
 		"virt-manager"
 		"wl-clipboard"
-		"xdg-desktop-portal"
-		"xdg-desktop-portal-wlr"
+		;; "xdg-desktop-portal"
+		"xdg-desktop-portal-gtk"
+		"xdg-desktop-portal-hyprland"
 		"xdg-utils"
 		"yt-dlp"
 		))))
@@ -122,6 +129,8 @@
 	"emacs-embark"
 	"emacs-envrc"
 	"emacs-gptel"
+	"emacs-gptel-quick"
+	"emacs-guix"
 	"emacs-hide-mode-line"
 	"emacs-jinx"
 	"emacs-kbd"
@@ -139,6 +148,7 @@
 	"emacs-rainbow-mode"
 	"emacs-rust-mode"
 	"emacs-svg-tag-mode"
+	"emacs-telega"
 	"emacs-tempel"
 	"emacs-tempel-collection"
 	"emacs-eglot-tempel"
@@ -225,10 +235,10 @@
 			(list `(".themes"
 				,(local-file "../files/gtk"
 					     #:recursive? #t))))
-	;(simple-service 'isync-config
-	;		home-files-service-type
-	;		(list `(".mbsyncrc"
-	;			,(local-file "../files/isync/mbsyncrc"))))
+	(simple-service 'isync-config
+			home-files-service-type
+			(list `(".mbsyncrc"
+				,(local-file "../files/isync/mbsyncrc"))))
 	(service home-shepherd-service-type
 		 (home-shepherd-configuration
 		  (services (append (list ;; I thought this isn't needed?

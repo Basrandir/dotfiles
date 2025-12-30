@@ -14,7 +14,7 @@
   :config
   (add-to-list 'apheleia-formatters '(rustfmt . ("rustfmt" "--quiet" "--emit" "stdout" "--edition" "2021")))
   (add-to-list 'apheleia-mode-alist
-	       '(tsx-ts-mode . prettier-typescript))
+			   '(tsx-ts-mode . prettier-typescript))
   (apheleia-global-mode +1))
 
 ;; Documentation
@@ -38,8 +38,8 @@
 ;; Eglot
 (use-package eglot
   :bind (:map eglot-mode-map
-	      ("C-c e" . eglot-code-actions)
-	      ("M-h" . eldoc-box-help-at-point))
+			  ("C-c e" . eglot-code-actions)
+			  ("M-h" . eldoc-box-help-at-point))
   ;; :hook (eglot--managed-mode . limit-eldoc-to-single-line)
   :init
   (defun limit-eldoc-to-single-line ()
@@ -51,10 +51,16 @@
   :mode ("\\.rs" . rust-ts-mode)
   :hook (rust-ts-mode . eglot-ensure)
   :bind (:map rust-ts-mode-map
-	      ("C-c C-c C-u" . rust-compile)
-	      ("C-c C-c C-k" . rust-check)
-	      ("C-c C-c C-t" . rust-test)
-	      ("C-c C-c C-r" . rust-run)))
+			  ("C-c C-c C-u" . rust-compile)
+			  ("C-c C-c C-k" . rust-check)
+			  ("C-c C-c C-t" . rust-test)
+			  ("C-c C-c C-r" . rust-run)))
+
+(use-package go-ts-mode
+  :mode "\\.go\\'"
+  :hook (go-ts-mode . (lambda () (setq-local tab-width 4)))
+  :custom
+  (go-ts-mode-indent-offset 4))
 
 (use-package tsx-ts-mode
   :mode "\\.tsx\\'")
