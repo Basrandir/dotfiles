@@ -79,6 +79,9 @@
 (use-package typst-ts-mode
   :ensure (typst-ts-mode :host codeberg :repo "meow_king/typst-ts-mode"))
 
+(use-package kdl-mode
+  :ensure t)
+
 (use-package jinx
   :bind (("M-$" . jinx-correct)
 	 ("C-M-$" . jinx-languages))

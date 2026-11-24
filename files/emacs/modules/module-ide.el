@@ -2,19 +2,23 @@
 
 ;;; Commentary:
 
-;; This file contains the configuration for an IDE setup. The purpose
+;; This file contains the configuration for an IDE setup.  The purpose
 ;; of this module is to enhance Emacs and transform it into a powerful
-;; Integrated Development Environment. It achieves this by integrating
-;; and configuring various packages (internal and external) for syntax
-;; highlighting, formatting, code completion, project management, and
-;; language servecs.
+;; Integrated Development Environment.  It achieves this by
+;; integrating and configuring various packages (internal and
+;; external) for syntax highlighting, formatting, code completion,
+;; project management, and language servecs.
 
 ;;; Code:
+(use-package flymake
+  :custom
+  (flymake-show-diagnostics-at-end-of-line 'fancy))
+
 (use-package apheleia
   :config
   (add-to-list 'apheleia-formatters '(rustfmt . ("rustfmt" "--quiet" "--emit" "stdout" "--edition" "2021")))
   (add-to-list 'apheleia-mode-alist
-			   '(tsx-ts-mode . prettier-typescript))
+	       '(tsx-ts-mode . prettier-typescript))
   (apheleia-global-mode +1))
 
 ;; Documentation
@@ -38,8 +42,8 @@
 ;; Eglot
 (use-package eglot
   :bind (:map eglot-mode-map
-			  ("C-c e" . eglot-code-actions)
-			  ("M-h" . eldoc-box-help-at-point))
+	      ("C-c e" . eglot-code-actions)
+	      ("M-h" . eldoc-box-help-at-point))
   ;; :hook (eglot--managed-mode . limit-eldoc-to-single-line)
   :init
   (defun limit-eldoc-to-single-line ()
@@ -51,19 +55,28 @@
   :mode ("\\.rs" . rust-ts-mode)
   :hook (rust-ts-mode . eglot-ensure)
   :bind (:map rust-ts-mode-map
-			  ("C-c C-c C-u" . rust-compile)
-			  ("C-c C-c C-k" . rust-check)
-			  ("C-c C-c C-t" . rust-test)
-			  ("C-c C-c C-r" . rust-run)))
+	      ("C-c C-c C-u" . rust-compile)
+	      ("C-c C-c C-k" . rust-check)
+	      ("C-c C-c C-t" . rust-test)
+	      ("C-c C-c C-r" . rust-run)))
 
-(use-package go-ts-mode
-  :mode "\\.go\\'"
-  :hook (go-ts-mode . (lambda () (setq-local tab-width 4)))
-  :custom
-  (go-ts-mode-indent-offset 4))
+;; (use-package go-ts-mode
+;;   :mode "\\.go\\'"
+;;   :hook (go-ts-mode . (lambda () (setq-local tab-width 4)))
+;;   :custom
+;;   (go-ts-mode-indent-offset 4))
+
+(use-package go-mode
+  :hook (;;(before-save . gofmt-before-save)
+	 (go-mode . eglot-ensure)
+	 (go-mode . (lambda () (setq-local tab-width 4)))))
 
 (use-package tsx-ts-mode
   :mode "\\.tsx\\'")
+
+(use-package gleam-ts-mode
+  :ensure t
+  :mode (rx ".gleam" eos))
 
 (use-package envrc
   :after eglot

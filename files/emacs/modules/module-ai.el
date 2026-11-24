@@ -42,6 +42,9 @@
 ;; 			     :chat-model "openhermes"
 ;; 			     :embedding-model "openhermes")))))
 
+(use-package agent-shell
+  :ensure t)
+
 (use-package gptel
   :custom
   (gptel-default-mode #'org-mode)

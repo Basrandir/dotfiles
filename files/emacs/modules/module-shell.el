@@ -20,6 +20,9 @@
   :hook (vterm-mode . (lambda ()
 			(setq-local global-hl-line-mode nil))))
 
+;; Common Shell Commands
+;; (use-package dwim-shell-command)
+
 (provide 'module-shell)
 
 ;;; module-shell.el ends here

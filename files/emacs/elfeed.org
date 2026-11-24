@@ -21,6 +21,12 @@ This is a sort of org-ception to get it to tangle.
 *** https://sqrtminusone.xyz/posts/index.xml
 *** https://karthinks.com/index.xml
 
+** Youtube                                                           :youtube:
+*** Breadtube
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCAXCE0MLOSTTkkOU1HTh_IA][Noah Samsen]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCPPZoYsfoSekIpLcz9plX1Q][Hakim]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCs8mbJ-M142ZskR5VR0gBig][YUGOPNIK]]
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCJm2TgUqtK1_NLBrjNQ1P-w][Second Thought]]
 
 ** Animation                                                       :animation:
 *** News

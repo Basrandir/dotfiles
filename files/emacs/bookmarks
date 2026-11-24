@@ -1,0 +1,12 @@
+;;;; Emacs Bookmark Format Version 1;;;; -*- coding: utf-8-emacs; mode: lisp-data -*-
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("org-capture-last-stored" (filename . "~/doc/org/weight.org")
+ (front-context-string . "$2-@-7$2)/@-7$2)")
+ (rear-context-string . "$-2::@9$5..$5=((") (position . 36131)
+ (last-modified 26487 13164 576250 119000))
+("dotemacs" (filename . "~/dotfiles/files/emacs/init.el")
+ (front-context-string . ";;; init.el --- ") (rear-context-string)
+ (position . 1) (last-modified 26064 61806 395075 572000))
+)

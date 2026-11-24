@@ -40,6 +40,23 @@
 (use-package diredfl
   :after dired)
 
+(defun my-image-dired-copy-image ()
+  "Copy the image at point in image-dired to the Wayland clipboard."
+  (interactive)
+  (let* ((file (image-dired-original-file-name))
+         (mime (or (mailcap-file-name-to-mime-type file)
+                   "image/png")))
+    (unless file
+      (user-error "No image at point"))
+    (with-temp-buffer
+      (insert-file-contents-literally file)
+      (call-process-region
+       (point-min) (point-max)
+       "wl-copy" nil nil nil
+       "--type" mime))
+    (message "Copied %s to clipboard"
+             (file-name-nondirectory file))))
+
 (provide 'module-dired)
 
 ;;; module-dired.el ends here
