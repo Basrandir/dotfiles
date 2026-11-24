@@ -1,5 +1,4 @@
 (define-module (basrandir systems base)
-  #:use-module (basrandir packages)
   #:use-module (srfi srfi-1)
   #:use-module (gnu)
   #:use-module (gnu services)
@@ -22,10 +21,14 @@
   (append (map specification->package
 	       '("openssh"
 		 "gnupg"
+		 "gsettings-desktop-schemas"
 		 "pinentry"
 		 "river"
+		 "niri"
+		 "hyprland"
 		 "nix"
-		 "xorg-server-xwayland"))
+		 "xorg-server-xwayland"
+		 "xwayland-satellite"))
 	  %base-packages))
 
 (define base-system-services
