@@ -32,6 +32,7 @@
 		"swaynotificationcenter"
 		
 		"alacritty"
+		"bibata-cursor-theme"
 		"binutils"
 		"curl"
 		"darktable"
@@ -55,12 +56,14 @@
 		"gopls"
 		"gtk-layer-shell"
 		"guile"
+		"hicolor-icon-theme"
 		"hunspell-dict-en-us"
 		"imagemagick"
 		"isync"
 		"kdenlive"
 		"kmonad"
 		"krita"
+		"llama-cpp"
 		"lxappearance"
 		"mediainfo"
 		"mesa"
@@ -85,6 +88,7 @@
 		"quodlibet"
 		"recoll"
 		"ripgrep"
+		"rofi"
 		"rsync"
 		"sshfs"
 		"steam"
@@ -117,8 +121,11 @@
 	"emacs-dashboard"
 	"emacs-dap-mode"
 	"emacs-denote"
+	"emacs-denote-journal"
+	"emacs-denote-sequence"
 	"emacs-diff-hl"
 	"emacs-diredfl"
+	"emacs-dwim-shell-command"
 	"emacs-eat"
 	"emacs-ef-themes"
 	;; Elfeed
@@ -128,6 +135,8 @@
 	"emacs-elfeed-org"
 	"emacs-embark"
 	"emacs-envrc"
+	"emacs-gleam-mode"
+	"emacs-go-mode"
 	"emacs-gptel"
 	"emacs-gptel-quick"
 	"emacs-guix"
@@ -176,7 +185,7 @@
 		   '(("QT_QPA_PLATFORMTHEME" . "qt5ct")
 		     ("XDG_DATA_DIRS" . "$XDG_DATA_DIRS:$HOME/.local/share/flatpak/exports/share")
 		     ("MOZ_ENABLE_WAYLAND" . "1")
-		     ("XDG_CURRENT_DESKTOP" . "river")
+		     ("XDG_CURRENT_DESKTOP" . "niri")
 		     ("RTC_USE_PIPEWIRE" . "true")
 		     ("PATH" . "$PATH:$HOME/bin:$HOME/scripts:$HOME/.local/bin")))))
         (service home-fish-service-type
@@ -228,8 +237,8 @@
 			home-files-service-type
 			(list `(".config/rofi/config.rasi"
 				,(local-file "../files/rofi/config.rasi"))
-			      `(".local/share/rofi/themes/catppuccin.rasi"
-				,(local-file "../files/rofi/catppuccin.rasi"))))
+			      `(".local/share/rofi/themes/rounded-template.rasi"
+				,(local-file "../files/rofi/rounded-template.rasi"))))
 	(simple-service 'gtk-config
 			home-files-service-type
 			(list `(".themes"
