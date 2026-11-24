@@ -60,9 +60,9 @@
 		"hunspell-dict-en-us"
 		"imagemagick"
 		"isync"
-		"kdenlive"
+		;; "kdenlive"
 		"kmonad"
-		"krita"
+		;; "krita"
 		"llama-cpp"
 		"lxappearance"
 		"mediainfo"
@@ -73,7 +73,7 @@
 		"notmuch"
 		;; "nyxt"
 		"obs"
-		"okular"
+		;; "okular"
 		"pamixer"
 		"password-store"
 		"pavucontrol"
@@ -194,26 +194,26 @@
 		   '(("ll" . "ls -l")
 		     ("mvi" . "mpv --config-dir=$HOME/.config/mvi")))
 		  (config
-		   (list (local-file "../files/fish/config.fish")))))
+		   (list (local-file "../../files/fish/config.fish")))))
 	(simple-service 'scripts-config
 			home-files-service-type
 			(list `("scripts"
-				,(local-file "../files/scripts"
+				,(local-file "../../files/scripts"
 					     #:recursive? #t))))
 	(simple-service 'sxhkd-config
 			home-files-service-type
 			(list `(".config/sxhkd/sxhkdrc"
-				,(local-file "../files/sxhkd/sxhkdrc"))))
+				,(local-file "../../files/sxhkd/sxhkdrc"))))
 	;; BSPWM and River configs need to be executable. Need to find
 	;; a way to accomplish that using Guix (home)
 	;; (simple-service 'bspwm-config
 	;; 		home-files-service-type
 	;; 		(list `(".config/bspwm/bspwmrc"
-	;; 			,(local-file "files/bspwm/bspwmrc"))))
+	;; 			,(local-file "../../files/bspwm/bspwmrc"))))
 	;; (simple-service 'river-config
 	;; 		home-files-service-type
 	;; 		(list `(".config/river/init"
-	;; 			,(local-file "../files/river/init"))))
+	;; 			,(local-file "../../files/river/init"))))
 	(service home-xdg-user-directories-service-type
 		 (home-xdg-user-directories-configuration
 		  (download "$HOME/downloads")
@@ -232,22 +232,22 @@
 	(simple-service 'alacritty-config
 			home-files-service-type
 			(list `(".config/alacritty/alacritty.toml"
-				,(local-file "../files/alacritty/alacritty.toml"))))
+				,(local-file "../../files/alacritty/alacritty.toml"))))
 	(simple-service 'rofi-config
 			home-files-service-type
 			(list `(".config/rofi/config.rasi"
-				,(local-file "../files/rofi/config.rasi"))
+				,(local-file "../../files/rofi/config.rasi"))
 			      `(".local/share/rofi/themes/rounded-template.rasi"
-				,(local-file "../files/rofi/rounded-template.rasi"))))
+				,(local-file "../../files/rofi/rounded-template.rasi"))))
 	(simple-service 'gtk-config
 			home-files-service-type
 			(list `(".themes"
-				,(local-file "../files/gtk"
+				,(local-file "../../files/gtk"
 					     #:recursive? #t))))
 	(simple-service 'isync-config
 			home-files-service-type
 			(list `(".mbsyncrc"
-				,(local-file "../files/isync/mbsyncrc"))))
+				,(local-file "../../files/isync/mbsyncrc"))))
 	(service home-shepherd-service-type
 		 (home-shepherd-configuration
 		  (services (append (list ;; I thought this isn't needed?
@@ -277,13 +277,13 @@
 	(simple-service 'emacs-config
 			home-files-service-type
                         (list `(".config/emacs/init.el"
-				,(local-file "../files/emacs/init.el"))
+				,(local-file "../../files/emacs/init.el"))
                               `(".config/emacs/early-init.el"
-				,(local-file "../files/emacs/early-init.el"))
+				,(local-file "../../files/emacs/early-init.el"))
 			      `(".config/emacs/templates"
-				,(local-file "../files/emacs/templates"))
+				,(local-file "../../files/emacs/templates"))
 			      `(".config/emacs/elfeed.org"
-				,(local-file "../files/emacs/elfeed.org"))
+				,(local-file "../../files/emacs/elfeed.org"))
 			      `(".config/emacs/modules"
-				,(local-file "../files/emacs/modules"
+				,(local-file "../../files/emacs/modules"
 					     #:recursive? #t)))))))

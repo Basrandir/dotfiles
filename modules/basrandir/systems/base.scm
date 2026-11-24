@@ -69,7 +69,7 @@
 							 (append (list "https://substitutes.nonguix.org")
 								 %default-substitute-urls))
 							(authorized-keys
-							 (append (list (local-file "../../signing-key.pub"))
+							 (append (list (local-file "../../../signing-key.pub"))
 								 %default-authorized-guix-keys)))))))
 
 (define-public base-operating-system
