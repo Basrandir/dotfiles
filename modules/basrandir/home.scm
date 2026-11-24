@@ -60,7 +60,6 @@
 		"hunspell-dict-en-us"
 		"imagemagick"
 		"isync"
-		;; "kdenlive"
 		"kmonad"
 		;; "krita"
 		"llama-cpp"
