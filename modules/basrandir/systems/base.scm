@@ -76,7 +76,7 @@
   (operating-system
     (timezone "America/Toronto")
     (locale "en_US.utf8")
-    (host-name "polaris") ;; Required, will be overriden
+    (host-name "change-me") ;; Required, will be overriden
 
     ;; Use non-free Linux and firmware
     (kernel linux)
